@@ -92,6 +92,7 @@
     <string name="search_students_button">Search students</string>
     <string name="view_job_offers_button">View list of job offers</string>
     <string name="view_messages_button">View messages</string>
+    <string name="log_out_button">Log out</string>
 
     <string name="title_activity_search_company">SearchCompanyActivity</string>
     <string name="title_activity_login">LoginActivity</string>

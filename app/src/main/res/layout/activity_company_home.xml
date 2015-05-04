@@ -109,6 +109,20 @@
 
                 </TableRow>
 
+                <TableRow android:paddingTop="30dp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/buttonLogOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:text="@string/log_out_button"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:background="@drawable/rounded_button"
+                        android:textStyle="bold" />
+
+                </TableRow>
 
             </TableLayout>
         </RelativeLayout>
