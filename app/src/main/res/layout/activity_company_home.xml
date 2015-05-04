@@ -121,7 +121,6 @@
                         android:textSize="@dimen/text_size"
                         android:background="@drawable/rounded_button"
                         android:textStyle="bold" />
-
                 </TableRow>
 
             </TableLayout>

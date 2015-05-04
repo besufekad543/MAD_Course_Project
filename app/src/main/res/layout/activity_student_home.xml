@@ -120,8 +120,7 @@
                         android:textSize="@dimen/text_size"
                         android:background="@drawable/rounded_button"
                         android:textStyle="bold"
-                        android:text="@string/log_out_button" />
-
+                        android:text="@string/log_out_button"/>
                 </TableRow>
 
 
