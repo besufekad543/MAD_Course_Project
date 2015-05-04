@@ -1,0 +1,361 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_layout"
+    tools:context=".Registration">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--
+     Header PolitoJobs
+     -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_header"
+            android:background="@color/background_header"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true">
+
+
+            <ImageView android:layout_width="@dimen/square_logo"
+                android:layout_height="@dimen/square_logo"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/logopolito"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/header"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/margin_header"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+
+        </LinearLayout>
+
+        <!--
+        Header PolitoJobs
+        -->
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TabWidget>
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:id="@+id/scroller1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <RelativeLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/headerLbl2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="@dimen/abc_control_padding_material"
+                        android:paddingRight="@dimen/abc_control_padding_material"
+                        android:layout_marginTop="@dimen/margin_top_title"
+                        android:text="@string/registration"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold"/>
+
+                    <TableLayout
+                        android:id="@+id/table"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="*"
+                        android:layout_below="@id/headerLbl2">
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top_title">
+                            <TextView android:text="@string/name"
+                                android:id="@+id/studentName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+
+                            <EditText
+                                android:id="@+id/textName"
+                                android:inputType="textPersonName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top">
+                            <TextView android:text="@string/student_surname"
+                                android:id="@+id/studentSurname"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/textSurname"
+                                android:inputType="textPersonName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top">
+                            <TextView android:text="@string/studentID"
+                                android:id="@+id/studentIDLbl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/studentIDTxt"
+                                android:inputType="text"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top">
+                            <TextView android:text="@string/password"
+                                android:id="@+id/studentPasswordLbl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/StudentPasswordTxt"
+                                android:inputType="textPassword"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                    </TableLayout>
+
+                    <Button
+                        android:id="@+id/StudentRegisterBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_below="@+id/table"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="26dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:background="@drawable/rounded_button"
+                        android:textStyle="bold"
+                        android:text="@string/register" />
+
+                </RelativeLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/scroller2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <RelativeLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/headerLbl4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="@dimen/abc_control_padding_material"
+                        android:paddingRight="@dimen/abc_control_padding_material"
+                        android:layout_marginTop="@dimen/margin_top_title"
+                        android:text="@string/registration"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold"/>
+
+                    <TableLayout
+                        android:id="@+id/table2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="*"
+                        android:layout_below="@id/headerLbl4">
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top_title">
+                            <TextView android:text="@string/name"
+                                android:id="@+id/companyNameLbl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+
+                            <EditText
+                                android:id="@+id/companyNameTxt"
+                                android:inputType="textPersonName"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top">
+                            <TextView android:text="@string/address"
+                                android:id="@+id/companyAddressLbl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/addressCompanyTxt"
+                                android:inputType="textPostalAddress"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top">
+                            <TextView android:text="@string/location"
+                                android:id="@+id/companyLocationLbl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/companyLocationTxt"
+                                android:inputType="text"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top">
+                            <TextView android:text="@string/password"
+                                android:id="@+id/companyPasswordLbl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                android:paddingLeft="@dimen/padding_left"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/comanyPasswordTxt"
+                                android:inputType="textPassword"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
+                        </TableRow>
+                    </TableLayout>
+
+                    <Button
+                        android:id="@+id/companyRegisterBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_below="@+id/table2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="33dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:background="@drawable/rounded_button"
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/abc_control_padding_material"
+                        android:paddingRight="@dimen/abc_control_padding_material"
+                        android:text="@string/register" />
+
+
+                </RelativeLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+
+</TabHost>
+

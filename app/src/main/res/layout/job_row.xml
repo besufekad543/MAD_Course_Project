@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout
+    android:id="@+id/table"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TableRow>
+            <TextView
+                android:text="Job position"
+                android:id="@+id/textJobPosition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_left"
+                android:textSize="@dimen/text_size"
+                />
+
+            <Button
+                android:id="@+id/buttonView"
+                android:text="@string/view_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_small"
+                android:layout_gravity="center_horizontal"
+                android:onClick=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Company"
+                android:id="@+id/textCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_left"
+                android:textSize="@dimen/text_size"
+            />
+
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Location"
+                android:id="@+id/textLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_left"
+                android:textSize="@dimen/text_size"
+                />
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:text="@string/save_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_small"
+                android:layout_gravity="center_horizontal"
+                android:onClick=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                />
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Date posted"
+                android:id="@+id/textDatePosted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_left"
+                android:textSize="@dimen/text_size"
+                />
+
+        </TableRow>
+
+
+    </TableLayout>

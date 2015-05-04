@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:stretchColumns="*">
+    <TableRow>
+        <TextView
+            android:text="@string/job_position"
+            android:id="@+id/jobPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:gravity="start"
+            android:paddingLeft="@dimen/padding_left"
+            android:textSize="@dimen/text_size"/>
+        <Button
+            android:text="@string/edit_button"
+            android:id="@+id/editButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_small"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:onClick=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:background="@drawable/rounded_button"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            />
+    </TableRow>
+    <TableRow android:layout_marginTop="@dimen/margin_between">
+        <TextView
+            android:text="@string/location"
+            android:id="@+id/jobLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:gravity="start"
+            android:paddingLeft="@dimen/padding_left"
+            android:textSize="@dimen/text_size"/>
+        <Button
+            android:text="@string/remove_button"
+            android:id="@+id/removeButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_small"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:onClick=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:background="@drawable/rounded_button"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            />
+    </TableRow>
+</TableLayout>
