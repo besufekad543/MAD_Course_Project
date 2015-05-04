@@ -15,7 +15,6 @@ public class LogIn extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        //prueba
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
