@@ -24,6 +24,7 @@ public class LogIn extends ActionBarActivity {
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();
+
     }
 
 

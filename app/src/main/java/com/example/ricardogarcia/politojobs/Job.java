@@ -5,7 +5,7 @@ package com.example.ricardogarcia.politojobs;
  */
 public class Job {
     private String id;
-    private String job_name;
+    private String name;
     private String industry;
     private String description;
     private String location;
@@ -13,13 +13,13 @@ public class Job {
     private String typeJob;
     private String duration;
     private String date;
-    private String company;
+    private Company company;
 
-    public String getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(String company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
@@ -31,12 +31,12 @@ public class Job {
         this.id = id;
     }
 
-    public String getJob_name() {
-        return job_name;
+    public String getName() {
+        return name;
     }
 
-    public void setJob_name(String job_name) {
-        this.job_name = job_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getIndustry() {
