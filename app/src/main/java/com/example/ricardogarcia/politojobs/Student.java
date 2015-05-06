@@ -1,7 +1,137 @@
 package com.example.ricardogarcia.politojobs;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by ricardogarcia on 30/04/15.
  */
 public class Student {
+
+    private String name;
+    private String surname;
+    private String location;
+    private String industry;
+    private Date birthdate;
+    private String birthplace;
+    private String description;
+    private List<String> skills;
+    private List<String> languages;
+    private List<String> nontechskills;
+    private int experienceyears;
+    private String seniority_level;
+    private String phonenumber;
+    private Company current_company;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getBirthplace() {
+        return birthplace;
+    }
+
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
+    }
+
+    public List<String> getNontechskills() {
+        return nontechskills;
+    }
+
+    public void setNontechskills(List<String> nontechskills) {
+        this.nontechskills = nontechskills;
+    }
+
+    public int getExperienceyears() {
+        return experienceyears;
+    }
+
+    public void setExperienceyears(int experienceyears) {
+        this.experienceyears = experienceyears;
+    }
+
+    public String getSeniority_level() {
+        return seniority_level;
+    }
+
+    public void setSeniority_level(String seniority_level) {
+        this.seniority_level = seniority_level;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public Company getCurrent_company() {
+        return current_company;
+    }
+
+    public void setCurrent_company(Company current_company) {
+        this.current_company = current_company;
+    }
 }
