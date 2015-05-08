@@ -1,73 +1,73 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/background_layout"
-tools:context=".ListJobs">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_layout"
+    tools:context=".ListJobs">
 
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/height_header"
+        android:layout_alignParentTop="true"
         android:background="@color/background_header"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true">
+        android:orientation="horizontal">
 
 
-        <ImageView android:layout_width="@dimen/square_logo"
+        <ImageView
+            android:layout_width="@dimen/square_logo"
             android:layout_height="@dimen/square_logo"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/logopolito"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
+            android:background="@drawable/logopolito" />
 
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="@dimen/margin_header"
             android:text="@string/header"
             android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/margin_header"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal|center_vertical"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <TextView android:text="@string/job_offers"
+    <TextView
         android:id="@+id/jobOffers"
-        android:layout_marginTop="@dimen/margin_top_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="@dimen/margin_top_title"
         android:gravity="center_horizontal"
         android:paddingLeft="@dimen/padding_left"
-        android:layout_below="@id/header"
+        android:text="@string/job_offers"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_size"/>
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listResult"
-        android:layout_marginTop="@dimen/margin_top_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_below="@+id/jobOffers"
-        />
+        android:layout_marginTop="@dimen/margin_top_title"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
 
     <Button
-        android:text="@string/publish_offer"
         android:id="@+id/publish_button"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_height"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/listResult"
+        android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/margin_top"
+        android:background="@drawable/rounded_button"
         android:onClick=""
+        android:text="@string/publish_offer"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size"
-        android:background="@drawable/rounded_button"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -75,28 +75,30 @@ tools:context=".ListJobs">
         android:layout_alignParentBottom="true"
         android:background="@color/background_tab"
         android:gravity="center_vertical">
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
+            android:background="@color/background_bottom"
             android:text="@string/home_button"
-            android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
-            android:text="@string/profile_button"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
             android:background="@color/background_bottom"
+            android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>
