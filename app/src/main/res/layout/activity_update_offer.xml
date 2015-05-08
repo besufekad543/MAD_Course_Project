@@ -46,11 +46,22 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <TextView android:text="@string/title_activity_update_offer"
+                android:id="@+id/updateOfferText"
+                android:layout_marginTop="@dimen/margin_top_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size"/>
+
             <TableLayout
                 android:id="@id/table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1">
+                android:stretchColumns="1"
+                android:layout_below="@+id/updateOfferText">
                 <TableRow
                     android:layout_marginTop="@dimen/margin_top_title">
                     <TextView android:text="@string/job_position"
@@ -209,37 +220,37 @@
                         android:textSize="@dimen/text_size"
                         android:background="@color/background_text"/>
                 </TableRow>
-                <TableRow android:layout_marginTop="@dimen/margin_top">
-                    <Button
-                        android:text="@string/update_button"
-                        android:id="@+id/updateButton"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/button_height"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginRight="@dimen/margin_between"
-                        android:layout_weight="1"
-                        android:onClick=""
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold"
-                        />
-                    <Button
-                        android:text="@string/cancel_button"
-                        android:id="@+id/cancelButton"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/button_height"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/margin_between"
-                        android:layout_weight="1"
-                        android:onClick=""
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold"
-                        />
-                </TableRow>
             </TableLayout>
+
+            <Button
+                android:text="@string/update_button"
+                android:id="@+id/updateButton"
+                android:layout_width="@dimen/width_buttons"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center_horizontal"
+                android:onClick=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                android:layout_below="@+id/table"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_top"
+                />
+            <Button
+                android:text="@string/cancel_button"
+                android:id="@+id/cancelButton"
+                android:layout_width="@dimen/width_buttons"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center_horizontal"
+                android:onClick=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                android:layout_below="@+id/updateButton"
+                android:layout_centerHorizontal="true"
+                />
          </RelativeLayout>
     </ScrollView>
     <LinearLayout
