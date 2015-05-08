@@ -127,4 +127,6 @@
     <string name="viewMessage_button">View Messages</string>
     <string name="companySize">Company size</string>
     <string name="title_activity_company_view">CompanyView</string>
+    <string name="message_prev">Message Preview</string>
+
 </resources>

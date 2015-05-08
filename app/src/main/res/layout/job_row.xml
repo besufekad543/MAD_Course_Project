@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="Job position"
+            android:text="@string/job_position"
             android:textSize="@dimen/text_size" />
 
         <Button
@@ -45,7 +45,7 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="Company"
+            android:text="@string/company_title"
             android:textSize="@dimen/text_size" />
 
     </TableRow>
@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="Location"
+            android:text="@string/location"
             android:textSize="@dimen/text_size" />
 
         <Button
@@ -88,7 +88,7 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="Date posted"
+            android:text="@string/date_posted"
             android:textSize="@dimen/text_size" />
 
     </TableRow>
