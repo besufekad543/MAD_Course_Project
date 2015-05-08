@@ -57,70 +57,56 @@
                 android:text="@string/home_title"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold"/>
-
-            <TableLayout
-                android:id="@+id/table"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="@dimen/margin_top"
-                android:layout_below="@+id/titleHome">
-
-                <TableRow android:layout_marginTop="@dimen/margin_top"
-                    android:gravity="center">
-                    <Button
-                        android:id="@+id/buttonSearchStudents"
-                        android:layout_height="@dimen/button_height"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold"
-                        android:text="@string/search_students_button"/>
-
-
-                </TableRow>
-
-                <TableRow android:layout_marginTop="@dimen/margin_top"
-                    android:gravity="center">
-
-                    <Button
-                        android:id="@+id/buttonViewJobOffers"
-                        android:layout_height="@dimen/button_height"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold"
-                        android:text="@string/view_job_offers_button" />
-
-                </TableRow>
-
-                <TableRow android:layout_marginTop="@dimen/margin_top"
-                    android:gravity="center">
-
-                    <Button
-                        android:id="@+id/buttonViewMessages"
-                        android:layout_height="@dimen/button_height"
-                        android:text="@string/view_messages_button"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold" />
-
-                </TableRow>
-
-                <TableRow android:layout_marginTop="@dimen/margin_top"
-                    android:gravity="center">
-
-                    <Button
-                        android:id="@+id/buttonLogOut"
-                        android:layout_height="@dimen/button_height"
-                        android:text="@string/log_out_button"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold" />
-                </TableRow>
-
-            </TableLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/titleHome"
+                android:layout_marginTop="@dimen/margin_top_title">
+                <Button
+                    android:id="@+id/buttonSearchStudents"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_width="@dimen/width_buttons"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:background="@drawable/rounded_button"
+                    android:textStyle="bold"
+                    android:text="@string/search_students_button"/>
+                <Button
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:id="@+id/buttonViewJobOffers"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_width="@dimen/width_buttons"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:background="@drawable/rounded_button"
+                    android:textStyle="bold"
+                    android:text="@string/view_job_offers_button" />
+                <Button
+                    android:id="@+id/buttonViewMessages"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_width="@dimen/width_buttons"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:layout_gravity="center"
+                    android:text="@string/view_messages_button"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:background="@drawable/rounded_button"
+                    android:textStyle="bold" />
+                <Button
+                    android:id="@+id/buttonLogOut"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_width="@dimen/width_buttons"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:layout_gravity="center"
+                    android:text="@string/log_out_button"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:background="@drawable/rounded_button"
+                    android:textStyle="bold" />
+                </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
