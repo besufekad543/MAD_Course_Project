@@ -206,7 +206,7 @@
 
                     <Button
                         android:id="@+id/StudentRegisterBtn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/width_buttons"
                         android:layout_height="@dimen/button_height"
                         android:layout_below="@+id/table"
                         android:layout_centerHorizontal="true"
@@ -369,7 +369,7 @@
 
                     <Button
                         android:id="@+id/companyRegisterBtn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/width_buttons"
                         android:layout_height="@dimen/button_height"
                         android:layout_below="@+id/table2"
                         android:layout_centerHorizontal="true"
