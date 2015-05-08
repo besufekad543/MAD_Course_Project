@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/margin_top_title"
         android:layout_centerHorizontal="true"
         android:text="@string/searchjobs_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -60,204 +61,203 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
-
-        <TableLayout
-            android:id="@+id/table"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:id="@+id/table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-            <TableRow android:gravity="right">
+                <TableRow android:gravity="right">
 
-                <Button
-                    android:id="@+id/buttonSavedJobs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/button_height"
-                    android:background="@drawable/rounded_button"
-                    android:text="@string/savedjobs_button"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
-            </TableRow>
+                    <Button
+                        android:id="@+id/buttonSavedJobs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:background="@drawable/rounded_button"
+                        android:text="@string/savedjobs_button"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+                </TableRow>
 
-            <TableRow>
+                <TableRow android:layout_marginTop="@dimen/margin_top">
 
-                <TextView
-                    android:id="@+id/textViewKeywords"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/keywords_title"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/textViewKeywords"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/keywords_title"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size"/>
 
-                <EditText
-                    android:id="@+id/editTextKeywords"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/keywords_title"
-                    android:singleLine="true" />
+                    <EditText
+                        android:id="@+id/editTextKeywords"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/keywords_title"
+                        android:singleLine="true"
+                        android:background="@color/background_text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size"/>
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow>
+                <TableRow android:layout_marginTop="@dimen/margin_top">
 
-                <TextView
-                    android:id="@+id/textViewCompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/company_title"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/textViewCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/company_title"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size"/>
 
-                <EditText
-                    android:id="@+id/editTextCompany"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/company_title"
-                    android:singleLine="true" />
+                    <EditText
+                        android:id="@+id/editTextCompany"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/company_title"
+                        android:singleLine="true"
+                        android:background="@color/background_text"/>
 
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/textViewLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/location"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <EditText
-                    android:id="@+id/editTextLocation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/location"
-                    android:singleLine="true" />
-
-            </TableRow>
+                </TableRow>
 
 
-            <TableRow>
+                <TableRow android:layout_marginTop="@dimen/margin_top">
 
-                <TextView
-                    android:id="@+id/textViewIndustry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/industry"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/textViewLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/location"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
 
-                <Spinner
-                    android:id="@+id/spinnerIndustry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </TableRow>
+                    <EditText
+                        android:id="@+id/editTextLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/location"
+                        android:singleLine="true"
+                        android:background="@color/background_text"/>
 
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/textViewTypeJob"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/job_type"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <Spinner
-                    android:id="@+id/spinnerTypeJob"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </TableRow>
+                </TableRow>
 
 
-            <TableRow>
+                <TableRow android:layout_marginTop="@dimen/margin_top">
 
-                <TextView
-                    android:id="@+id/textViewSalary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/salary"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/textViewIndustry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/industry"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
 
-                <Spinner
-                    android:id="@+id/spinnerSalary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </TableRow>
+                    <Spinner
+                        android:id="@+id/spinnerIndustry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/background_text"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+
+                    <TextView
+                        android:id="@+id/textViewTypeJob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/job_type"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <Spinner
+                        android:id="@+id/spinnerTypeJob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/background_text"/>
+                </TableRow>
 
 
-            <TableRow>
+                <TableRow android:layout_marginTop="@dimen/margin_top">
 
-                <TextView
-                    android:id="@+id/textViewJobPosition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/job_position"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/textViewSalary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/salary"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
 
-                <Spinner
-                    android:id="@+id/spinnerJobPosition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </TableRow>
+                    <Spinner
+                        android:id="@+id/spinnerSalary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/background_text"/>
+                </TableRow>
 
-            <TableRow android:gravity="center">
 
-                <Button
-                    android:id="@+id/buttonSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#E8953B"
-                    android:text="@string/search_button"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold" />
+                <TableRow android:layout_marginTop="@dimen/margin_top">
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/textViewJobPosition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/job_position"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
 
-        </TableLayout>
+                    <Spinner
+                        android:id="@+id/spinnerJobPosition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/background_text"/>
+                </TableRow>
+
+            </TableLayout>
+            <Button
+                android:id="@+id/buttonSearch"
+                android:layout_width="@dimen/width_buttons"
+                android:layout_height="@dimen/button_height"
+                android:layout_below="@+id/table"
+                android:background="@drawable/rounded_button"
+                android:text="@string/search_button"
+                android:textSize="@dimen/text_size"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
     </ScrollView>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/background_tab"
-        android:gravity="center_vertical">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height_small"
-            android:layout_marginBottom="@dimen/margin_tab"
-            android:layout_marginTop="@dimen/margin_tab"
-            android:layout_weight="1.0"
-            android:background="@color/background_bottom"
-            android:text="@string/home_button"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height_small"
-            android:layout_marginBottom="@dimen/margin_tab"
-            android:layout_marginTop="@dimen/margin_tab"
-            android:layout_weight="1.0"
-            android:background="@color/background_bottom"
-            android:text="@string/profile_button"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-
-    <LinearLayout
+        android:id="@+id/bottomTab"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

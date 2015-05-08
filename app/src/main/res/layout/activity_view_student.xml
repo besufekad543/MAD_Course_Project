@@ -146,50 +146,41 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 
-            <TableRow android:id="@+id/table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/languages"
-                android:layout_marginTop="@dimen/margin_top"
-
-                >
-                <Button
-                    android:text="@string/send_button"
-                    android:id="@+id/sendButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginRight="@dimen/margin_between"
-                    android:onClick=""
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size"
-                    android:background="@drawable/rounded_button"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
-                    />
-                <Button
-                    android:text="@string/save_student_button"
-                    android:id="@+id/saveButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="@dimen/margin_between"
-                    android:onClick=""
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size"
-                    android:background="@drawable/rounded_button"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
+            <Button
+                android:text="@string/send_button"
+                android:id="@+id/sendButton"
+                android:layout_width="@dimen/width_buttons"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="@dimen/margin_top_title"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/languages"
+                android:onClick=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                />
+            <Button
+                android:text="@string/save_student_button"
+                android:id="@+id/saveButton"
+                android:layout_width="@dimen/width_buttons"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="@dimen/margin_top"
+                android:layout_below="@+id/sendButton"
+                android:layout_centerHorizontal="true"
+                android:onClick=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                />
             <Button
                 android:text="@string/back_button"
                 android:id="@+id/backButton"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/table"
+                android:layout_below="@+id/saveButton"
                 android:layout_margin="@dimen/margin_top"
                 android:onClick=""
                 android:textColor="@color/white"
