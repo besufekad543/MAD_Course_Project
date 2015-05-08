@@ -2,473 +2,535 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/background_layout"
+    android:fillViewport="true"
     tools:context=".ProfileStudent">
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/height_header"
+        android:layout_alignParentTop="true"
         android:background="@color/background_header"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true">
+        android:orientation="horizontal">
 
 
-        <ImageView android:layout_width="@dimen/square_logo"
+        <ImageView
+            android:layout_width="@dimen/square_logo"
             android:layout_height="@dimen/square_logo"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/logopolito"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
+            android:background="@drawable/logopolito" />
 
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="@dimen/margin_header"
             android:text="@string/header"
             android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/margin_header"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal|center_vertical"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scroll"
-        android:layout_below="@+id/header"
         android:layout_above="@+id/bottomTab"
+        android:layout_below="@+id/header"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TableLayout
                 android:id="@+id/table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*">
-                <TableRow
-                    android:layout_marginTop="@dimen/margin_top_title">
-                    <TextView android:text="@string/profile"
+
+                <TableRow android:layout_marginTop="@dimen/margin_top_title">
+
+                    <TextView
                         android:id="@+id/studentsProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/profile"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+
                     <Button
-                        android:text="@string/edit_button"
                         android:id="@+id/editButton"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/button_height"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center"
                         android:layout_weight="1.0"
+                        android:background="@drawable/rounded_button"
+                        android:gravity="center"
+                        android:onClick=""
+                        android:text="@string/edit_button"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold"
-                        android:onClick=""/>
+                        android:textStyle="bold" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top_title">
-                    <TextView android:text="@string/name"
+
+                    <TextView
                         android:id="@+id/studentName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/name"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textName"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/student_surname"
+
+                    <TextView
                         android:id="@+id/studentSurname"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/student_surname"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textSurname"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/location"
+
+                    <TextView
                         android:id="@+id/studentLocation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/location"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textLocation"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/industry"
+
+                    <TextView
                         android:id="@+id/studentIndustry"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/industry"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <Spinner
                         android:id="@+id/spinnerIndustry"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/date_birth"
+
+                    <TextView
                         android:id="@+id/dateBirth"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/date_birth"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/dateBirthText"
-                        android:inputType="date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="date"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
-                <TableRow
-                    android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/place_birth"
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+
+                    <TextView
                         android:id="@+id/placeBirth"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/place_birth"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/placeBirthText"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/description"
+
+                    <TextView
                         android:id="@+id/studentDescription"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/description"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/descriptionText"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
-                <TableRow
-                    android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/technical_skills"
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+
+                    <TextView
                         android:id="@+id/techSkills"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/technical_skills"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow>
+
                     <EditText
                         android:id="@+id/textTechSkills"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/languages"
+
+                    <TextView
                         android:id="@+id/languages"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/languages"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow>
+
                     <EditText
                         android:id="@+id/textLanguages"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
-                <TableRow
-                    android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/non_tech_skills"
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+
+                    <TextView
                         android:id="@+id/nonTechSkills"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/non_tech_skills"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow>
+
                     <EditText
                         android:id="@+id/textNonTechSkills"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/experience"
+
+                    <TextView
                         android:id="@+id/yearsExperience"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/experience"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textExperience"
-                        android:inputType="number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="number"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/level"
+
+                    <TextView
                         android:id="@+id/seniorityLevel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/level"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textSeniority"
-                        android:inputType="number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="number"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
-                <TableRow
-                    android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/phone"
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+
+                    <TextView
                         android:id="@+id/phoneNumber"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/phone"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textPhone"
-                        android:inputType="phone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="phone"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
-                <TableRow
-                    android:layout_marginTop="@dimen/margin_top">
-                    <TextView android:text="@string/current_company"
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+
+                    <TextView
                         android:id="@+id/currentCompany"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:layout_weight="1"
+                        android:text="@string/current_company"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size"/>
+                        android:textSize="@dimen/text_size" />
+
                     <EditText
                         android:id="@+id/textCompany"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:textSize="@dimen/text_size"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
             </TableLayout>
+
             <Button
-                android:text="@string/save_button"
                 android:id="@+id/saveButton"
                 android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
-                android:layout_gravity="center_horizontal"
-                android:onClick=""
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size"
-                android:background="@drawable/rounded_button"
-                android:textStyle="bold"
                 android:layout_below="@+id/table"
                 android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top"
-                />
+                android:background="@drawable/rounded_button"
+                android:onClick=""
+                android:text="@string/save_button"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
             <Button
-                android:text="@string/delete_button"
                 android:id="@+id/deleteButton"
                 android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
-                android:layout_gravity="center_horizontal"
-                android:onClick=""
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size"
-                android:background="@drawable/rounded_button"
-                android:textStyle="bold"
                 android:layout_below="@+id/saveButton"
                 android:layout_centerHorizontal="true"
-                />
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_button"
+                android:onClick=""
+                android:text="@string/delete_button"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </ScrollView>
 
     <LinearLayout
-    android:id="@+id/bottomTab"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="@color/background_tab"
-    android:gravity="center_vertical">
+        android:id="@+id/bottomTab"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background_tab"
+        android:gravity="center_vertical">
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
+            android:background="@color/background_bottom"
             android:text="@string/home_button"
-            android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
-            android:text="@string/profile_button"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
             android:background="@color/background_bottom"
+            android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

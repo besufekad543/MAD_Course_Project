@@ -40,17 +40,6 @@
     -->
 
 
-    <TextView
-        android:id="@+id/titleInbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_top_title"
-        android:text="@string/message_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
-
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/scroll"
@@ -63,52 +52,69 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <TableLayout
-            android:id="@+id/table"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/titleInbox">
+            android:layout_height="wrap_content">
 
-            <TableRow android:paddingBottom="20dp">
+            <TextView
+                android:id="@+id/titleInbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_top_title"
+                android:text="@string/message_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textSubject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="43dp"
-                    android:text="Subject"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TableLayout
+                android:id="@+id/table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/titleInbox">
 
-            </TableRow>
+                <TableRow android:paddingBottom="20dp">
 
-            <TableRow>
+                    <TextView
+                        android:id="@+id/textSubject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="43dp"
+                        android:text="Subject"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <EditText
-                    android:id="@+id/messageText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:editable="false"
-                    android:text="This is an example of a message that is going to be displayed on this screen" />
+                </TableRow>
 
-            </TableRow>
+                <TableRow>
 
-            <TableRow android:paddingTop="20dp">
+                    <EditText
+                        android:id="@+id/messageText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:editable="false"
+                        android:text="This is an example of a message that is going to be displayed on this screen" />
 
-                <Button
-                    android:id="@+id/buttonBackInbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:background="#E8953B"
-                    android:text="@string/backinbox_button"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
 
-            </TableRow>
-        </TableLayout>
+            <Button
+                android:id="@+id/buttonBackInbox"
+                android:layout_width="@dimen/width_buttons"
+                android:layout_height="@dimen/button_height"
+                android:layout_below="@+id/table"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_top"
+                android:background="@drawable/rounded_button"
+                android:text="@string/backinbox_button"
+                android:textColor="#ffffffff"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
     </ScrollView>
 
     <LinearLayout

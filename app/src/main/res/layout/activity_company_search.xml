@@ -2,60 +2,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/background_layout"
+    android:fillViewport="true"
     tools:context=".CompanySearch">
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/height_header"
+        android:layout_alignParentTop="true"
         android:background="@color/background_header"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true">
+        android:orientation="horizontal">
 
 
-        <ImageView android:layout_width="@dimen/square_logo"
+        <ImageView
+            android:layout_width="@dimen/square_logo"
             android:layout_height="@dimen/square_logo"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/logopolito"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
+            android:background="@drawable/logopolito" />
 
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="@dimen/margin_header"
             android:text="@string/header"
             android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/margin_header"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal|center_vertical"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scroll"
-        android:layout_below="@+id/header"
         android:layout_above="@+id/bottomTab"
+        android:layout_below="@+id/header"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/titleSearchCompanies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_top_title"
                 android:text="@string/searchcompanies_button"
-                android:layout_centerHorizontal="true"
-                android:textStyle="bold"/>
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
 
 
             <TableLayout
@@ -67,28 +70,29 @@
                 <TableRow
                     android:layout_marginTop="@dimen/margin_top_title"
                     android:gravity="right">
+
                     <Button
                         android:id="@+id/buttonSavedJobs"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/button_height"
+                        android:background="@drawable/rounded_button"
                         android:text="@string/savedcompanies_button"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
-                        android:background="@drawable/rounded_button"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
+
                     <TextView
+                        android:id="@+id/textName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_gravity="center_vertical"
                         android:gravity="start"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/name"
-                        android:id="@+id/textName"
-                        android:layout_centerHorizontal="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
 
                         />
 
@@ -97,78 +101,74 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="@string/name"
-                        android:singleLine="true"
                         android:background="@color/background_text"
-                        />
+                        android:hint="@string/name"
+                        android:singleLine="true" />
 
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
+
                     <TextView
+                        android:id="@+id/textViewIndustry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_gravity="center_vertical"
                         android:gravity="start"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/industry"
-                        android:id="@+id/textViewIndustry"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <Spinner
+                        android:id="@+id/spinnerIndustry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinnerIndustry"
-                        android:entries="@array/tabOptions"
                         android:background="@color/background_text"
-                        />
+                        android:entries="@array/tabOptions" />
                 </TableRow>
 
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
+
                     <TextView
+                        android:id="@+id/textViewLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_gravity="center_vertical"
                         android:gravity="start"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/location"
-                        android:id="@+id/textViewLocation"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <EditText
                         android:id="@+id/editTextLocation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@color/background_text"
                         android:hint="@string/location"
-                        android:singleLine="true"
-                        android:background="@color/background_text"/>
+                        android:singleLine="true" />
 
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
+
                     <TextView
+                        android:id="@+id/textCompanySize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_gravity="center_vertical"
                         android:gravity="start"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/companySize"
-                        android:id="@+id/textCompanySize"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <Spinner
+                        android:id="@+id/spinnerCompanySize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinnerCompanySize"
-                        android:background="@color/background_text"
-                        />
+                        android:background="@color/background_text" />
                 </TableRow>
-
 
 
             </TableLayout>
@@ -177,15 +177,14 @@
                 android:id="@+id/buttonSearch"
                 android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
-                android:text="@string/search_button"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size"
-                android:background="@drawable/rounded_button"
-                android:textStyle="bold"
                 android:layout_below="@+id/table"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_top_title"
-                />
+                android:background="@drawable/rounded_button"
+                android:text="@string/search_button"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </ScrollView>
@@ -197,27 +196,29 @@
         android:layout_alignParentBottom="true"
         android:background="@color/background_tab"
         android:gravity="center_vertical">
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
+            android:background="@color/background_bottom"
             android:text="@string/home_button"
-            android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
-            android:text="@string/profile_button"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
             android:background="@color/background_bottom"
+            android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

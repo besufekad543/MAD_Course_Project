@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_layout"
     tools:context=".JobSearchResults">
@@ -11,26 +12,27 @@
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/height_header"
+        android:layout_alignParentTop="true"
         android:background="@color/background_header"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true">
+        android:orientation="horizontal">
 
 
-        <ImageView android:layout_width="@dimen/square_logo"
+        <ImageView
+            android:layout_width="@dimen/square_logo"
             android:layout_height="@dimen/square_logo"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/logopolito"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            />
+            android:background="@drawable/logopolito" />
 
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="@dimen/margin_header"
             android:text="@string/header"
             android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/margin_header"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal|center_vertical"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -42,24 +44,23 @@
         android:id="@+id/titleSearchResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="@dimen/margin_top_title"
-        android:text="@string/searchresults_title"
         android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"/>
+        android:layout_marginTop="@dimen/margin_top_title"
+        android:text="@string/searchresults_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
 
 
     <ListView
         android:id="@+id/listResults"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/titleSearchResults"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/titleSearchResults"
-        />
+        android:paddingTop="@dimen/activity_vertical_margin" />
 
 
     <LinearLayout
@@ -69,28 +70,30 @@
         android:layout_alignParentBottom="true"
         android:background="@color/background_tab"
         android:gravity="center_vertical">
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
+            android:background="@color/background_bottom"
             android:text="@string/home_button"
-            android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <Button
             android:layout_width="match_parent"
-            android:layout_weight="1.0"
             android:layout_height="@dimen/button_height_small"
-            android:layout_marginTop="@dimen/margin_tab"
             android:layout_marginBottom="@dimen/margin_tab"
-            android:text="@string/profile_button"
+            android:layout_marginTop="@dimen/margin_tab"
+            android:layout_weight="1.0"
             android:background="@color/background_bottom"
+            android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 
