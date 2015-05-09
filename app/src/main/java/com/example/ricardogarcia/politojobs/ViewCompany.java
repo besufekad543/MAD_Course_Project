@@ -19,7 +19,7 @@ public class ViewCompany extends ActionBarActivity {
     private static final String DESCRIPTION = "com.example.ricardogarcia.politojobs.COMPANYDESCRIPTION";
     private static final String LOCATION = "com.example.ricardogarcia.politojobs.COMPANYLOCATION";
     private static final String SIZE = "com.example.ricardogarcia.politojobs.COMPANYSIZE";
-    private static final String ID = "com.example.ricardogarcia.politojobs.COMPANYID";
+    public static final String ID = "com.example.ricardogarcia.politojobs.COMPANYID";
 
     private Company company;
 
@@ -38,7 +38,33 @@ public class ViewCompany extends ActionBarActivity {
     }
 
     public void backToResults(View view) {
-        finish();
+        ViewCompany.this.finish();
+    }
+
+    public void goHome(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, StudentHome.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, CompanyHome.class);
+            startActivity(intent);
+        }
+    }
+
+    public void goProfile(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, ProfileStudent.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, ProfileCompany.class);
+            startActivity(intent);
+        }
     }
 
     @Override
