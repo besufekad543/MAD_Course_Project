@@ -1,17 +1,38 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class ViewCompany extends ActionBarActivity {
+
+    Company company;
+
+    public void saveCompany(View view) {
+
+    }
+
+    public void sendMessage(View view) {
+
+    }
+
+    public void backToResults(View view) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_company);
+
+        Intent intent = getIntent();
+        company = (Company) intent.getSerializableExtra(CompanySearchResults.COMPANY);
+
+
     }
 
 

@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 public class CompanySearchResults extends ActionBarActivity {
 
+    public static final String COMPANY = "com.example.ricardogarcia.politojobs.COMPANY";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
