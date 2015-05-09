@@ -6,22 +6,39 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 
 public class ViewCompany extends ActionBarActivity {
 
-    Company company;
+    private static final String NAME = "com.example.ricardogarcia.politojobs.COMPANYNAME";
+    private static final String INDUSTRY = "com.example.ricardogarcia.politojobs.COMPANYINDUSTRY";
+    private static final String DESCRIPTION = "com.example.ricardogarcia.politojobs.COMPANYDESCRIPTION";
+    private static final String LOCATION = "com.example.ricardogarcia.politojobs.COMPANYLOCATION";
+    private static final String SIZE = "com.example.ricardogarcia.politojobs.COMPANYSIZE";
+    private static final String ID = "com.example.ricardogarcia.politojobs.COMPANYID";
+
+    private Company company;
 
     public void saveCompany(View view) {
-
+        String studentId = ParseUser.getCurrentUser().getObjectId();
+        ParseObject savedCompany = new ParseObject("SavedCompany");
+        savedCompany.put("StudentId", studentId);
+        savedCompany.put("CompanyId", company.getId());
+        savedCompany.saveInBackground();
     }
 
     public void sendMessage(View view) {
-
+        Intent intent = new Intent(this, SendMessage.class);
+        intent.putExtra(ID, company.getId());
+        startActivity(intent);
     }
 
     public void backToResults(View view) {
-
+        finish();
     }
 
     @Override
@@ -32,9 +49,52 @@ public class ViewCompany extends ActionBarActivity {
         Intent intent = getIntent();
         company = (Company) intent.getSerializableExtra(CompanySearchResults.COMPANY);
 
+        TextView name = (TextView) findViewById(R.id.companyName);
+        name.setText(company.getName());
+        TextView industry = (TextView) findViewById(R.id.companyIndustry);
+        industry.setText(company.getIndustry());
+        TextView description = (TextView) findViewById(R.id.companyDescription);
+        description.setText(company.getDescription());
+        TextView location = (TextView) findViewById(R.id.companyLocation);
+        location.setText(company.getLocation());
+        TextView size = (TextView) findViewById(R.id.companySize);
+        size.setText(company.getCompany_size());
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        TextView name = (TextView) findViewById(R.id.companyName);
+        TextView industry = (TextView) findViewById(R.id.companyIndustry);
+        TextView description = (TextView) findViewById(R.id.companyDescription);
+        TextView location = (TextView) findViewById(R.id.companyLocation);
+        TextView size = (TextView) findViewById(R.id.companySize);
+
+        savedInstanceState.putString(NAME, name.toString());
+        savedInstanceState.putString(INDUSTRY, industry.toString());
+        savedInstanceState.putString(DESCRIPTION, description.toString());
+        savedInstanceState.putString(LOCATION, location.toString());
+        savedInstanceState.putString(SIZE, size.toString());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        TextView name = (TextView) findViewById(R.id.companyName);
+        TextView industry = (TextView) findViewById(R.id.companyIndustry);
+        TextView description = (TextView) findViewById(R.id.companyDescription);
+        TextView location = (TextView) findViewById(R.id.companyLocation);
+        TextView size = (TextView) findViewById(R.id.companySize);
+
+        name.setText(savedInstanceState.getString(NAME));
+        industry.setText(savedInstanceState.getString(INDUSTRY));
+        description.setText(savedInstanceState.getString(DESCRIPTION));
+        location.setText(savedInstanceState.getString(LOCATION));
+        size.setText(savedInstanceState.getString(SIZE));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
