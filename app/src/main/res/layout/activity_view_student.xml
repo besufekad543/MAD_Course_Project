@@ -114,8 +114,8 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 
-            <TextView android:text="@string/non_tech_skills"
-                android:id="@+id/nonTechSkills"
+            <TextView android:text="@string/interests"
+                android:id="@+id/interests"
                 android:layout_marginTop="@dimen/margin_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

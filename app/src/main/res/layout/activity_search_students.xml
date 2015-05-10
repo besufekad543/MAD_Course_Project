@@ -267,19 +267,19 @@
                     android:layout_marginTop="@dimen/margin_top">
 
                     <TextView
-                        android:id="@+id/nonTechSkills"
+                        android:id="@+id/interests"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
                         android:gravity="start"
                         android:paddingLeft="@dimen/padding_left"
-                        android:text="@string/non_tech_skills"
+                        android:text="@string/interests"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
                     <EditText
-                        android:id="@+id/textNonTechSkills"
+                        android:id="@+id/textInterests"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
