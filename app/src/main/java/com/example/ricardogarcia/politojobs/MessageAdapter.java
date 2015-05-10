@@ -2,6 +2,9 @@ package com.example.ricardogarcia.politojobs;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,69 +18,73 @@ import java.util.List;
 /**
  * Created by ricardogarcia on 24/04/15.
  */
-public class MessageAdapter extends BaseAdapter implements View.OnClickListener{
+public class MessageAdapter extends BaseAdapter implements View.OnClickListener {
+
 
     private LayoutInflater inflater;
     private Activity activity;
     private List<Message> listmessages;
 
 
-    public MessageAdapter(Activity activity,ArrayList list){
-        inflater= (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.activity=activity;
-        this.listmessages=list;
-
+    public MessageAdapter(Activity activity, ArrayList list) {
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.activity = activity;
+        this.listmessages = list;
     }
 
 
     @Override
     public int getCount() {
-        return 0;
+        return listmessages.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+
+        return listmessages.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+
+        return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder vholder;
-        View v=convertView;
-
-        if(listmessages.size()>0){
-            if(v==null){
-                v=inflater.inflate(R.layout.message_preview, parent, false);
-                vholder= new ViewHolder();
-                vholder.textSubject= (TextView) v.findViewById(R.id.textSubject);
-                vholder.textMessage= (TextView) v.findViewById(R.id.textMessagePreview);
+        View v = convertView;
+        Log.d("Size", String.valueOf(listmessages.size()));
+        if (listmessages.size() > 0) {
+            if (v == null) {
+                v = inflater.inflate(R.layout.message_preview, parent, false);
+                vholder = new ViewHolder();
+                vholder.textSubject = (TextView) v.findViewById(R.id.textSubject);
+                vholder.textMessage = (TextView) v.findViewById(R.id.textMessagePreview);
                 v.setTag(vholder);
-            }
-            else{
-                vholder= (ViewHolder) v.getTag();
+            } else {
+                vholder = (ViewHolder) v.getTag();
             }
             vholder.textSubject.setText(listmessages.get(position).getSubject());
-            vholder.textMessage.setText(listmessages.get(position).getMessage().substring(0,15));
-        }
-        else{
-            if(v==null){
-                v=inflater.inflate(R.layout.no_results_row, parent, false);
-                vholder= new ViewHolder();
-                vholder.textSubject= (TextView) v.findViewById(R.id.textSubject);
-                v.setTag(vholder);
-            }
-            else{
-                vholder= (ViewHolder) v.getTag();
-            }
-            vholder.textSubject.setText(activity.getText(R.string.no_results_text));
-        }
 
+            if (listmessages.get(position).getMessage().length() > 78)
+                vholder.textMessage.setText(listmessages.get(position).getMessage().substring(0, 78) + "...");
+            else
+                vholder.textMessage.setText(listmessages.get(position).getMessage());
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent= new Intent(activity,InboxDescription.class);
+                    Bundle b = new Bundle();
+                    b.putString(Inbox.INFO_MESSAGE, listmessages.get(position).getMessage());
+                    b.putString(Inbox.INFO_SUBJECT, listmessages.get(position).getSubject());
+                    intent.putExtras(b);
+                    activity.startActivity(intent);
+                }
+            });
+        }
         return v;
     }
 

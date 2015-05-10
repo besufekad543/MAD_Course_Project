@@ -1,9 +1,13 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class InboxDescription extends ActionBarActivity {
@@ -12,6 +16,16 @@ public class InboxDescription extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox_description);
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        String subject = (String) b.get(Inbox.INFO_SUBJECT);
+        String message = (String) b.get(Inbox.INFO_MESSAGE);
+
+        TextView txt_subject= (TextView) findViewById(R.id.textSubject);
+        TextView txt_message= (TextView) findViewById(R.id.messageText);
+
+        txt_subject.setText(subject);
+        txt_message.setText(message);
     }
 
 
@@ -35,5 +49,9 @@ public class InboxDescription extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void backToResults(View view) {
+        finish();
     }
 }

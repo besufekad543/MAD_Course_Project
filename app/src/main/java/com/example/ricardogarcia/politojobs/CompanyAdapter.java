@@ -64,18 +64,6 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener{
             vholder.textName.setText(listcompanies.get(position).getName());
             vholder.textIndustry.setText(listcompanies.get(position).getIndustry());
         }
-        else{
-            if(v==null){
-                v=inflater.inflate(R.layout.no_results_row, parent, false);
-                vholder= new ViewHolder();
-                vholder.textName= (TextView) v.findViewById(R.id.textName);
-                v.setTag(vholder);
-            }
-            else{
-                vholder= (ViewHolder) v.getTag();
-            }
-            vholder.textName.setText(activity.getText(R.string.no_results_text));
-        }
 
         return v;
     }

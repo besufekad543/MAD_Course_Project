@@ -88,7 +88,7 @@
 
                 <TableRow>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/messageText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,7 +110,8 @@
                 android:background="@drawable/rounded_button"
                 android:text="@string/backinbox_button"
                 android:textColor="#ffffffff"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="backToResults"/>
 
 
         </RelativeLayout>

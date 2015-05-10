@@ -1,9 +1,13 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.parse.ParseUser;
 
 
 public class CompanyHome extends ActionBarActivity {
@@ -36,4 +40,28 @@ public class CompanyHome extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void searchStudents(View view){
+        Intent intent= new Intent(this,SearchStudents.class);
+        startActivity(intent);
+    }
+
+    public void viewJobOffers(View view){
+        Intent intent= new Intent(this,ListJobs.class);
+        startActivity(intent);
+    }
+
+    public void viewMessages(View view){
+        Intent intent= new Intent(this,Inbox.class);
+        startActivity(intent);
+
+    }
+
+    public void logOut(View view){
+        ParseUser.logOut();
+        Intent intent= new Intent(this,LogIn.class);
+        startActivity(intent);
+    }
+
+
 }

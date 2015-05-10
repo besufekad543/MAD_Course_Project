@@ -2,6 +2,7 @@ package com.example.ricardogarcia.politojobs;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,22 +64,10 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener{
             else{
                 vholder= (ViewHolder) v.getTag();
             }
-            vholder.textJob.setText(listjobs.get(position).getJob_name());
-            vholder.textCompany.setText(listjobs.get(position).getCompany());
+            vholder.textJob.setText(listjobs.get(position).getName());
+            vholder.textCompany.setText(listjobs.get(position).getCompany().getName());
             vholder.textLocation.setText(listjobs.get(position).getLocation());
             vholder.textDate.setText(listjobs.get(position).getDate());
-        }
-        else{
-            if(v==null){
-                v=inflater.inflate(R.layout.no_results_row, parent, false);
-                vholder= new ViewHolder();
-                vholder.textJob= (TextView) v.findViewById(R.id.textJobPosition);
-                v.setTag(vholder);
-            }
-            else{
-                vholder= (ViewHolder) v.getTag();
-            }
-            vholder.textJob.setText(activity.getText(R.string.no_results_text));
         }
 
         return v;

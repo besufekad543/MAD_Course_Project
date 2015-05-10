@@ -77,7 +77,8 @@
                     android:text="@string/search_students_button"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="searchStudents"/>
 
                 <Button
                     android:id="@+id/buttonViewJobOffers"
@@ -89,7 +90,8 @@
                     android:text="@string/view_job_offers_button"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="viewJobOffers"/>
 
                 <Button
                     android:id="@+id/buttonViewMessages"
@@ -101,7 +103,8 @@
                     android:text="@string/view_messages_button"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="viewMessages"/>
 
                 <Button
                     android:id="@+id/buttonLogOut"
@@ -113,7 +116,8 @@
                     android:text="@string/log_out_button"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="logOut"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

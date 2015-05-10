@@ -229,7 +229,7 @@
                         android:id="@+id/textViewJobPosition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/job_position"
+                        android:text="@string/job_duration"
                         android:layout_gravity="center_vertical"
                         android:gravity="start"
                         android:textColor="@color/black"

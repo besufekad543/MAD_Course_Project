@@ -1,19 +1,54 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Inbox extends ActionBarActivity {
+
+    public final static String INFO_MESSAGE = "com.example.ricardogarcia.politojobs.MESSAGE";
+    public final static String INFO_SUBJECT = "com.example.ricardogarcia.politojobs.SUBJECT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox);
+        Parse.enableLocalDatastore(Inbox.this);
+
+        Parse.initialize(Inbox.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+        //ParseUser currentUser= ParseUser.getCurrentUser();
+        new RetrieveFromDatabase().execute("rgarcia");
+
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //TODO
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        //TODO
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,6 +69,57 @@ public class Inbox extends ActionBarActivity {
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
     }
+
+    private class RetrieveFromDatabase extends AsyncTask<String,Void,ArrayList<Message>>{
+
+        private ProgressDialog progressDialog= new ProgressDialog(Inbox.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setTitle("Loading messages");
+            if(!progressDialog.isShowing()){
+                progressDialog.show();
+            }
+        }
+
+        @Override
+        protected ArrayList<Message> doInBackground(String... params) {
+
+            ArrayList<Message> result_messages=new ArrayList<Message>();
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+            query.whereEqualTo("SenderId",params[0]);
+            try {
+                List<ParseObject> results=query.find();
+                for(ParseObject p:results){
+                    Message msg= new Message();
+                    msg.setSubject((String) p.get("Subject"));
+                    msg.setMessage((String) p.get("Message"));
+                    result_messages.add(msg);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return result_messages;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Message> messages) {
+            super.onPostExecute(messages);
+            if(progressDialog.isShowing()) {
+                progressDialog.hide();
+            }
+
+            MessageAdapter mAdapter= new MessageAdapter(Inbox.this,messages);
+
+            ListView list_messages= (ListView) findViewById(R.id.listMessages);
+            list_messages.setAdapter(mAdapter);
+            list_messages.setEmptyView(findViewById(R.id.textNoResults));
+
+        }
+    }
 }
+
