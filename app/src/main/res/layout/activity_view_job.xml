@@ -157,7 +157,7 @@
                 android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
                 android:layout_centerHorizontal="true"
-                android:onClick=""
+                android:onClick="applyNow"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:background="@drawable/rounded_button"
@@ -172,7 +172,7 @@
                 android:layout_width="@dimen/width_buttons"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_centerHorizontal="true"
-                android:onClick=""
+                android:onClick="saveJob"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:background="@drawable/rounded_button"
@@ -187,7 +187,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/saveButton"
                 android:layout_margin="@dimen/margin_top"
-                android:onClick=""
+                android:onClick="goBack"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:background="@drawable/rounded_button"
@@ -212,7 +212,8 @@
             android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="goHome"/>
         <Button
             android:layout_width="match_parent"
             android:layout_weight="1.0"
@@ -223,6 +224,7 @@
             android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 </RelativeLayout>

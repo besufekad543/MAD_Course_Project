@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 public class JobSearchResults extends ActionBarActivity {
 
+    public static final String JOB = "com.example.ricardogarcia.politojobs.JOB";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
