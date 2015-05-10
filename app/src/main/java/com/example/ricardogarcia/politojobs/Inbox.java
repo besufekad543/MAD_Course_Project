@@ -24,12 +24,13 @@ public class Inbox extends ActionBarActivity {
 
     public final static String INFO_MESSAGE = "com.example.ricardogarcia.politojobs.MESSAGE";
     public final static String INFO_SUBJECT = "com.example.ricardogarcia.politojobs.SUBJECT";
+    public final static String LIST_MESSAGES = "com.example.ricardogarcia.politojobs.LIST";
+    private ArrayList<Message> result_messages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox);
-        Parse.enableLocalDatastore(Inbox.this);
 
         Parse.initialize(Inbox.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
         //ParseUser currentUser= ParseUser.getCurrentUser();
@@ -38,17 +39,6 @@ public class Inbox extends ActionBarActivity {
     }
 
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //TODO
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        //TODO
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,7 +78,7 @@ public class Inbox extends ActionBarActivity {
         @Override
         protected ArrayList<Message> doInBackground(String... params) {
 
-            ArrayList<Message> result_messages=new ArrayList<Message>();
+            result_messages=new ArrayList<Message>();
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
             query.whereEqualTo("SenderId",params[0]);
             try {

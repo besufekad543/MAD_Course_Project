@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 public class InboxDescription extends ActionBarActivity {
 
+
+    public final static String INFOLOCAL_MESSAGE = "com.example.ricardogarcia.politojobs.MESSAGE";
+    public final static String INFOLOCAL_SUBJECT = "com.example.ricardogarcia.politojobs.SUBJECT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,26 @@ public class InboxDescription extends ActionBarActivity {
         txt_message.setText(message);
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        TextView txt_subject= (TextView) findViewById(R.id.textSubject);
+        TextView txt_message= (TextView) findViewById(R.id.messageText);
+
+        outState.putString(INFOLOCAL_MESSAGE, txt_message.getText().toString());
+        outState.putString(INFOLOCAL_SUBJECT,txt_subject.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        TextView txt_subject= (TextView) findViewById(R.id.textSubject);
+        TextView txt_message= (TextView) findViewById(R.id.messageText);
+
+        txt_subject.setText(savedInstanceState.getString(INFOLOCAL_SUBJECT));
+        txt_message.setText(savedInstanceState.getString(INFOLOCAL_MESSAGE));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
