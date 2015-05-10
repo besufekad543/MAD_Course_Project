@@ -23,37 +23,9 @@ public class ViewJob extends ActionBarActivity {
     private static final String LOCATION = "com.example.ricardogarcia.politojobs.LOCATION";
     private static final String TYPE = "com.example.ricardogarcia.politojobs.TYPE";
     private static final String DURATION = "com.example.ricardogarcia.politojobs.DURATION";
+    private static final String CONTRACT = "com.example.ricardogarcia.politojobs.CONTRACT";
 
     private Job job;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_job);
-
-        Intent intent = getIntent();
-        job = (Job) intent.getSerializableExtra(JobSearchResults.JOB);
-
-        TextView position = (TextView) findViewById(R.id.jobPosition);
-        position.setText(job.getName());
-        TextView company = (TextView) findViewById(R.id.companyName);
-        company.setText(job.getCompany().getName());
-        TextView industry = (TextView) findViewById(R.id.companyIndustry);
-        industry.setText(job.getIndustry());
-        TextView date = (TextView) findViewById(R.id.datePosted);
-        date.setText(job.getDate());
-        TextView description = (TextView) findViewById(R.id.jobDescription);
-        description.setText(job.getDescription());
-        TextView salary = (TextView) findViewById(R.id.salary);
-        salary.setText(job.getSalary());
-        TextView location = (TextView) findViewById(R.id.jobLocation);
-        location.setText(job.getLocation());
-        TextView type = (TextView) findViewById(R.id.jobType);
-        type.setText(job.getTypeJob());
-        TextView duration = (TextView) findViewById(R.id.jobDuration);
-        duration.setText(job.getDuration());
-
-    }
 
     public void applyNow(View view) {
         String studentId = ParseUser.getCurrentUser().getObjectId();
@@ -102,6 +74,38 @@ public class ViewJob extends ActionBarActivity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_job);
+
+        Intent intent = getIntent();
+        job = (Job) intent.getSerializableExtra(JobSearchResults.JOB);
+
+        TextView position = (TextView) findViewById(R.id.jobPosition);
+        position.setText(job.getName());
+        TextView company = (TextView) findViewById(R.id.companyName);
+        company.setText(job.getCompany().getName());
+        TextView industry = (TextView) findViewById(R.id.companyIndustry);
+        industry.setText(job.getIndustry());
+        TextView date = (TextView) findViewById(R.id.datePosted);
+        date.setText(job.getDate());
+        TextView description = (TextView) findViewById(R.id.jobDescription);
+        description.setText(job.getDescription());
+        TextView salary = (TextView) findViewById(R.id.salary);
+        salary.setText(job.getSalary());
+        TextView location = (TextView) findViewById(R.id.jobLocation);
+        location.setText(job.getLocation());
+        TextView type = (TextView) findViewById(R.id.jobType);
+        type.setText(job.getTypeJob());
+        TextView duration = (TextView) findViewById(R.id.jobDuration);
+        duration.setText(job.getDuration());
+        TextView contract = (TextView) findViewById(R.id.typeOfContract);
+        contract.setText(job.getContractType());
+
+    }
+
+
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         TextView position = (TextView) findViewById(R.id.jobPosition);
         TextView company = (TextView) findViewById(R.id.companyName);
@@ -112,16 +116,18 @@ public class ViewJob extends ActionBarActivity {
         TextView location = (TextView) findViewById(R.id.jobLocation);
         TextView type = (TextView) findViewById(R.id.jobType);
         TextView duration = (TextView) findViewById(R.id.jobDuration);
+        TextView contract = (TextView) findViewById(R.id.typeOfContract);
 
-        savedInstanceState.putString(POSITION, position.toString());
-        savedInstanceState.putString(COMPANY, company.toString());
-        savedInstanceState.putString(INDUSTRY, industry.toString());
-        savedInstanceState.putString(DATE, date.toString());
-        savedInstanceState.putString(DESCRIPTION, description.toString());
-        savedInstanceState.putString(SALARY, salary.toString());
-        savedInstanceState.putString(LOCATION, location.toString());
-        savedInstanceState.putString(TYPE, type.toString());
-        savedInstanceState.putString(DURATION, duration.toString());
+        savedInstanceState.putString(POSITION, position.getText().toString());
+        savedInstanceState.putString(COMPANY, company.getText().toString());
+        savedInstanceState.putString(INDUSTRY, industry.getText().toString());
+        savedInstanceState.putString(DATE, date.getText().toString());
+        savedInstanceState.putString(DESCRIPTION, description.getText().toString());
+        savedInstanceState.putString(SALARY, salary.getText().toString());
+        savedInstanceState.putString(LOCATION, location.getText().toString());
+        savedInstanceState.putString(TYPE, type.getText().toString());
+        savedInstanceState.putString(DURATION, duration.getText().toString());
+        savedInstanceState.putString(CONTRACT, contract.getText().toString());
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -139,6 +145,7 @@ public class ViewJob extends ActionBarActivity {
         TextView location = (TextView) findViewById(R.id.jobLocation);
         TextView type = (TextView) findViewById(R.id.jobType);
         TextView duration = (TextView) findViewById(R.id.jobDuration);
+        TextView contract = (TextView) findViewById(R.id.typeOfContract);
 
         position.setText(savedInstanceState.getString(POSITION));
         company.setText(savedInstanceState.getString(COMPANY));
@@ -149,6 +156,8 @@ public class ViewJob extends ActionBarActivity {
         location.setText(savedInstanceState.getString(LOCATION));
         type.setText(savedInstanceState.getString(TYPE));
         duration.setText(savedInstanceState.getString(DURATION));
+        contract.setText(savedInstanceState.getString(CONTRACT));
+
     }
 
     @Override

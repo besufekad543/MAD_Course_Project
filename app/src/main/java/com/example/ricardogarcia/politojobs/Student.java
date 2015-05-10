@@ -1,13 +1,15 @@
 package com.example.ricardogarcia.politojobs;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by ricardogarcia on 30/04/15.
  */
-public class Student {
+public class Student implements Serializable{
 
+    private String id;
     private String name;
     private String surname;
     private String location;
@@ -22,6 +24,14 @@ public class Student {
     private String degree;
     private String phonenumber;
     private Company current_company;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

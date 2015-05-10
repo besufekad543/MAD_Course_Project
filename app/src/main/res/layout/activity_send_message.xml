@@ -62,7 +62,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/companyName"
+                android:id="@+id/receiverText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/receiver"
@@ -77,7 +77,7 @@
                 android:id="@+id/subject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/companyName"
+                android:layout_below="@+id/receiverText"
                 android:layout_marginTop="@dimen/margin_top"
                 android:gravity="start"
                 android:paddingLeft="@dimen/padding_left"

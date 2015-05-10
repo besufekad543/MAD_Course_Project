@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 public class ResultStudents extends ActionBarActivity {
 
+    public static final String STUDENT = "com.example.ricardogarcia.politojobs.STUDENT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

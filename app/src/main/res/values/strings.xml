@@ -122,6 +122,22 @@
         <item name="interview">Interviews</item>
     </string-array>
 
+    <string-array name="arrayIndustry">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayExperience">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayDegree">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayLanguages">
+        <item name="blank"></item>
+    </string-array>
+
     <string name="register">Register</string>
     <string name="registration">Registration</string>
     <string name="searchcompanies_button">Search Companies</string>

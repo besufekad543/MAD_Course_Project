@@ -21,32 +21,11 @@ public class SendMessage extends ActionBarActivity {
     private static final String NAME = "com.example.ricardogarcia.politojobs.COMPANYNAME";
     private static final String SUBJECT = "com.example.ricardogarcia.politojobs.SUBJECT";
     private static final String MESSAGE = "com.example.ricardogarcia.politojobs.MESSAGE";
+    public static final String RECEIVER = "com.example.ricardogarcia.politojobs.RECEIVER";
+    public static final String RECEIVERTYPE = "com.example.ricardogarcia.politojobs.RECEIVERTYPE";
 
-    private String companyId;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_message);
-
-        Intent intent = getIntent();
-        companyId = intent.getStringExtra(ViewCompany.ID);
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Company");
-        query.getInBackground(companyId, new GetCallback<ParseObject>() {
-            public void done(ParseObject object, ParseException e) {
-                /*if (e == null) {
-                    // object will be your game score
-                } else {
-                    // something went wrong
-                }*/
-                if (e == null){
-                    TextView name = (TextView) findViewById(R.id.companyName);
-                    name.setText(object.getString("Name"));
-                }
-            }
-        });
-
-    }
+    private String receiverId;
+    private String receiverType;
 
     public void goHome(View view) {
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -75,10 +54,10 @@ public class SendMessage extends ActionBarActivity {
     }
 
     public void sendMessage(View view) {
-        String studentId = ParseUser.getCurrentUser().getObjectId();
+        String senderId = ParseUser.getCurrentUser().getObjectId();
         ParseObject message = new ParseObject("Message");
-        message.put("SenderId", studentId);
-        message.put("ReceiverId", companyId);
+        message.put("SenderId", senderId);
+        message.put("ReceiverId", receiverId);
         EditText subjectText = (EditText) findViewById(R.id.textSubject);
         String subject = subjectText.getText().toString();
         message.put("Subject", subject);
@@ -89,6 +68,50 @@ public class SendMessage extends ActionBarActivity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_send_message);
+
+        Intent intent = getIntent();
+        receiverId = intent.getStringExtra(RECEIVER);
+        receiverType = intent.getStringExtra(RECEIVERTYPE);
+        if(receiverType.equals("company")) {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Company");
+            query.getInBackground(receiverId, new GetCallback<ParseObject>() {
+                public void done(ParseObject object, ParseException e) {
+                /*if (e == null) {
+                    // object will be your game score
+                } else {
+                    // something went wrong
+                }*/
+                    if (e == null) {
+                        TextView name = (TextView) findViewById(R.id.receiverText);
+                        name.setText(object.getString("Name"));
+                    }
+                }
+            });
+        }
+        else {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Student");
+            query.getInBackground(receiverId, new GetCallback<ParseObject>() {
+                public void done(ParseObject object, ParseException e) {
+                /*if (e == null) {
+                    // object will be your game score
+                } else {
+                    // something went wrong
+                }*/
+                    if (e == null) {
+                        TextView name = (TextView) findViewById(R.id.receiverText);
+                        name.setText(object.getString("Name"));
+                    }
+                }
+            });
+        }
+
+
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
 
         TextView name = (TextView) findViewById(R.id.companyName);
@@ -96,8 +119,8 @@ public class SendMessage extends ActionBarActivity {
         EditText messageText = (EditText) findViewById(R.id.textMessage);
 
         savedInstanceState.putString(NAME, name.toString());
-        savedInstanceState.putString(SUBJECT, subjectText.toString());
-        savedInstanceState.putString(MESSAGE, messageText.toString());
+        savedInstanceState.putString(SUBJECT, subjectText.getText().toString());
+        savedInstanceState.putString(MESSAGE, messageText.getText().toString());
 
         super.onSaveInstanceState(savedInstanceState);
     }

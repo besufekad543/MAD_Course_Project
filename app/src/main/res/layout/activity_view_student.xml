@@ -156,7 +156,7 @@
                 android:layout_margin="@dimen/margin_top_title"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/languages"
-                android:onClick=""
+                android:onClick="sendMessage"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:background="@drawable/rounded_button"
@@ -170,7 +170,7 @@
                 android:layout_margin="@dimen/margin_top"
                 android:layout_below="@+id/sendButton"
                 android:layout_centerHorizontal="true"
-                android:onClick=""
+                android:onClick="saveStudent"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:background="@drawable/rounded_button"
@@ -184,7 +184,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/saveButton"
                 android:layout_margin="@dimen/margin_top"
-                android:onClick=""
+                android:onClick="backToResults"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:background="@drawable/rounded_button"
@@ -209,7 +209,8 @@
             android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="goHome"/>
         <Button
             android:layout_width="match_parent"
             android:layout_weight="1.0"
@@ -220,6 +221,7 @@
             android:background="@color/background_bottom"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 </RelativeLayout>
