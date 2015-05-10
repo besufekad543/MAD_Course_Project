@@ -15,6 +15,7 @@ public class Job implements Serializable{
     private String typeJob;
     private String duration;
     private String date;
+    private String contractType;
     private Company company;
 
 
@@ -96,5 +97,13 @@ public class Job implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
     }
 }

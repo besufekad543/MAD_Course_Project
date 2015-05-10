@@ -1,6 +1,7 @@
 package com.example.ricardogarcia.politojobs;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by ricardogarcia on 26/04/15.
@@ -14,6 +15,15 @@ public class Company implements Serializable{
     private String description;
     private String company_size;
     private String website;
+    private List<String> clients;
+
+    public List<String> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<String> clients) {
+        this.clients = clients;
+    }
 
     public String getId() {
         return id;

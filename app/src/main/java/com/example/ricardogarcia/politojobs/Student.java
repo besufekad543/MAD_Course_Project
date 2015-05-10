@@ -17,9 +17,9 @@ public class Student {
     private String description;
     private List<String> skills;
     private List<String> languages;
-    private List<String> nontechskills;
+    private List<String> interests;
     private int experienceyears;
-    private String seniority_level;
+    private String degree;
     private String phonenumber;
     private Company current_company;
 
@@ -95,12 +95,12 @@ public class Student {
         this.languages = languages;
     }
 
-    public List<String> getNontechskills() {
-        return nontechskills;
+    public List<String> getInterests() {
+        return interests;
     }
 
-    public void setNontechskills(List<String> nontechskills) {
-        this.nontechskills = nontechskills;
+    public void setInterests(List<String> interests) {
+        this.interests = interests;
     }
 
     public int getExperienceyears() {
@@ -111,12 +111,12 @@ public class Student {
         this.experienceyears = experienceyears;
     }
 
-    public String getSeniority_level() {
-        return seniority_level;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setSeniority_level(String seniority_level) {
-        this.seniority_level = seniority_level;
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 
     public String getPhonenumber() {
