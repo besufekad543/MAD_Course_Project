@@ -17,6 +17,7 @@ public class Job implements Serializable{
     private String date;
     private Company company;
 
+
     public Company getCompany() {
         return company;
     }
