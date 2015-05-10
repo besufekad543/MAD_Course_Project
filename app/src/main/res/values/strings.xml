@@ -36,9 +36,11 @@
     <string name="place_birth">Place of birth</string>
     <string name="technical_skills">Technical Skills</string>
     <string name="experience">Years of Experience</string>
-    <string name="level">Seniority Level</string>
+    <string name="degree">Type of degree</string>
     <string name="interests">Interests</string>
     <string name="current_company">Current Company</string>
+    <string name="company_clients">Clients</string>
+    <string name="type_of_contract">Type of Contract</string>
     <string name="phone">Phone number</string>
     <string name="languages">Languages</string>
     <string name="title_activity_view_student">Student Information</string>

@@ -103,8 +103,8 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 
-            <TextView android:text="@string/level"
-                android:id="@+id/seniorityLevel"
+            <TextView android:text="@string/degree"
+                android:id="@+id/typeOfDegree"
                 android:layout_marginTop="@dimen/margin_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingLeft="@dimen/padding_left"
-                android:layout_below="@+id/seniorityLevel"
+                android:layout_below="@+id/typeOfDegree"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingLeft="@dimen/padding_left"
-                android:layout_below="@+id/nonTechSkills"
+                android:layout_below="@+id/interests"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 

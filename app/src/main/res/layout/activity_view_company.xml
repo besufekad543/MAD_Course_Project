@@ -111,11 +111,35 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size" />
 
+            <TextView
+                android:id="@+id/website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companySize"
+                android:layout_marginTop="@dimen/margin_top"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_left"
+                android:text="@string/company_web"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/clients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/website"
+                android:layout_marginTop="@dimen/margin_top"
+                android:gravity="start"
+                android:paddingLeft="@dimen/padding_left"
+                android:text="@string/company_clients"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
             <TableRow
                 android:id="@+id/table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/companySize"
+                android:layout_below="@id/clients"
                 android:layout_marginTop="@dimen/margin_top_title"
 
                 >

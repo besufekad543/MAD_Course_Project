@@ -149,6 +149,18 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 
+            <TextView android:text="@string/type_of_contract"
+                android:id="@+id/typeOfContract"
+                android:layout_marginTop="@dimen/margin_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+
+                android:paddingLeft="@dimen/padding_left"
+                android:layout_below="@+id/jobType"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"/>
+
             <Button
                 android:text="@string/apply_button"
                 android:id="@+id/applyButton"

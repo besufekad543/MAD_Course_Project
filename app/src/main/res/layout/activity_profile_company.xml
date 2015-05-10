@@ -250,7 +250,6 @@
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
-
                     <TextView
                         android:id="@+id/companyWeb"
                         android:layout_width="0dp"
@@ -265,6 +264,30 @@
 
                     <EditText
                         android:id="@+id/textWeb"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:background="@color/background_text"
+                        android:inputType="textWebEditText"
+                        android:textSize="@dimen/text_size" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/margin_top">
+                    <TextView
+                        android:id="@+id/companyClients"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingLeft="@dimen/padding_left"
+                        android:text="@string/company_clients"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size" />
+
+                    <EditText
+                        android:id="@+id/textClients"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
