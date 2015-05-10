@@ -1,9 +1,11 @@
 package com.example.ricardogarcia.politojobs;
 
+import java.io.Serializable;
+
 /**
  * Created by ricardogarcia on 26/04/15.
  */
-public class Message {
+public class Message implements Serializable{
     private String subject;
     private String message;
 

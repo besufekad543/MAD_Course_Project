@@ -157,7 +157,7 @@
                 android:gravity="start"
 
                 android:paddingLeft="@dimen/padding_left"
-                android:layout_below="@+id/jobType"
+                android:layout_below="@+id/jobDuration"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size"/>
 
@@ -165,7 +165,7 @@
                 android:text="@string/apply_button"
                 android:id="@+id/applyButton"
                 android:layout_marginTop="@dimen/margin_top_title"
-                android:layout_below="@+id/jobDuration"
+                android:layout_below="@+id/typeOfContract"
                 android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
                 android:layout_centerHorizontal="true"
