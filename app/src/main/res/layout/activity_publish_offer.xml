@@ -108,15 +108,13 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
-                    <EditText
-                        android:id="@+id/textLocation"
+                    <Spinner
+                        android:id="@+id/spinnerLocation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:gravity="end"
-                        android:inputType="text"
                         android:textSize="@dimen/text_size" />
                 </TableRow>
 
