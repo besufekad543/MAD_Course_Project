@@ -35,6 +35,7 @@ public class SearchStudents extends ActionBarActivity {
     private ArrayAdapter<String> adapterExperience;
     private ArrayAdapter<String> adapterDegree;
     private ArrayAdapter<String> adapterLanguages;
+    private ArrayAdapter<String> adapterLocation;
 
     public void goHome(View view) {
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -67,7 +68,7 @@ public class SearchStudents extends ActionBarActivity {
 
         EditText name = (EditText) findViewById(R.id.textName);
         EditText surname = (EditText) findViewById(R.id.textSurname);
-        EditText location = (EditText) findViewById(R.id.textLocation);
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
         Spinner industry = (Spinner) findViewById(R.id.spinnerIndustry);
         EditText techSkills = (EditText) findViewById(R.id.textTechSkills);
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
@@ -83,8 +84,8 @@ public class SearchStudents extends ActionBarActivity {
         if(!surname.getText().toString().equals("")) {
             filters.put(SURNAME,surname.getText().toString());
         }
-        if(!location.getText().toString().equals("")) {
-            filters.put(LOCATION,location.getText().toString());
+        if(location.isSelected()) {
+            filters.put(LOCATION,location.getSelectedItem().toString());
         }
         if(industry.isSelected()) {
             filters.put(INDUSTRY, industry.getSelectedItem().toString());
@@ -119,12 +120,15 @@ public class SearchStudents extends ActionBarActivity {
         setContentView(R.layout.activity_search_students);
 
         Spinner industry = (Spinner) findViewById(R.id.spinnerIndustry);
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
         Spinner degree = (Spinner) findViewById(R.id.spinnerDegree);
         Spinner languages = (Spinner) findViewById(R.id.spinnerLanguage);
 
         adapterIndustry = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
         adapterIndustry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
+        adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterExperience = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayExperience));
         adapterExperience.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterDegree = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayDegree));
@@ -145,7 +149,7 @@ public class SearchStudents extends ActionBarActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         EditText name = (EditText) findViewById(R.id.textName);
         EditText surname = (EditText) findViewById(R.id.textSurname);
-        EditText location = (EditText) findViewById(R.id.textLocation);
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
         Spinner industry = (Spinner) findViewById(R.id.spinnerIndustry);
         EditText techSkills = (EditText) findViewById(R.id.textTechSkills);
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
@@ -156,7 +160,9 @@ public class SearchStudents extends ActionBarActivity {
 
         savedInstanceState.putString(NAME, name.getText().toString());
         savedInstanceState.putString(SURNAME, surname.getText().toString());
-        savedInstanceState.putString(LOCATION, location.getText().toString());
+        if(location.isSelected()) {
+            savedInstanceState.putString(LOCATION, location.getSelectedItem().toString());
+        }
         if(industry.isSelected()) {
             savedInstanceState.putString(INDUSTRY, industry.getSelectedItem().toString());
         }
@@ -184,7 +190,7 @@ public class SearchStudents extends ActionBarActivity {
 
         EditText name = (EditText) findViewById(R.id.textName);
         EditText surname = (EditText) findViewById(R.id.textSurname);
-        EditText location = (EditText) findViewById(R.id.textLocation);
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
         Spinner industry = (Spinner) findViewById(R.id.spinnerIndustry);
         EditText techSkills = (EditText) findViewById(R.id.textTechSkills);
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
@@ -195,7 +201,9 @@ public class SearchStudents extends ActionBarActivity {
 
         name.setText(savedInstanceState.getString(NAME));
         surname.setText(savedInstanceState.getString(SURNAME));
-        location.setText(savedInstanceState.getString(LOCATION));
+        if(savedInstanceState.containsKey(LOCATION)) {
+            location.setSelection(adapterLocation.getPosition(savedInstanceState.getString(LOCATION)));
+        }
         if(savedInstanceState.containsKey(INDUSTRY)) {
             industry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INDUSTRY)));
         }

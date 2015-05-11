@@ -126,6 +126,10 @@
         <item name="blank"></item>
     </string-array>
 
+    <string-array name="arrayLocation">
+        <item name="blank"></item>
+    </string-array>
+
     <string-array name="arrayExperience">
         <item name="blank"></item>
     </string-array>

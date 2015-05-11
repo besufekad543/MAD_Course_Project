@@ -149,14 +149,14 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
-                    <EditText
-                        android:id="@+id/editTextLocation"
+                    <Spinner
+                        android:id="@+id/spinnerLocation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:hint="@string/location"
-                        android:singleLine="true"
-                        android:background="@color/background_text"/>
+                        android:background="@color/background_text"
+                        android:textSize="@dimen/text_size" />
 
                 </TableRow>
 
