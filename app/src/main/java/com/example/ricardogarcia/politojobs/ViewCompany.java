@@ -78,7 +78,7 @@ public class ViewCompany extends ActionBarActivity {
         setContentView(R.layout.activity_view_company);
 
         Intent intent = getIntent();
-        company = (Company) intent.getSerializableExtra(CompanySearchResults.COMPANY);
+        company = (Company) intent.getSerializableExtra(CompanyAdapter.COMPANY);
 
         TextView name = (TextView) findViewById(R.id.companyName);
         name.setText(company.getName());

@@ -168,6 +168,13 @@
         <item>ContractType2</item>
     </string-array>
 
+    <string-array name="arraySize">
+        <item>Greater than 100 employees</item>
+        <item>Greater than 500 employees</item>
+        <item>Greater than 1000 employees</item>
+        <item>Greater than 10000 employees</item>
+    </string-array>
+
     <string name="register">Register</string>
     <string name="registration">Registration</string>
     <string name="searchcompanies_button">Search Companies</string>

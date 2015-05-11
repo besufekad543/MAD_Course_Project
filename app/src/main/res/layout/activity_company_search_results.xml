@@ -47,7 +47,7 @@
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/listResult"
+        android:id="@+id/listResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleSearchResults"
@@ -55,19 +55,15 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin" />
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="@dimen/width_buttons"
-        android:layout_height="@dimen/button_height"
-        android:layout_below="@+id/listResult"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/margin_top"
-        android:background="@drawable/rounded_button"
-        android:onClick=""
-        android:text="@string/new_search_button"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textNoResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:text="@string/no_results_text"
+        android:layout_centerInParent="true"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
         android:layout_width="fill_parent"

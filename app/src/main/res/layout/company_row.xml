@@ -19,7 +19,7 @@
             android:textSize="@dimen/text_size" />
 
         <Button
-            android:id="@+id/viewButton"
+            android:id="@+id/buttonView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="center_horizontal"
@@ -46,7 +46,7 @@
             android:textSize="@dimen/text_size" />
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="center_horizontal"

@@ -142,35 +142,35 @@ public class JobSearch extends ActionBarActivity {
 
 
         if(!keywords_filter.getText().toString().equals("")){
-            search_filters.put(INFO_KEYWORDS, keywords_filter.getText().toString());
+            search_filters.put(INFO_KEYWORDS, keywords_filter.getText().toString().toLowerCase());
         }
 
         if(!company_filter.getText().toString().equals("")){
-            search_filters.put(INFO_COMPANY,company_filter.getText().toString());
+            search_filters.put(INFO_COMPANY,company_filter.getText().toString().toLowerCase());
         }
 
         if(spinnerLocation.isSelected()){
-            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
+            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString().toLowerCase());
         }
 
         if(spinnerIndustry.isSelected()){
-            search_filters.put(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
+            search_filters.put(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString().toLowerCase());
         }
 
         if(spinnerJobType.isSelected()){
-            search_filters.put(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString());
+            search_filters.put(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString().toLowerCase());
         }
 
         if(spinnerSalary.isSelected()){
-            search_filters.put(INFO_SALARY,spinnerSalary.getSelectedItem().toString());
+            search_filters.put(INFO_SALARY,spinnerSalary.getSelectedItem().toString().toLowerCase());
         }
 
         if(spinnerDuration.isSelected()){
-            search_filters.put(INFO_DURATION, spinnerDuration.getSelectedItem().toString());
+            search_filters.put(INFO_DURATION, spinnerDuration.getSelectedItem().toString().toLowerCase());
         }
 
         if(spinnerContractType.isSelected()){
-            search_filters.put(INFO_CONTRACT_TYPE, spinnerContractType.getSelectedItem().toString());
+            search_filters.put(INFO_CONTRACT_TYPE, spinnerContractType.getSelectedItem().toString().toLowerCase());
         }
 
         Bundle b = new Bundle();

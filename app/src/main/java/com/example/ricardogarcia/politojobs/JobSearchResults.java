@@ -2,13 +2,18 @@ package com.example.ricardogarcia.politojobs;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.parse.Parse;
@@ -373,8 +378,36 @@ public class JobSearchResults extends ActionBarActivity {
             JobAdapter jAdapter = new JobAdapter(JobSearchResults.this, jobs);
 
             ListView list_jobs = (ListView) findViewById(R.id.listResults);
+
+            Button newSearchButton = new Button(JobSearchResults.this);
+
+            Drawable background=getResources().getDrawable(R.drawable.rounded_button);
+
+            if (android.os.Build.VERSION.SDK_INT >= 16)
+                newSearchButton.setBackground(background);
+            else
+                newSearchButton.setBackgroundDrawable(background);
+
+
+            newSearchButton.setHeight(getResources().getDimensionPixelSize(R.dimen.button_height));
+            newSearchButton.setWidth(getResources().getDimensionPixelSize(R.dimen.width_buttons));
+            newSearchButton.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.text_size));
+            newSearchButton.setText(R.string.new_search_button);
+            newSearchButton.setTextColor(Color.WHITE);
+            newSearchButton.setTypeface(null, Typeface.BOLD);
+            newSearchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+            list_jobs.addFooterView(newSearchButton);
+
             list_jobs.setAdapter(jAdapter);
             list_jobs.setEmptyView(findViewById(R.id.textNoResults));
+
+
 
         }
     }

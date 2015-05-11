@@ -75,6 +75,7 @@
                         android:id="@+id/buttonSavedJobs"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/button_height"
+                        android:onClick="goSavedCompanies"
                         android:background="@drawable/rounded_button"
                         android:text="@string/savedcompanies_button"
                         android:textColor="@color/white"
@@ -98,7 +99,7 @@
                         />
 
                     <EditText
-                        android:id="@+id/editTextKeywords"
+                        android:id="@+id/editTextName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -195,6 +196,7 @@
                 android:layout_marginTop="@dimen/margin_top_title"
                 android:background="@drawable/rounded_button"
                 android:text="@string/search_button"
+                android:onClick="searchCompanies"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />

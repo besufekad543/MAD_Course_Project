@@ -92,8 +92,8 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener{
                 public void onClick(View v) {
                     String studentId = ParseUser.getCurrentUser().getObjectId();
                     ParseObject saveJob = new ParseObject("SavedJobOffer");
-                    saveJob.put("StudentId", studentId);
-                    saveJob.put("JobId", listjobs.get(position).getId());
+                    saveJob.put("StudentId", studentId.toLowerCase());
+                    saveJob.put("JobId", listjobs.get(position).getId().toLowerCase());
                     saveJob.saveInBackground();
                 }
             });
