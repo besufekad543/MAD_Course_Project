@@ -15,13 +15,13 @@ public class Company implements Serializable{
     private String description;
     private String company_size;
     private String website;
-    private List<String> clients;
+    private String clients;
 
-    public List<String> getClients() {
+    public String getClients() {
         return clients;
     }
 
-    public void setClients(List<String> clients) {
+    public void setClients(String clients) {
         this.clients = clients;
     }
 

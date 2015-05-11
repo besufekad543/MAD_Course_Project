@@ -9,12 +9,41 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.ParseUser;
+
 
 public class InboxDescription extends ActionBarActivity {
 
 
     public final static String INFOLOCAL_MESSAGE = "com.example.ricardogarcia.politojobs.MESSAGE";
     public final static String INFOLOCAL_SUBJECT = "com.example.ricardogarcia.politojobs.SUBJECT";
+
+
+    public void goHome(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, StudentHome.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, CompanyHome.class);
+            startActivity(intent);
+        }
+    }
+
+    public void goProfile(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, ProfileStudent.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, ProfileCompany.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
