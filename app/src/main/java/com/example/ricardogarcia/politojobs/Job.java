@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Job implements Serializable{
     private String id;
-    private String name;
+    private String position;
     private String industry;
     private String description;
     private String location;
@@ -35,12 +35,12 @@ public class Job implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPosition() {
+        return position;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getIndustry() {

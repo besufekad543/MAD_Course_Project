@@ -1,12 +1,14 @@
 package com.example.ricardogarcia.politojobs;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -25,7 +27,33 @@ public class Inbox extends ActionBarActivity {
     public final static String INFO_MESSAGE = "com.example.ricardogarcia.politojobs.MESSAGE";
     public final static String INFO_SUBJECT = "com.example.ricardogarcia.politojobs.SUBJECT";
     public final static String LIST_MESSAGES = "com.example.ricardogarcia.politojobs.LIST";
-    private ArrayList<Message> result_messages;
+
+
+    public void goHome(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, StudentHome.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, CompanyHome.class);
+            startActivity(intent);
+        }
+    }
+
+    public void goProfile(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, ProfileStudent.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, ProfileCompany.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +106,7 @@ public class Inbox extends ActionBarActivity {
         @Override
         protected ArrayList<Message> doInBackground(String... params) {
 
-            result_messages=new ArrayList<Message>();
+            ArrayList<Message> result_messages=new ArrayList<Message>();
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
             query.whereEqualTo("SenderId",params[0]);
             try {

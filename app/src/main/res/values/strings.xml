@@ -138,6 +138,26 @@
         <item name="blank"></item>
     </string-array>
 
+    <string-array name="arraySalary">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayJobType">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayDuration">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayContractType">
+        <item name="blank"></item>
+    </string-array>
+
+    <string-array name="arrayLocation">
+        <item name="blank"></item>
+    </string-array>
+
     <string name="register">Register</string>
     <string name="registration">Registration</string>
     <string name="searchcompanies_button">Search Companies</string>
