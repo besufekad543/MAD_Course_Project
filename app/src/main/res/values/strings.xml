@@ -123,11 +123,13 @@
     </string-array>
 
     <string-array name="arrayIndustry">
-        <item name="blank"></item>
+        <item>Industry1</item>
+        <item>Industry2</item>
     </string-array>
 
     <string-array name="arrayLocation">
-        <item name="blank"></item>
+        <item>Location1</item>
+        <item>Location2</item>
     </string-array>
 
     <string-array name="arrayExperience">
@@ -143,23 +145,27 @@
     </string-array>
 
     <string-array name="arraySalary">
-        <item name="blank"></item>
+        <item>Greater than 1000</item>
+        <item>Greater than 5000</item>
+        <item>Greater than 10000</item>
+        <item>Greater than 20000</item>
     </string-array>
 
     <string-array name="arrayJobType">
-        <item name="blank"></item>
+        <item>TypeJob1</item>
+        <item>TypeJob2</item>
     </string-array>
 
     <string-array name="arrayDuration">
-        <item name="blank"></item>
+        <item>Less than 6 months</item>
+        <item>6 months - 1 year</item>
+        <item>Greater than 1 year</item>
+        <item>Undefined term</item>
     </string-array>
 
     <string-array name="arrayContractType">
-        <item name="blank"></item>
-    </string-array>
-
-    <string-array name="arrayLocation">
-        <item name="blank"></item>
+        <item>ContractType1</item>
+        <item>ContractType2</item>
     </string-array>
 
     <string name="register">Register</string>

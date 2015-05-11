@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,13 +29,49 @@ public class JobSearch extends ActionBarActivity {
     public final static String INFO_DURATION = "com.example.ricardogarcia.politojobs.DURATION";
     public final static String INFO_CONTRACT_TYPE = "com.example.ricardogarcia.politojobs.CONTRACTTYPE";
 
+    private ArrayAdapter<String> adapterLocation;
+    private ArrayAdapter<String> adapterIndustry;
+    private ArrayAdapter<String> adapterJobType;
+    private ArrayAdapter<String> adapterSalary;
+    private ArrayAdapter<String> adapterDuration;
+    private ArrayAdapter<String> adapterContractType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_search);
 
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
+        Spinner industry = (Spinner) findViewById(R.id.spinnerIndustry);
+        Spinner job_type = (Spinner) findViewById(R.id.spinnerTypeJob);
+        Spinner salary = (Spinner) findViewById(R.id.spinnerSalary);
+        Spinner duration = (Spinner) findViewById(R.id.spinnerDuration);
+        Spinner contract_type = (Spinner) findViewById(R.id.spinnerTypeOfContract);
+
+        adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
+        adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterIndustry = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
+        adapterIndustry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterJobType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayJobType));
+        adapterJobType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterSalary = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arraySalary));
+        adapterSalary.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDuration = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayDuration));
+        adapterDuration.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterContractType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayContractType));
+        adapterContractType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        location.setAdapter(adapterLocation);
+        industry.setAdapter(adapterIndustry);
+        job_type.setAdapter(adapterJobType);
+        salary.setAdapter(adapterSalary);
+        duration.setAdapter(adapterDuration);
+        contract_type.setAdapter(adapterContractType);
+
+
     }
+
 
 
     @Override
@@ -92,27 +129,28 @@ public class JobSearch extends ActionBarActivity {
 
         EditText keywords_filter= (EditText) findViewById(R.id.editTextKeywords);
         EditText company_filter=(EditText) findViewById(R.id.editTextCompany);
-        EditText location_filter=(EditText) findViewById(R.id.editTextLocation);
+        Spinner spinnerLocation=(Spinner) findViewById(R.id.spinnerLocation);
         Spinner spinnerIndustry= (Spinner) findViewById(R.id.spinnerIndustry);
         Spinner spinnerJobType= (Spinner) findViewById(R.id.spinnerTypeJob);
         Spinner spinnerSalary= (Spinner) findViewById(R.id.spinnerSalary);
         Spinner spinnerDuration= (Spinner) findViewById(R.id.spinnerDuration);
         Spinner spinnerContractType= (Spinner) findViewById(R.id.spinnerTypeOfContract);
-        spinnerContractType.getSelectedItem().toString();
+
 
         search_filters.put(INFO_SEARCHTYPE,"Search");
 
 
-        if(keywords_filter.getText().toString().compareTo("")!=0){
+
+        if(!keywords_filter.getText().toString().equals("")){
             search_filters.put(INFO_KEYWORDS, keywords_filter.getText().toString());
         }
 
-        if(company_filter.getText().toString().compareTo("")!=0){
+        if(!company_filter.getText().toString().equals("")){
             search_filters.put(INFO_COMPANY,company_filter.getText().toString());
         }
 
-        if(location_filter.getText().toString().compareTo("")!=0){
-            search_filters.put(INFO_LOCATION,location_filter.getText().toString());
+        if(spinnerLocation.isSelected()){
+            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
         }
 
         if(spinnerIndustry.isSelected()){
@@ -154,5 +192,87 @@ public class JobSearch extends ActionBarActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
 
+        EditText keywords= (EditText) findViewById(R.id.editTextKeywords);
+        EditText company=(EditText) findViewById(R.id.editTextCompany);
+        Spinner spinnerLocation=(Spinner) findViewById(R.id.spinnerLocation);
+        Spinner spinnerIndustry= (Spinner) findViewById(R.id.spinnerIndustry);
+        Spinner spinnerJobType= (Spinner) findViewById(R.id.spinnerTypeJob);
+        Spinner spinnerSalary= (Spinner) findViewById(R.id.spinnerSalary);
+        Spinner spinnerDuration= (Spinner) findViewById(R.id.spinnerDuration);
+        Spinner spinnerContractType= (Spinner) findViewById(R.id.spinnerTypeOfContract);
+
+        outState.putString(INFO_KEYWORDS,keywords.getText().toString());
+        outState.putString(INFO_COMPANY,company.getText().toString());
+
+        if(spinnerLocation.isSelected()){
+            outState.putString(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
+        }
+
+        if(spinnerIndustry.isSelected()){
+            outState.putString(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
+        }
+
+        if(spinnerJobType.isSelected()){
+            outState.putString(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString());
+        }
+
+        if(spinnerSalary.isSelected()){
+            outState.putString(INFO_SALARY,spinnerSalary.getSelectedItem().toString());
+        }
+
+        if(spinnerDuration.isSelected()){
+            outState.putString(INFO_DURATION,spinnerDuration.getSelectedItem().toString());
+        }
+
+        if(spinnerContractType.isSelected()){
+            outState.putString(INFO_CONTRACT_TYPE,spinnerContractType.getSelectedItem().toString());
+        }
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        EditText keywords= (EditText) findViewById(R.id.editTextKeywords);
+        EditText company=(EditText) findViewById(R.id.editTextCompany);
+        Spinner spinnerLocation=(Spinner) findViewById(R.id.spinnerLocation);
+        Spinner spinnerIndustry= (Spinner) findViewById(R.id.spinnerIndustry);
+        Spinner spinnerJobType= (Spinner) findViewById(R.id.spinnerTypeJob);
+        Spinner spinnerSalary= (Spinner) findViewById(R.id.spinnerSalary);
+        Spinner spinnerDuration= (Spinner) findViewById(R.id.spinnerDuration);
+        Spinner spinnerContractType= (Spinner) findViewById(R.id.spinnerTypeOfContract);
+
+        keywords.setText(savedInstanceState.getString(INFO_KEYWORDS));
+        company.setText(savedInstanceState.getString(INFO_COMPANY));
+
+        if(savedInstanceState.containsKey(INFO_LOCATION)){
+            spinnerLocation.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
+        }
+
+        if(savedInstanceState.containsKey(INFO_INDUSTRY)){
+            spinnerIndustry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
+        }
+
+        if(savedInstanceState.containsKey(INFO_JOBTYPE)){
+            spinnerJobType.setSelection(adapterJobType.getPosition(savedInstanceState.getString(INFO_JOBTYPE)));
+        }
+
+        if(savedInstanceState.containsKey(INFO_SALARY)){
+            spinnerSalary.setSelection(adapterSalary.getPosition(savedInstanceState.getString(INFO_SALARY)));
+        }
+
+        if(savedInstanceState.containsKey(INFO_DURATION)){
+            spinnerDuration.setSelection(adapterDuration.getPosition(savedInstanceState.getString(INFO_DURATION)));
+        }
+
+        if(savedInstanceState.containsKey(INFO_CONTRACT_TYPE)){
+            spinnerContractType.setSelection(adapterContractType.getPosition(savedInstanceState.getString(INFO_CONTRACT_TYPE)));
+        }
+
+    }
 }

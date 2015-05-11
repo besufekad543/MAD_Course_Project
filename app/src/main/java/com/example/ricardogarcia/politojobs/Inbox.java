@@ -61,8 +61,8 @@ public class Inbox extends ActionBarActivity {
         setContentView(R.layout.activity_inbox);
 
         Parse.initialize(Inbox.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
-        //ParseUser currentUser= ParseUser.getCurrentUser();
-        new RetrieveFromDatabase().execute("rgarcia");
+        ParseUser currentUser= ParseUser.getCurrentUser();
+        new RetrieveFromDatabase().execute(currentUser.getObjectId());
 
     }
 
@@ -113,8 +113,13 @@ public class Inbox extends ActionBarActivity {
                 List<ParseObject> results=query.find();
                 for(ParseObject p:results){
                     Message msg= new Message();
+
+                    if(!p.get("Subject").equals(""))
                     msg.setSubject((String) p.get("Subject"));
+
+                    if(!p.get("Message").equals(""))
                     msg.setMessage((String) p.get("Message"));
+
                     result_messages.add(msg);
                 }
             } catch (ParseException e) {

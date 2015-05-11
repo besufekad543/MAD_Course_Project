@@ -79,10 +79,10 @@ public class ViewJob extends ActionBarActivity {
         setContentView(R.layout.activity_view_job);
 
         Intent intent = getIntent();
-        job = (Job) intent.getSerializableExtra(JobSearchResults.JOB);
+        job = (Job) intent.getSerializableExtra(JobAdapter.JOB);
 
         TextView position = (TextView) findViewById(R.id.jobPosition);
-        position.setText(job.getName());
+        position.setText(job.getPosition());
         TextView company = (TextView) findViewById(R.id.companyName);
         company.setText(job.getCompany().getName());
         TextView industry = (TextView) findViewById(R.id.companyIndustry);

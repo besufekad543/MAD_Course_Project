@@ -93,11 +93,7 @@ public class ViewCompany extends ActionBarActivity {
         TextView website = (TextView) findViewById(R.id.website);
         website.setText(company.getWebsite());
         TextView clients = (TextView) findViewById(R.id.clients);
-        clients.setText("Clients");
-        for(int i=0; i<company.getClients().size(); i++){
-            clients.setText(clients.getText().toString()+"\n"+company.getClients().get(i));
-        }
-
+        clients.setText(clients.getText().toString());
 
     }
 

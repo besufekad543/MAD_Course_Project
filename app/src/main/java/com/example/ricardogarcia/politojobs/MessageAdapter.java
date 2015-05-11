@@ -55,7 +55,7 @@ public class MessageAdapter extends BaseAdapter implements View.OnClickListener 
 
         ViewHolder vholder;
         View v = convertView;
-        Log.d("Size", String.valueOf(listmessages.size()));
+
         if (listmessages.size() > 0) {
             if (v == null) {
                 v = inflater.inflate(R.layout.message_preview, parent, false);
