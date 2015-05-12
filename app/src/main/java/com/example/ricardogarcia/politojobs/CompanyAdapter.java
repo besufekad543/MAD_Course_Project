@@ -104,6 +104,11 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
 
                     try {
 
+                        /*
+                        ParseQuery<ParseUser> query = ParseUser.getQuery();
+                        query.whereEqualTo("objectId", "2AM7fmxH5S");
+                        ParseUser user = query.getFirst();*/
+
                         ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
                         queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
                         ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");

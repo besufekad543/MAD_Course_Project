@@ -80,6 +80,7 @@
     <string name="singin">Sign in</string>
     <string name="inbox_title">Inbox</string>
     <string name="backinbox_button">Back to messages</string>
+    <string name="backsearch_button">Back to search</string>
     <string name="searchjobs_title">Search jobs</string>
     <string name="savedjobs_button">Saved jobs</string>
     <string name="savedcompanies_button">Saved companies</string>

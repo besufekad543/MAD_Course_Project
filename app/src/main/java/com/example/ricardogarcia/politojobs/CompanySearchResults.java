@@ -150,7 +150,7 @@ public class CompanySearchResults extends ActionBarActivity {
                     for (ParseObject c : result_companies) {
                         Company company = new Company();
                         if (c.get("CompanyId") != null)
-                            company.setId(c.get("CompanyId").toString());
+                            company.setId(c.getObjectId());
                         if (c.get("Name") != null)
                             company.setName(c.get("Name").toString());
                         if (c.get("Location") != null)
@@ -184,9 +184,10 @@ public class CompanySearchResults extends ActionBarActivity {
 
 
                 try {
+
                     /*
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    query.whereEqualTo("objectId", "kYnBGaY3q0");
+                    query.whereEqualTo("objectId", "2AM7fmxH5S");
                     ParseUser user = query.getFirst();*/
 
                     studentQuery.include("StudentId");
@@ -194,10 +195,10 @@ public class CompanySearchResults extends ActionBarActivity {
 
                     ParseObject student_result = studentQuery.getFirst();
 
-                    savedCompanyQuery.include("StudentId");
-                    savedCompanyQuery.whereEqualTo("StudentId", student_result);
 
+                    savedCompanyQuery.include("StudentId");
                     savedCompanyQuery.include("CompanyId");
+                    savedCompanyQuery.whereEqualTo("StudentId", student_result);
 
                     List<ParseObject> results = savedCompanyQuery.find();
 
@@ -206,7 +207,7 @@ public class CompanySearchResults extends ActionBarActivity {
 
                         Company company = new Company();
                         if (company_result.get("CompanyId") != null)
-                            company.setId(company_result.get("CompanyId").toString());
+                            company.setId(company_result.getObjectId());
                         if (company_result.get("Name") != null)
                             company.setName(company_result.get("Name").toString());
                         if (company_result.get("Location") != null)
@@ -262,9 +263,15 @@ public class CompanySearchResults extends ActionBarActivity {
             newSearchButton.setHeight(getResources().getDimensionPixelSize(R.dimen.button_height));
             newSearchButton.setWidth(getResources().getDimensionPixelSize(R.dimen.width_buttons));
             newSearchButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_size));
-            newSearchButton.setText(R.string.new_search_button);
             newSearchButton.setTextColor(Color.WHITE);
             newSearchButton.setTypeface(null, Typeface.BOLD);
+
+            if(searchType.equals("Search"))
+                newSearchButton.setText(R.string.new_search_button);
+            else
+                newSearchButton.setText(R.string.backsearch_button);
+
+
             newSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

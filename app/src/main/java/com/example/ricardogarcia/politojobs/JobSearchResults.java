@@ -422,9 +422,14 @@ public class JobSearchResults extends ActionBarActivity {
             newSearchButton.setHeight(getResources().getDimensionPixelSize(R.dimen.button_height));
             newSearchButton.setWidth(getResources().getDimensionPixelSize(R.dimen.width_buttons));
             newSearchButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_size));
-            newSearchButton.setText(R.string.new_search_button);
             newSearchButton.setTextColor(Color.WHITE);
             newSearchButton.setTypeface(null, Typeface.BOLD);
+
+            if(searchType.equals("Search"))
+                newSearchButton.setText(R.string.new_search_button);
+            else
+                newSearchButton.setText(R.string.backsearch_button);
+
             newSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
