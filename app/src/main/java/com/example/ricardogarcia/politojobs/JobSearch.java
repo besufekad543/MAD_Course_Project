@@ -3,6 +3,7 @@ package com.example.ricardogarcia.politojobs;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,7 +69,6 @@ public class JobSearch extends ActionBarActivity {
         salary.setAdapter(adapterSalary);
         duration.setAdapter(adapterDuration);
         contract_type.setAdapter(adapterContractType);
-
 
     }
 
@@ -139,8 +139,6 @@ public class JobSearch extends ActionBarActivity {
 
         search_filters.put(INFO_SEARCHTYPE,"Search");
 
-
-
         if(!keywords_filter.getText().toString().equals("")){
             search_filters.put(INFO_KEYWORDS, keywords_filter.getText().toString().toLowerCase());
         }
@@ -149,28 +147,28 @@ public class JobSearch extends ActionBarActivity {
             search_filters.put(INFO_COMPANY,company_filter.getText().toString().toLowerCase());
         }
 
-        if(spinnerLocation.isSelected()){
-            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString().toLowerCase());
+        if(!spinnerLocation.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
         }
 
-        if(spinnerIndustry.isSelected()){
-            search_filters.put(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString().toLowerCase());
+        if(!spinnerIndustry.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
         }
 
-        if(spinnerJobType.isSelected()){
-            search_filters.put(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString().toLowerCase());
+        if(!spinnerJobType.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString());
         }
 
-        if(spinnerSalary.isSelected()){
-            search_filters.put(INFO_SALARY,spinnerSalary.getSelectedItem().toString().toLowerCase());
+        if(!spinnerSalary.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_SALARY,spinnerSalary.getSelectedItem().toString());
         }
 
-        if(spinnerDuration.isSelected()){
-            search_filters.put(INFO_DURATION, spinnerDuration.getSelectedItem().toString().toLowerCase());
+        if(!spinnerDuration.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_DURATION, spinnerDuration.getSelectedItem().toString());
         }
 
-        if(spinnerContractType.isSelected()){
-            search_filters.put(INFO_CONTRACT_TYPE, spinnerContractType.getSelectedItem().toString().toLowerCase());
+        if(!spinnerContractType.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_CONTRACT_TYPE, spinnerContractType.getSelectedItem().toString());
         }
 
         Bundle b = new Bundle();
@@ -206,30 +204,13 @@ public class JobSearch extends ActionBarActivity {
 
         outState.putString(INFO_KEYWORDS,keywords.getText().toString());
         outState.putString(INFO_COMPANY,company.getText().toString());
+        outState.putString(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
+        outState.putString(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
+        outState.putString(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString());
+        outState.putString(INFO_SALARY,spinnerSalary.getSelectedItem().toString());
+        outState.putString(INFO_DURATION,spinnerDuration.getSelectedItem().toString());
+        outState.putString(INFO_CONTRACT_TYPE,spinnerContractType.getSelectedItem().toString());
 
-        if(spinnerLocation.isSelected()){
-            outState.putString(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
-        }
-
-        if(spinnerIndustry.isSelected()){
-            outState.putString(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
-        }
-
-        if(spinnerJobType.isSelected()){
-            outState.putString(INFO_JOBTYPE,spinnerJobType.getSelectedItem().toString());
-        }
-
-        if(spinnerSalary.isSelected()){
-            outState.putString(INFO_SALARY,spinnerSalary.getSelectedItem().toString());
-        }
-
-        if(spinnerDuration.isSelected()){
-            outState.putString(INFO_DURATION,spinnerDuration.getSelectedItem().toString());
-        }
-
-        if(spinnerContractType.isSelected()){
-            outState.putString(INFO_CONTRACT_TYPE,spinnerContractType.getSelectedItem().toString());
-        }
 
         super.onSaveInstanceState(outState);
     }
@@ -250,29 +231,13 @@ public class JobSearch extends ActionBarActivity {
         keywords.setText(savedInstanceState.getString(INFO_KEYWORDS));
         company.setText(savedInstanceState.getString(INFO_COMPANY));
 
-        if(savedInstanceState.containsKey(INFO_LOCATION)){
-            spinnerLocation.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
-        }
+        spinnerLocation.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
+        spinnerIndustry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
+        spinnerJobType.setSelection(adapterJobType.getPosition(savedInstanceState.getString(INFO_JOBTYPE)));
+        spinnerSalary.setSelection(adapterSalary.getPosition(savedInstanceState.getString(INFO_SALARY)));
+        spinnerDuration.setSelection(adapterDuration.getPosition(savedInstanceState.getString(INFO_DURATION)));
+        spinnerContractType.setSelection(adapterContractType.getPosition(savedInstanceState.getString(INFO_CONTRACT_TYPE)));
 
-        if(savedInstanceState.containsKey(INFO_INDUSTRY)){
-            spinnerIndustry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
-        }
-
-        if(savedInstanceState.containsKey(INFO_JOBTYPE)){
-            spinnerJobType.setSelection(adapterJobType.getPosition(savedInstanceState.getString(INFO_JOBTYPE)));
-        }
-
-        if(savedInstanceState.containsKey(INFO_SALARY)){
-            spinnerSalary.setSelection(adapterSalary.getPosition(savedInstanceState.getString(INFO_SALARY)));
-        }
-
-        if(savedInstanceState.containsKey(INFO_DURATION)){
-            spinnerDuration.setSelection(adapterDuration.getPosition(savedInstanceState.getString(INFO_DURATION)));
-        }
-
-        if(savedInstanceState.containsKey(INFO_CONTRACT_TYPE)){
-            spinnerContractType.setSelection(adapterContractType.getPosition(savedInstanceState.getString(INFO_CONTRACT_TYPE)));
-        }
 
     }
 }

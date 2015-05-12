@@ -42,7 +42,8 @@ public class JobSearchResults extends ActionBarActivity {
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-
+        HashMap<String, String> map = (HashMap<String, String>) b.getSerializable(JobSearch.INFO_HASH);
+        Log.d("SIZE", String.valueOf(map.size()));
         new RetrieveFromDatabase().execute((HashMap<String, String>) b.getSerializable(JobSearch.INFO_HASH));
 
 
@@ -142,15 +143,17 @@ public class JobSearchResults extends ActionBarActivity {
 
                 //Duration filter
                 if (search_data.containsKey(JobSearch.INFO_DURATION)) {
+
+
                     String[] arrayDuration = getResources().getStringArray(R.array.arrayDuration);
-                    if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[0])) {
+                    if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[1])) {
                         searchJobQuery.whereLessThan("Duration", 6);
-                    } else if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[1])) {
+                    } else if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[2])) {
                         searchJobQuery.whereGreaterThanOrEqualTo("Duration", 6);
                         searchJobQuery.whereLessThanOrEqualTo("Duration", 12);
-                    } else if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[2])) {
-                        searchJobQuery.whereGreaterThan("Duration", 12);
                     } else if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[3])) {
+                        searchJobQuery.whereGreaterThan("Duration", 12);
+                    } else if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[4])) {
                         searchJobQuery.whereEqualTo("Duration", 0);
                     }
                 }
@@ -158,11 +161,11 @@ public class JobSearchResults extends ActionBarActivity {
                 //Salary filter
                 if (search_data.containsKey(JobSearch.INFO_SALARY)) {
                     String[] arraySalary = getResources().getStringArray(R.array.arraySalary);
-                    if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[0])) {
+                    if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[1])) {
                         searchJobQuery.whereGreaterThanOrEqualTo("Salary", 1000);
-                    } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[1])) {
-                        searchJobQuery.whereGreaterThanOrEqualTo("Salary", 5000);
                     } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[2])) {
+                        searchJobQuery.whereGreaterThanOrEqualTo("Salary", 5000);
+                    } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[3])) {
                         searchJobQuery.whereGreaterThanOrEqualTo("Salary", 10000);
                     } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[3])) {
                         searchJobQuery.whereGreaterThanOrEqualTo("Salary", 20000);
@@ -186,7 +189,7 @@ public class JobSearchResults extends ActionBarActivity {
                             Company company = new Company();
 
                             if (matching_jobs.size() > 0) {
-                                if (parseCompany.get("CompanyID") != null)
+                                if (parseCompany.get("CompanyId") != null)
                                     company.setId(parseCompany.get("CompanyId").toString());
                                 if (parseCompany.get("Name") != null)
                                     company.setName(parseCompany.get("Name").toString());
@@ -239,7 +242,9 @@ public class JobSearchResults extends ActionBarActivity {
                     try {
                         List<ParseObject> matching_jobs = searchJobQuery.find();
 
+
                         for (ParseObject parseJob : matching_jobs) {
+
                             Job job = new Job();
                             job.setId(parseJob.getObjectId());
                             if (parseJob.get("Position") != null)
@@ -261,11 +266,24 @@ public class JobSearchResults extends ActionBarActivity {
                             if (parseJob.getCreatedAt() != null) {
                                 job.setDate(parseJob.getCreatedAt().toString());
                             }
+
+
+
+                            ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
+                            ParseObject companyQ = ParseObject.createWithoutData("Company", parseJob.get("CompanyId").toString());
+                            companyQuery.whereEqualTo("objectId", companyQ);
+                            ParseObject company_result = companyQuery.getFirst();
+
+
+                            /*
+
                             ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
                             companyQuery.whereEqualTo("CompanyId", parseJob.get("CompanyId"));
                             ParseObject company_result = companyQuery.getFirst();
+                            */
+
                             Company company = new Company();
-                            if (company_result.get("CompanyID") != null)
+                            if (company_result.get("CompanyId") != null)
                                 company.setId(company_result.get("CompanyId").toString());
                             if (company_result.get("Name") != null)
                                 company.setName(company_result.get("Name").toString());
@@ -284,8 +302,12 @@ public class JobSearchResults extends ActionBarActivity {
                             if (company_result.get("Clients") != null)
                                 company.setClients(company_result.get("Clients").toString());
 
+
+                            //Company company= new Company();
+                            //company.setName("comp1");
                             job.setCompany(company);
                             jobs.add(job);
+
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -328,7 +350,7 @@ public class JobSearchResults extends ActionBarActivity {
                             job.setDuration(job_result.get("Duration").toString());
                         if (job_result.get("ContractType") != null)
                             job.setContractType(job_result.get("ContractType").toString());
-                        if (job_result.getCreatedAt()!= null)
+                        if (job_result.getCreatedAt() != null)
                             job.setDate(job_result.getCreatedAt().toString());
 
                         //Each job offer is related with a company through the companyId. Retrieve the company related
@@ -337,7 +359,7 @@ public class JobSearchResults extends ActionBarActivity {
                         companyQuery.whereEqualTo("CompanyId", job_result.get("CompanyId"));
                         ParseObject company_result = companyQuery.getFirst();
                         Company company = new Company();
-                        if (company_result.get("CompanyID") != null)
+                        if (company_result.get("CompanyId") != null)
                             company.setId(company_result.get("CompanyId").toString());
                         if (company_result.get("Name") != null)
                             company.setName(company_result.get("Name").toString());
@@ -372,7 +394,7 @@ public class JobSearchResults extends ActionBarActivity {
         protected void onPostExecute(ArrayList<Job> jobs) {
             super.onPostExecute(jobs);
             if (progressDialog.isShowing()) {
-                progressDialog.hide();
+                progressDialog.dismiss();
             }
 
             JobAdapter jAdapter = new JobAdapter(JobSearchResults.this, jobs);
@@ -381,7 +403,7 @@ public class JobSearchResults extends ActionBarActivity {
 
             Button newSearchButton = new Button(JobSearchResults.this);
 
-            Drawable background=getResources().getDrawable(R.drawable.rounded_button);
+            Drawable background = getResources().getDrawable(R.drawable.rounded_button);
 
             if (android.os.Build.VERSION.SDK_INT >= 16)
                 newSearchButton.setBackground(background);
@@ -391,7 +413,7 @@ public class JobSearchResults extends ActionBarActivity {
 
             newSearchButton.setHeight(getResources().getDimensionPixelSize(R.dimen.button_height));
             newSearchButton.setWidth(getResources().getDimensionPixelSize(R.dimen.width_buttons));
-            newSearchButton.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.text_size));
+            newSearchButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_size));
             newSearchButton.setText(R.string.new_search_button);
             newSearchButton.setTextColor(Color.WHITE);
             newSearchButton.setTypeface(null, Typeface.BOLD);
@@ -406,7 +428,6 @@ public class JobSearchResults extends ActionBarActivity {
 
             list_jobs.setAdapter(jAdapter);
             list_jobs.setEmptyView(findViewById(R.id.textNoResults));
-
 
 
         }

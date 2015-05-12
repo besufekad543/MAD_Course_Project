@@ -51,9 +51,6 @@ public class CompanySearch extends ActionBarActivity {
         industry.setAdapter(adapterIndustry);
         size.setAdapter(adapterSize);
 
-        Parse.initialize(this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
-
-
     }
 
     public void goHome(View view) {
@@ -114,19 +111,9 @@ public class CompanySearch extends ActionBarActivity {
         Spinner spinnerSize=(Spinner) findViewById(R.id.spinnerCompanySize);
 
         outState.putString(INFO_NAME,name.getText().toString());
-
-        if(spinnerLocation.isSelected()){
-            outState.putString(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
-        }
-
-        if(spinnerIndustry.isSelected()){
-            outState.putString(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
-        }
-
-        if(spinnerSize.isSelected()){
-            outState.putString(INFO_SIZE,spinnerSize.getSelectedItem().toString());
-        }
-
+        outState.putString(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
+        outState.putString(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
+        outState.putString(INFO_SIZE,spinnerSize.getSelectedItem().toString());
 
         super.onSaveInstanceState(outState);
     }
@@ -141,18 +128,10 @@ public class CompanySearch extends ActionBarActivity {
         Spinner spinnerSize=(Spinner) findViewById(R.id.spinnerCompanySize);
 
         name.setText(savedInstanceState.getString(INFO_NAME));
+        spinnerLocation.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
+        spinnerIndustry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
+        spinnerSize.setSelection(adapterSize.getPosition(savedInstanceState.getString(INFO_SIZE)));
 
-        if(savedInstanceState.containsKey(INFO_LOCATION)){
-            spinnerLocation.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
-        }
-
-        if(savedInstanceState.containsKey(INFO_INDUSTRY)){
-            spinnerIndustry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
-        }
-
-        if(savedInstanceState.containsKey(INFO_SIZE)){
-            spinnerSize.setSelection(adapterSize.getPosition(savedInstanceState.getString(INFO_SIZE)));
-        }
     }
 
 
@@ -174,16 +153,16 @@ public class CompanySearch extends ActionBarActivity {
             search_filters.put(INFO_NAME, name_filter.getText().toString().toLowerCase());
         }
 
-        if(spinnerLocation.isSelected()){
-            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString().toLowerCase());
+        if(!spinnerLocation.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_LOCATION,spinnerLocation.getSelectedItem().toString());
         }
 
-        if(spinnerIndustry.isSelected()){
-            search_filters.put(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString().toLowerCase());
+        if(!spinnerIndustry.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_INDUSTRY,spinnerIndustry.getSelectedItem().toString());
         }
 
-        if(spinnerSize.isSelected()){
-            search_filters.put(INFO_SIZE,spinnerSize.getSelectedItem().toString().toLowerCase());
+        if(!spinnerSize.getSelectedItem().toString().equals("-")){
+            search_filters.put(INFO_SIZE,spinnerSize.getSelectedItem().toString());
         }
 
         Bundle b = new Bundle();

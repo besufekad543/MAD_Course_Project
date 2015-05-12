@@ -123,11 +123,13 @@
     </string-array>
 
     <string-array name="arrayIndustry">
+        <item>-</item>
         <item>Industry1</item>
         <item>Industry2</item>
     </string-array>
 
     <string-array name="arrayLocation">
+        <item>-</item>
         <item>Location1</item>
         <item>Location2</item>
     </string-array>
@@ -145,6 +147,7 @@
     </string-array>
 
     <string-array name="arraySalary">
+        <item>-</item>
         <item>Greater than 1000</item>
         <item>Greater than 5000</item>
         <item>Greater than 10000</item>
@@ -152,11 +155,13 @@
     </string-array>
 
     <string-array name="arrayJobType">
+        <item>-</item>
         <item>TypeJob1</item>
         <item>TypeJob2</item>
     </string-array>
 
     <string-array name="arrayDuration">
+        <item>-</item>
         <item>Less than 6 months</item>
         <item>6 months - 1 year</item>
         <item>Greater than 1 year</item>
@@ -164,11 +169,13 @@
     </string-array>
 
     <string-array name="arrayContractType">
+        <item>-</item>
         <item>ContractType1</item>
         <item>ContractType2</item>
     </string-array>
 
     <string-array name="arraySize">
+        <item>-</item>
         <item>Greater than 100 employees</item>
         <item>Greater than 500 employees</item>
         <item>Greater than 1000 employees</item>

@@ -133,7 +133,7 @@ public class Inbox extends ActionBarActivity {
         protected void onPostExecute(ArrayList<Message> messages) {
             super.onPostExecute(messages);
             if(progressDialog.isShowing()) {
-                progressDialog.hide();
+                progressDialog.dismiss();
             }
 
             MessageAdapter mAdapter= new MessageAdapter(Inbox.this,messages);

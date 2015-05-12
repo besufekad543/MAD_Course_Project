@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -32,6 +33,7 @@ public class CompanySearchResults extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_search_results);
+
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
@@ -134,7 +136,7 @@ public class CompanySearchResults extends ActionBarActivity {
                     List<ParseObject> result_companies = searchCompanyQuery.find();
                     for (ParseObject c : result_companies) {
                         Company company = new Company();
-                        if (c.get("CompanyID") != null)
+                        if (c.get("CompanyId") != null)
                             company.setId(c.get("CompanyId").toString());
                         if (c.get("Name") != null)
                             company.setName(c.get("Name").toString());
@@ -173,7 +175,7 @@ public class CompanySearchResults extends ActionBarActivity {
                         companyQuery.whereEqualTo("CompanyId", parseCompany.get("CompanyId"));
                         ParseObject company_result = companyQuery.getFirst();
                         Company company = new Company();
-                        if (company_result.get("CompanyID") != null)
+                        if (company_result.get("CompanyId") != null)
                             company.setId(company_result.get("CompanyId").toString());
                         if (company_result.get("Name") != null)
                             company.setName(company_result.get("Name").toString());
@@ -210,7 +212,7 @@ public class CompanySearchResults extends ActionBarActivity {
         protected void onPostExecute(ArrayList<Company> companies) {
             super.onPostExecute(companies);
             if (progressDialog.isShowing()) {
-                progressDialog.hide();
+                progressDialog.dismiss();
             }
 
             CompanyAdapter cAdapter = new CompanyAdapter(CompanySearchResults.this, companies);
