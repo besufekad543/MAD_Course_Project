@@ -8,7 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 
@@ -28,19 +30,39 @@ public class ViewJob extends ActionBarActivity {
     private Job job;
 
     public void applyNow(View view) {
-        String studentId = ParseUser.getCurrentUser().getObjectId();
-        ParseObject applyJob = new ParseObject("ApplyJob");
-        applyJob.put("StudentId", studentId);
-        applyJob.put("JobId", job.getId());
-        applyJob.saveInBackground();
+
+        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+        ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
+        queryJob.whereEqualTo("objectId", job.getId());
+        try {
+            ParseObject student = queryStudent.getFirst();
+            ParseObject job = queryJob.getFirst();
+            ParseObject applyJob = new ParseObject("ApplyJob");
+            applyJob.put("StudentId", student);
+            applyJob.put("JobId", job);
+            applyJob.saveInBackground();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void saveJob(View view) {
-        String studentId = ParseUser.getCurrentUser().getObjectId();
-        ParseObject saveJob = new ParseObject("SavedJobOffer");
-        saveJob.put("StudentId", studentId);
-        saveJob.put("JobId", job.getId());
-        saveJob.saveInBackground();
+        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+        ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
+        queryJob.whereEqualTo("objectId", job.getId());
+        try {
+            ParseObject student = queryStudent.getFirst();
+            ParseObject job = queryJob.getFirst();
+            ParseObject saveJob = new ParseObject("SavedJobOffer");
+            saveJob.put("StudentId", student);
+            saveJob.put("OfferId", job);
+            saveJob.saveInBackground();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void goBack(View view) {

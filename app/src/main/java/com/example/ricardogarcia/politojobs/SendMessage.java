@@ -65,6 +65,9 @@ public class SendMessage extends ActionBarActivity {
         String mess = messageText.getText().toString();
         message.put("Message", mess);
         message.saveInBackground();
+
+        SendMessage.this.finish();
+
     }
 
     @Override

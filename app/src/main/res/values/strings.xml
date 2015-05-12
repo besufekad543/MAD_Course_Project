@@ -124,26 +124,68 @@
 
     <string-array name="arrayIndustry">
         <item>-</item>
-        <item>Industry1</item>
-        <item>Industry2</item>
+        <item>Accountancy, banking and finance</item>
+        <item>Business, consulting and management</item>
+        <item>Charity and voluntary work</item>
+        <item>Creative arts and design</item>
+        <item>Energy and utilities</item>
+        <item>Engineering and manufacturing</item>
+        <item>Environment and agriculture</item>
+        <item>Health care</item>
+        <item>Hospitality</item>
+        <item>Information technology</item>
+        <item>Law</item>
+        <item>Law enforcement and security</item>
+        <item>Leisure, sport and tourism</item>
+        <item>Marketing, advertising and PR</item>
+        <item>Media and internet</item>
+        <item>Property and construction</item>
+        <item>Public services and admin</item>
+        <item>Recruitment and HR</item>
+        <item>Retail</item>
+        <item>Sales</item>
+        <item>Science and pharmaceuticals</item>
+        <item>Social care</item>
+        <item>Teaching and education</item>
+        <item>Transport and logistics</item>
     </string-array>
 
     <string-array name="arrayLocation">
         <item>-</item>
-        <item>Location1</item>
-        <item>Location2</item>
+        <item>Africa</item>
+        <item>Antarctica</item>
+        <item>Asia</item>
+        <item>Australia</item>
+        <item>Europe</item>
+        <item>North America</item>
+        <item>South America</item>
     </string-array>
 
     <string-array name="arrayExperience">
-        <item name="blank"></item>
+        <item>-</item>
+        <item>No experience</item>
+        <item>Less than 1 year</item>
+        <item>1 year - 3 years</item>
+        <item>More than 3 years</item>
     </string-array>
 
     <string-array name="arrayDegree">
-        <item name="blank"></item>
+        <item>-</item>
+        <item>Associate's Degree</item>
+        <item>Bachelor's Degree</item>
+        <item>Master’s Degree</item>
+        <item>Doctorate Degree</item>
     </string-array>
 
     <string-array name="arrayLanguages">
-        <item name="blank"></item>
+        <item>-</item>
+        <item>English</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>Mandarin</item>
+        <item>Portuguese</item>
+        <item>Spanish</item>
     </string-array>
 
     <string-array name="arraySalary">
@@ -156,8 +198,13 @@
 
     <string-array name="arrayJobType">
         <item>-</item>
-        <item>TypeJob1</item>
-        <item>TypeJob2</item>
+        <item>Employee</item>
+        <item>Intern</item>
+        <item>Full-Time</item>
+        <item>Part-Time</item>
+        <item>Per Diem</item>
+        <item>Temporary, Contract, and Project</item>
+        <item>Seasonal</item>
     </string-array>
 
     <string-array name="arrayDuration">
@@ -170,8 +217,12 @@
 
     <string-array name="arrayContractType">
         <item>-</item>
-        <item>ContractType1</item>
-        <item>ContractType2</item>
+        <item>Agency staff</item>
+        <item>Employing family, young people and volunteers</item>
+        <item>Fixed-term contract</item>
+        <item>Freelancers, consultants and contractors</item>
+        <item>Full-time and part-time contract</item>
+        <item>Zero hour contracts</item>
     </string-array>
 
     <string-array name="arraySize">

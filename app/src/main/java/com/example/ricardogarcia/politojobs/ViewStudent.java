@@ -8,7 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 
@@ -36,11 +38,22 @@ public class ViewStudent extends ActionBarActivity {
     }
 
     public void saveStudent(View view){
-        String companyId = ParseUser.getCurrentUser().getObjectId();
-        ParseObject savedCompany = new ParseObject("SavedCompany");
-        savedCompany.put("CompanyId", companyId);
-        savedCompany.put("StudentId", student.getId());
-        savedCompany.saveInBackground();
+
+        ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
+        queryCompany.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
+        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+        queryStudent.whereEqualTo("objectId", student.getId());
+        try {
+            ParseObject company = queryCompany.getFirst();
+            ParseObject student = queryStudent.getFirst();
+            ParseObject savedStudent = new ParseObject("SavedStudent");
+            savedStudent.put("CompanyId", company);
+            savedStudent.put("StudentId", student);
+            savedStudent.saveInBackground();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void backToResults(View view) {

@@ -9,7 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 
@@ -28,11 +32,22 @@ public class ViewCompany extends ActionBarActivity {
     private Company company;
 
     public void saveCompany(View view) {
-        String studentId = ParseUser.getCurrentUser().getObjectId();
-        ParseObject savedCompany = new ParseObject("SavedCompany");
-        savedCompany.put("StudentId", studentId);
-        savedCompany.put("CompanyId", company.getId());
-        savedCompany.saveInBackground();
+
+        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+        ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
+        queryCompany.whereEqualTo("objectId", company.getId());
+        try {
+            ParseObject student = queryStudent.getFirst();
+            ParseObject company = queryCompany.getFirst();
+            ParseObject savedCompany = new ParseObject("SavedCompany");
+            savedCompany.put("StudentId", student);
+            savedCompany.put("CompanyId", company);
+            savedCompany.saveInBackground();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void sendMessage(View view) {

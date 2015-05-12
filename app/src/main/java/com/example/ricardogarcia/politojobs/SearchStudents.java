@@ -78,31 +78,31 @@ public class SearchStudents extends ActionBarActivity {
         CheckBox check = (CheckBox) findViewById(R.id.checkBox);
 
 
-        if(!name.getText().toString().equals("")) {
+        if(!name.getText().toString().equals("-")) {
             filters.put(NAME,name.getText().toString());
         }
-        if(!surname.getText().toString().equals("")) {
+        if(!surname.getText().toString().equals("-")) {
             filters.put(SURNAME,surname.getText().toString());
         }
-        if(!location.getSelectedItem().toString().equals("")) {
+        if(!location.getSelectedItem().toString().equals("-")) {
             filters.put(LOCATION,location.getSelectedItem().toString());
         }
-        if(!industry.getSelectedItem().toString().equals("")) {
+        if(!industry.getSelectedItem().toString().equals("-")) {
             filters.put(INDUSTRY, industry.getSelectedItem().toString());
         }
-        if(!techSkills.getText().toString().equals("")) {
+        if(!techSkills.getText().toString().equals("-")) {
             filters.put(TECHSKILLS,techSkills.getText().toString());
         }
-        if(!experience.getSelectedItem().toString().equals("")) {
+        if(!experience.getSelectedItem().toString().equals("-")) {
             filters.put(EXPERIENCE, experience.getSelectedItem().toString());
         }
-        if(!degree.getSelectedItem().toString().equals("")) {
+        if(!degree.getSelectedItem().toString().equals("-")) {
             filters.put(DEGREE, degree.getSelectedItem().toString());
         }
-        if(!interests.getText().toString().equals("")) {
+        if(!interests.getText().toString().equals("-")) {
             filters.put(INTERESTS,interests.getText().toString());
         }
-        if(!languages.getSelectedItem().toString().equals("")) {
+        if(!languages.getSelectedItem().toString().equals("-")) {
             filters.put(LANGUAGES, languages.getSelectedItem().toString());
         }
         if(check.isSelected()) {
@@ -161,21 +161,21 @@ public class SearchStudents extends ActionBarActivity {
 
         savedInstanceState.putString(NAME, name.getText().toString());
         savedInstanceState.putString(SURNAME, surname.getText().toString());
-        if(!location.getSelectedItem().toString().equals("")) {
+        if(!location.getSelectedItem().toString().equals("-")) {
             savedInstanceState.putString(LOCATION, location.getSelectedItem().toString());
         }
-        if(!industry.getSelectedItem().toString().equals("")) {
+        if(!industry.getSelectedItem().toString().equals("-")) {
             savedInstanceState.putString(INDUSTRY, industry.getSelectedItem().toString());
         }
         savedInstanceState.putString(TECHSKILLS, techSkills.getText().toString());
-        if(!experience.getSelectedItem().toString().equals("")) {
+        if(!experience.getSelectedItem().toString().equals("-")) {
             savedInstanceState.putString(EXPERIENCE, experience.getSelectedItem().toString());
         }
-        if(!degree.getSelectedItem().toString().equals("")) {
+        if(!degree.getSelectedItem().toString().equals("-")) {
             savedInstanceState.putString(DEGREE, degree.getSelectedItem().toString());
         }
         savedInstanceState.putString(INTERESTS, interests.getText().toString());
-        if(!languages.getSelectedItem().toString().equals("")) {
+        if(!languages.getSelectedItem().toString().equals("-")) {
             savedInstanceState.putString(LANGUAGES, languages.getSelectedItem().toString());
         }
         if(check.isSelected()) {
