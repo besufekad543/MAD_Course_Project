@@ -58,7 +58,6 @@
             </intent-filter>
 
         </activity>
-
         <activity
             android:name=".ViewCompany"
             android:label="@string/title_activity_view_company" >
