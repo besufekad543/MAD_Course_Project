@@ -177,9 +177,9 @@
 
     <string-array name="arrayDegree">
         <item>-</item>
-        <item>Associates Degree</item>
-        <item>Bachelors Degree</item>
-        <item>Masters Degree</item>
+        <item>Associate\'s Degree</item>
+        <item>Bachelor\'s Degree</item>
+        <item>Master’s Degree</item>
         <item>Doctorate Degree</item>
     </string-array>
 

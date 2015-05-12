@@ -1,5 +1,7 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +17,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 
 public class ViewCompany extends ActionBarActivity {
@@ -33,17 +36,49 @@ public class ViewCompany extends ActionBarActivity {
 
     public void saveCompany(View view) {
 
-        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
-        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
-        ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
-        queryCompany.whereEqualTo("objectId", company.getId());
         try {
+            ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+            queryStudent.include("StudentId");
+            queryStudent.include("CurrentCompany");
+            queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+            ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
+            queryCompany.include("CompanyId");
+            queryCompany.whereEqualTo("objectId", company.getId());
+
             ParseObject student = queryStudent.getFirst();
             ParseObject company = queryCompany.getFirst();
-            ParseObject savedCompany = new ParseObject("SavedCompany");
-            savedCompany.put("StudentId", student);
-            savedCompany.put("CompanyId", company);
-            savedCompany.saveInBackground();
+
+            ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedCompany");
+            querySavedCompany.whereEqualTo("StudentId", student);
+            querySavedCompany.whereEqualTo("CompanyId", company);
+            String message = null;
+
+            if (querySavedCompany.count() == 0) {
+                ParseObject savedCompany = new ParseObject("SavedCompany");
+                savedCompany.put("StudentId", student);
+                savedCompany.put("CompanyId", company);
+                savedCompany.saveInBackground();
+                message = getString(R.string.addedSavedCompanyMessage);
+
+            } else {
+                message = getString(R.string.existingSavedCompanyMessage);
+
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Save companies");
+            builder.setMessage(message);
+            builder.setCancelable(true);
+            builder.setNeutralButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -53,7 +88,7 @@ public class ViewCompany extends ActionBarActivity {
     public void sendMessage(View view) {
         Intent intent = new Intent(this, SendMessage.class);
         intent.putExtra(RECEIVER, company.getId());
-        intent.putExtra(RECEIVERTYPE, "company");
+        intent.putExtra(RECEIVERTYPE, "Company");
         startActivity(intent);
     }
 
@@ -96,7 +131,7 @@ public class ViewCompany extends ActionBarActivity {
         company = (Company) intent.getSerializableExtra(CompanyAdapter.COMPANY);
 
         TextView name = (TextView) findViewById(R.id.companyName);
-        name.setText(company.getName());
+        name.setText(company.getName().toUpperCase());
         TextView industry = (TextView) findViewById(R.id.companyIndustry);
         industry.setText(company.getIndustry());
         TextView description = (TextView) findViewById(R.id.companyDescription);
@@ -104,7 +139,7 @@ public class ViewCompany extends ActionBarActivity {
         TextView location = (TextView) findViewById(R.id.companyLocation);
         location.setText(company.getLocation());
         TextView size = (TextView) findViewById(R.id.companySize);
-        size.setText(company.getCompany_size());
+        size.setText(String.valueOf(company.getCompany_size()));
         TextView website = (TextView) findViewById(R.id.website);
         website.setText(company.getWebsite());
         TextView clients = (TextView) findViewById(R.id.clients);

@@ -33,11 +33,6 @@
         <activity
             android:name=".JobSearch"
             android:label="@string/title_activity_job_search" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".LogIn"
@@ -63,6 +58,11 @@
         <activity
             android:name=".ViewCompany"
             android:label="@string/title_activity_view_company" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SendMessage"
