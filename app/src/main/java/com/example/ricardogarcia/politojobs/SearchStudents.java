@@ -84,25 +84,25 @@ public class SearchStudents extends ActionBarActivity {
         if(!surname.getText().toString().equals("")) {
             filters.put(SURNAME,surname.getText().toString());
         }
-        if(location.isSelected()) {
+        if(!location.getSelectedItem().toString().equals("")) {
             filters.put(LOCATION,location.getSelectedItem().toString());
         }
-        if(industry.isSelected()) {
+        if(!industry.getSelectedItem().toString().equals("")) {
             filters.put(INDUSTRY, industry.getSelectedItem().toString());
         }
         if(!techSkills.getText().toString().equals("")) {
             filters.put(TECHSKILLS,techSkills.getText().toString());
         }
-        if(experience.isSelected()) {
+        if(!experience.getSelectedItem().toString().equals("")) {
             filters.put(EXPERIENCE, experience.getSelectedItem().toString());
         }
-        if(degree.isSelected()) {
+        if(!degree.getSelectedItem().toString().equals("")) {
             filters.put(DEGREE, degree.getSelectedItem().toString());
         }
         if(!interests.getText().toString().equals("")) {
             filters.put(INTERESTS,interests.getText().toString());
         }
-        if(languages.isSelected()) {
+        if(!languages.getSelectedItem().toString().equals("")) {
             filters.put(LANGUAGES, languages.getSelectedItem().toString());
         }
         if(check.isSelected()) {
@@ -137,6 +137,7 @@ public class SearchStudents extends ActionBarActivity {
         adapterLanguages.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         industry.setAdapter(adapterIndustry);
+        location.setAdapter(adapterLocation);
         experience.setAdapter(adapterExperience);
         degree.setAdapter(adapterDegree);
         languages.setAdapter(adapterLanguages);
@@ -160,21 +161,21 @@ public class SearchStudents extends ActionBarActivity {
 
         savedInstanceState.putString(NAME, name.getText().toString());
         savedInstanceState.putString(SURNAME, surname.getText().toString());
-        if(location.isSelected()) {
+        if(!location.getSelectedItem().toString().equals("")) {
             savedInstanceState.putString(LOCATION, location.getSelectedItem().toString());
         }
-        if(industry.isSelected()) {
+        if(!industry.getSelectedItem().toString().equals("")) {
             savedInstanceState.putString(INDUSTRY, industry.getSelectedItem().toString());
         }
         savedInstanceState.putString(TECHSKILLS, techSkills.getText().toString());
-        if(experience.isSelected()) {
+        if(!experience.getSelectedItem().toString().equals("")) {
             savedInstanceState.putString(EXPERIENCE, experience.getSelectedItem().toString());
         }
-        if(degree.isSelected()) {
+        if(!degree.getSelectedItem().toString().equals("")) {
             savedInstanceState.putString(DEGREE, degree.getSelectedItem().toString());
         }
         savedInstanceState.putString(INTERESTS, interests.getText().toString());
-        if(languages.isSelected()) {
+        if(!languages.getSelectedItem().toString().equals("")) {
             savedInstanceState.putString(LANGUAGES, languages.getSelectedItem().toString());
         }
         if(check.isSelected()) {

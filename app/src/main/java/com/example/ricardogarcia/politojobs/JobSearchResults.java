@@ -240,6 +240,7 @@ public class JobSearchResults extends ActionBarActivity {
                 } else {
 
                     try {
+                        searchJobQuery.include("CompanyId");
                         List<ParseObject> matching_jobs = searchJobQuery.find();
 
 
@@ -267,12 +268,13 @@ public class JobSearchResults extends ActionBarActivity {
                                 job.setDate(parseJob.getCreatedAt().toString());
                             }
 
+                            ParseObject company_result;
+                            company_result = parseJob.getParseObject("CompanyId");
 
-
-                            ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
+                            /*ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
                             ParseObject companyQ = ParseObject.createWithoutData("Company", parseJob.get("CompanyId").toString());
                             companyQuery.whereEqualTo("objectId", companyQ);
-                            ParseObject company_result = companyQuery.getFirst();
+                            ParseObject company_result = companyQuery.getFirst();*/
 
 
                             /*

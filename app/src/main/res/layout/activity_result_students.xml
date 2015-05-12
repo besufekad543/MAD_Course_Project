@@ -86,7 +86,8 @@
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goHome"/>
 
         <Button
             android:layout_width="match_parent"
@@ -98,7 +99,8 @@
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 
 </RelativeLayout>
