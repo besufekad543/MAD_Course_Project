@@ -56,6 +56,8 @@
             android:name=".CompanySearch"
             android:label="@string/title_activity_company_search" >
 
+
+
         </activity>
 
         <activity

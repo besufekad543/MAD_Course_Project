@@ -35,6 +35,7 @@ public class CompanySearchResults extends ActionBarActivity {
         setContentView(R.layout.activity_company_search_results);
 
 
+
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
@@ -124,7 +125,15 @@ public class CompanySearchResults extends ActionBarActivity {
 
                 //Size Filter
                 if (search_data.containsKey(CompanySearch.INFO_SIZE)) {
-                    searchCompanyQuery.whereEqualTo("Size", search_data.get(CompanySearch.INFO_SIZE));
+                    String[] arraySize = getResources().getStringArray(R.array.arraySize);
+                    if(search_data.get(CompanySearch.INFO_SIZE).equals(arraySize[1]))
+                        searchCompanyQuery.whereGreaterThanOrEqualTo("Size", 100);
+                    else if(search_data.get(CompanySearch.INFO_SIZE).equals(arraySize[2]))
+                        searchCompanyQuery.whereGreaterThanOrEqualTo("Size", 500);
+                    else if(search_data.get(CompanySearch.INFO_SIZE).equals(arraySize[3]))
+                        searchCompanyQuery.whereGreaterThanOrEqualTo("Size", 1000);
+                    else if(search_data.get(CompanySearch.INFO_SIZE).equals(arraySize[4]))
+                        searchCompanyQuery.whereGreaterThanOrEqualTo("Size", 10000);
                 }
 
                 //Name Filter
@@ -149,7 +158,7 @@ public class CompanySearchResults extends ActionBarActivity {
                         if (c.get("Description") != null)
                             company.setDescription(c.get("Description").toString());
                         if (c.get("Size") != null)
-                            company.setCompany_size(c.get("Size").toString());
+                            company.setCompany_size(c.getInt("Size"));
                         if (c.get("Website") != null)
                             company.setWebsite(c.get("Website").toString());
                         if (c.get("Clients") != null)
@@ -163,17 +172,34 @@ public class CompanySearchResults extends ActionBarActivity {
 
             } else {
                 //Saved companies
+
+
+
                 ParseQuery<ParseObject> savedCompanyQuery = ParseQuery.getQuery("SavedCompany");
-                savedCompanyQuery.whereEqualTo("StudentId", ParseUser.getCurrentUser().getObjectId());
+                ParseQuery<ParseObject> studentQuery = ParseQuery.getQuery("Student");
+
 
                 try {
+                    /*
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    query.whereEqualTo("objectId", "kYnBGaY3q0");
+                    ParseUser user = query.getFirst();*/
+
+                    studentQuery.include("StudentId");
+                    studentQuery.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+
+                    ParseObject student_result = studentQuery.getFirst();
+
+                    savedCompanyQuery.include("StudentId");
+                    savedCompanyQuery.whereEqualTo("StudentId", student_result);
+
+                    savedCompanyQuery.include("CompanyId");
+
                     List<ParseObject> results = savedCompanyQuery.find();
 
                     for (ParseObject parseCompany : results) {
+                        ParseObject company_result = parseCompany.getParseObject("CompanyId");
 
-                        ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
-                        companyQuery.whereEqualTo("CompanyId", parseCompany.get("CompanyId"));
-                        ParseObject company_result = companyQuery.getFirst();
                         Company company = new Company();
                         if (company_result.get("CompanyId") != null)
                             company.setId(company_result.get("CompanyId").toString());
@@ -188,7 +214,7 @@ public class CompanySearchResults extends ActionBarActivity {
                         if (company_result.get("Description") != null)
                             company.setDescription(company_result.get("Description").toString());
                         if (company_result.get("Size") != null)
-                            company.setCompany_size(company_result.get("Size").toString());
+                            company.setCompany_size(company_result.getInt("Size"));
                         if (company_result.get("Website") != null)
                             company.setWebsite(company_result.get("Website").toString());
                         if (company_result.get("Clients") != null)
@@ -245,9 +271,13 @@ public class CompanySearchResults extends ActionBarActivity {
             list_companies.addFooterView(newSearchButton);
 
             list_companies.setAdapter(cAdapter);
-            list_companies.setEmptyView(findViewById(R.id.textNoResults));
+            list_companies.setEmptyView(findViewById(R.id.emptyView));
 
 
         }
+    }
+
+    public void newSearch(View view){
+        finish();
     }
 }

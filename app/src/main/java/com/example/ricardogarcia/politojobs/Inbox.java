@@ -140,9 +140,13 @@ public class Inbox extends ActionBarActivity {
 
             ListView list_messages= (ListView) findViewById(R.id.listMessages);
             list_messages.setAdapter(mAdapter);
-            list_messages.setEmptyView(findViewById(R.id.textNoResults));
+            list_messages.setEmptyView(findViewById(R.id.emptyView));
 
         }
+    }
+
+    public void newSearch(View view){
+        finish();
     }
 }
 

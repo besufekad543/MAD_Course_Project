@@ -71,8 +71,8 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener{
             else{
                 vholder= (ViewHolder) v.getTag();
             }
-            vholder.textName.setText(listcompanies.get(position).getName());
-            vholder.textIndustry.setText(listcompanies.get(position).getIndustry());
+            vholder.textName.setText(listcompanies.get(position).getName().substring(0,1).toUpperCase()+listcompanies.get(position).getName().substring(1));
+            vholder.textIndustry.setText(listcompanies.get(position).getIndustry().substring(0,1).toUpperCase()+listcompanies.get(position).getIndustry().substring(1));
             vholder.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,6 +85,7 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener{
             vholder.buttonSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //TODO
                     String studentId = ParseUser.getCurrentUser().getObjectId();
                     ParseObject saveJob = new ParseObject("SavedCompany");
                     saveJob.put("StudentId", studentId.toLowerCase());

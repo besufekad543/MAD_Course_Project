@@ -13,7 +13,7 @@ public class Job implements Serializable{
     private String location;
     private String salary;
     private String typeJob;
-    private String duration;
+    private int duration;
     private String date;
     private String contractType;
     private Company company;
@@ -83,11 +83,11 @@ public class Job implements Serializable{
         this.typeJob = typeJob;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

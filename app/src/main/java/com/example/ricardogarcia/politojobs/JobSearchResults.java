@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -37,13 +39,11 @@ public class JobSearchResults extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_search_results);
 
-
         Parse.initialize(JobSearchResults.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        HashMap<String, String> map = (HashMap<String, String>) b.getSerializable(JobSearch.INFO_HASH);
-        Log.d("SIZE", String.valueOf(map.size()));
         new RetrieveFromDatabase().execute((HashMap<String, String>) b.getSerializable(JobSearch.INFO_HASH));
 
 
@@ -144,7 +144,6 @@ public class JobSearchResults extends ActionBarActivity {
                 //Duration filter
                 if (search_data.containsKey(JobSearch.INFO_DURATION)) {
 
-
                     String[] arrayDuration = getResources().getStringArray(R.array.arrayDuration);
                     if (search_data.get(JobSearch.INFO_DURATION).equals(arrayDuration[1])) {
                         searchJobQuery.whereLessThan("Duration", 6);
@@ -167,7 +166,7 @@ public class JobSearchResults extends ActionBarActivity {
                         searchJobQuery.whereGreaterThanOrEqualTo("Salary", 5000);
                     } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[3])) {
                         searchJobQuery.whereGreaterThanOrEqualTo("Salary", 10000);
-                    } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[3])) {
+                    } else if (search_data.get(JobSearch.INFO_SALARY).equals(arraySalary[4])) {
                         searchJobQuery.whereGreaterThanOrEqualTo("Salary", 20000);
                     }
                 }
@@ -182,15 +181,19 @@ public class JobSearchResults extends ActionBarActivity {
                     companyQuery.whereContains("Name", search_data.get(JobSearch.INFO_COMPANY));
                     try {
                         List<ParseObject> results = companyQuery.find();
+                        Log.d("Search data", search_data.get(JobSearch.INFO_COMPANY));
+                        Log.d("Size of obs", String.valueOf(results.size()));
+
                         for (ParseObject parseCompany : results) {
-                            searchJobQuery.whereEqualTo("CompanyId", parseCompany.get("CompanyId"));
+                            searchJobQuery.include("CompanyId");
+                            searchJobQuery.whereEqualTo("CompanyId", parseCompany);
                             List<ParseObject> matching_jobs = searchJobQuery.find();
 
                             Company company = new Company();
 
                             if (matching_jobs.size() > 0) {
                                 if (parseCompany.get("CompanyId") != null)
-                                    company.setId(parseCompany.get("CompanyId").toString());
+                                    company.setId(parseCompany.getObjectId().toString());
                                 if (parseCompany.get("Name") != null)
                                     company.setName(parseCompany.get("Name").toString());
                                 if (parseCompany.get("Location") != null)
@@ -202,7 +205,7 @@ public class JobSearchResults extends ActionBarActivity {
                                 if (parseCompany.get("Description") != null)
                                     company.setDescription(parseCompany.get("Description").toString());
                                 if (parseCompany.get("Size") != null)
-                                    company.setCompany_size(parseCompany.get("Size").toString());
+                                    company.setCompany_size(parseCompany.getInt("Size"));
                                 if (parseCompany.get("Website") != null)
                                     company.setWebsite(parseCompany.get("Website").toString());
                                 if (parseCompany.get("Clients") != null)
@@ -225,7 +228,7 @@ public class JobSearchResults extends ActionBarActivity {
                                 if (parseJob.get("JobType") != null)
                                     job.setTypeJob(parseJob.get("JobType").toString());
                                 if (parseJob.get("Duration") != null)
-                                    job.setDuration(parseJob.get("Duration").toString());
+                                    job.setDuration(parseJob.getInt("Duration"));
                                 if (parseJob.get("ContractType") != null)
                                     job.setContractType(parseJob.get("ContractType").toString());
                                 if (parseJob.getCreatedAt() != null)
@@ -242,7 +245,6 @@ public class JobSearchResults extends ActionBarActivity {
                     try {
                         searchJobQuery.include("CompanyId");
                         List<ParseObject> matching_jobs = searchJobQuery.find();
-
 
                         for (ParseObject parseJob : matching_jobs) {
 
@@ -261,7 +263,7 @@ public class JobSearchResults extends ActionBarActivity {
                             if (parseJob.get("JobType") != null)
                                 job.setTypeJob(parseJob.get("JobType").toString());
                             if (parseJob.get("Duration") != null)
-                                job.setDuration(parseJob.get("Duration").toString());
+                                job.setDuration(parseJob.getInt("Duration"));
                             if (parseJob.get("ContractType") != null)
                                 job.setContractType(parseJob.get("ContractType").toString());
                             if (parseJob.getCreatedAt() != null) {
@@ -271,22 +273,9 @@ public class JobSearchResults extends ActionBarActivity {
                             ParseObject company_result;
                             company_result = parseJob.getParseObject("CompanyId");
 
-                            /*ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
-                            ParseObject companyQ = ParseObject.createWithoutData("Company", parseJob.get("CompanyId").toString());
-                            companyQuery.whereEqualTo("objectId", companyQ);
-                            ParseObject company_result = companyQuery.getFirst();*/
-
-
-                            /*
-
-                            ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
-                            companyQuery.whereEqualTo("CompanyId", parseJob.get("CompanyId"));
-                            ParseObject company_result = companyQuery.getFirst();
-                            */
-
                             Company company = new Company();
                             if (company_result.get("CompanyId") != null)
-                                company.setId(company_result.get("CompanyId").toString());
+                                company.setId(company_result.getObjectId().toString());
                             if (company_result.get("Name") != null)
                                 company.setName(company_result.get("Name").toString());
                             if (company_result.get("Location") != null)
@@ -298,15 +287,12 @@ public class JobSearchResults extends ActionBarActivity {
                             if (company_result.get("Description") != null)
                                 company.setDescription(company_result.get("Description").toString());
                             if (company_result.get("Size") != null)
-                                company.setCompany_size(company_result.get("Size").toString());
+                                company.setCompany_size(company_result.getInt("Size"));
                             if (company_result.get("Website") != null)
                                 company.setWebsite(company_result.get("Website").toString());
                             if (company_result.get("Clients") != null)
                                 company.setClients(company_result.get("Clients").toString());
 
-
-                            //Company company= new Company();
-                            //company.setName("comp1");
                             job.setCompany(company);
                             jobs.add(job);
 
@@ -323,17 +309,35 @@ public class JobSearchResults extends ActionBarActivity {
 
                 //Retrieve rows from SavedJobOffer table with the StudentId equals to the id of the current user
                 ParseQuery<ParseObject> savedOfferQuery = ParseQuery.getQuery("SavedJobOffer");
-                savedOfferQuery.whereEqualTo("StudentId", ParseUser.getCurrentUser().getObjectId());
+                ParseQuery<ParseObject> studentQuery = ParseQuery.getQuery("Student");
 
                 try {
+                    /*
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    query.whereEqualTo("objectId", "kYnBGaY3q0");
+                    ParseUser user = query.getFirst();
+                    */
+
+                    studentQuery.include("StudentId");
+                    studentQuery.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+
+                    ParseObject student_result = studentQuery.getFirst();
+
+                    savedOfferQuery.include("StudentId");
+                    savedOfferQuery.whereEqualTo("StudentId", student_result);
+
+
+                    savedOfferQuery.include("OfferId");
+                    savedOfferQuery.include("OfferId.CompanyId");
+
                     List<ParseObject> results = savedOfferQuery.find();
+
                     for (ParseObject p : results) {
+
                         //For each offer in the SavedJobOffer, retrieve the data contained in the JobOffer table with all the information
                         // of the specific job offer
+                        ParseObject job_result = p.getParseObject("OfferId");
 
-                        ParseQuery<ParseObject> jobOfferQuery = ParseQuery.getQuery("JobOffer");
-                        jobOfferQuery.whereEqualTo("objectId", p.get("OfferId"));
-                        ParseObject job_result = jobOfferQuery.getFirst();
                         Job job = new Job();
                         job.setId(job_result.getObjectId());
                         if (job_result.get("Position") != null)
@@ -349,7 +353,7 @@ public class JobSearchResults extends ActionBarActivity {
                         if (job_result.get("JobType") != null)
                             job.setTypeJob(job_result.get("JobType").toString());
                         if (job_result.get("Duration") != null)
-                            job.setDuration(job_result.get("Duration").toString());
+                            job.setDuration(job_result.getInt("Duration"));
                         if (job_result.get("ContractType") != null)
                             job.setContractType(job_result.get("ContractType").toString());
                         if (job_result.getCreatedAt() != null)
@@ -357,12 +361,10 @@ public class JobSearchResults extends ActionBarActivity {
 
                         //Each job offer is related with a company through the companyId. Retrieve the company related
                         //by searching it on the Company table
-                        ParseQuery<ParseObject> companyQuery = ParseQuery.getQuery("Company");
-                        companyQuery.whereEqualTo("CompanyId", job_result.get("CompanyId"));
-                        ParseObject company_result = companyQuery.getFirst();
+                        ParseObject company_result = job_result.getParseObject("CompanyId");
                         Company company = new Company();
                         if (company_result.get("CompanyId") != null)
-                            company.setId(company_result.get("CompanyId").toString());
+                            company.setId(company_result.getObjectId().toString());
                         if (company_result.get("Name") != null)
                             company.setName(company_result.get("Name").toString());
                         if (company_result.get("Location") != null)
@@ -374,7 +376,7 @@ public class JobSearchResults extends ActionBarActivity {
                         if (company_result.get("Description") != null)
                             company.setDescription(company_result.get("Description").toString());
                         if (company_result.get("Size") != null)
-                            company.setCompany_size(company_result.get("Size").toString());
+                            company.setCompany_size(company_result.getInt("Size"));
                         if (company_result.get("Website") != null)
                             company.setWebsite(company_result.get("Website").toString());
                         if (company_result.get("Clients") != null)
@@ -429,9 +431,13 @@ public class JobSearchResults extends ActionBarActivity {
             list_jobs.addFooterView(newSearchButton);
 
             list_jobs.setAdapter(jAdapter);
-            list_jobs.setEmptyView(findViewById(R.id.textNoResults));
+            list_jobs.setEmptyView(findViewById(R.id.emptyView));
 
 
         }
+    }
+
+    public void newSearch(View view){
+        finish();
     }
 }

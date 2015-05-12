@@ -13,7 +13,7 @@ public class Company implements Serializable{
     private String address;
     private String industry;
     private String description;
-    private String company_size;
+    private int company_size;
     private String website;
     private String clients;
 
@@ -73,11 +73,11 @@ public class Company implements Serializable{
         this.description = description;
     }
 
-    public String getCompany_size() {
+    public int getCompany_size() {
         return company_size;
     }
 
-    public void setCompany_size(String company_size) {
+    public void setCompany_size(int company_size) {
         this.company_size = company_size;
     }
 

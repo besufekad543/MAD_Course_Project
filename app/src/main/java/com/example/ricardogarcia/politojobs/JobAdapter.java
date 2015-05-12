@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -74,10 +75,11 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener{
             else{
                 vholder= (ViewHolder) v.getTag();
             }
-            vholder.textJob.setText(listjobs.get(position).getPosition());
-            vholder.textCompany.setText(listjobs.get(position).getCompany().getName());
-            vholder.textLocation.setText(listjobs.get(position).getLocation());
-            vholder.textDate.setText(listjobs.get(position).getDate());
+
+            vholder.textJob.setText(listjobs.get(position).getPosition().substring(0,1).toUpperCase()+listjobs.get(position).getPosition().substring(1));
+            vholder.textCompany.setText(listjobs.get(position).getCompany().getName().substring(0,1).toUpperCase()+listjobs.get(position).getCompany().getName().substring(1));
+            vholder.textLocation.setText(listjobs.get(position).getLocation().substring(0,1).toUpperCase()+listjobs.get(position).getLocation().substring(1));
+            vholder.textDate.setText(listjobs.get(position).getDate().substring(4,19));
             vholder.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,10 +92,12 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener{
             vholder.buttonSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String studentId = ParseUser.getCurrentUser().getObjectId();
                     ParseObject saveJob = new ParseObject("SavedJobOffer");
-                    saveJob.put("StudentId", studentId.toLowerCase());
-                    saveJob.put("JobId", listjobs.get(position).getId().toLowerCase());
+                    //TODO
+                    //saveJob.put("StudentId", ParseUser.getCurrentUser());
+
+
+                    //saveJob.put("JobId", listjobs.get(position));
                     saveJob.saveInBackground();
                 }
             });
