@@ -105,7 +105,6 @@ public class Inbox extends ActionBarActivity {
 
         @Override
         protected ArrayList<Message> doInBackground(String... params) {
-
             ArrayList<Message> result_messages=new ArrayList<Message>();
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
             query.whereEqualTo("ReceiverId",params[0]);
