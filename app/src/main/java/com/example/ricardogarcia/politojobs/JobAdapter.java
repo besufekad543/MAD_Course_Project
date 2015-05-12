@@ -35,6 +35,7 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener {
     private Activity activity;
     private List<Job> listjobs;
     private String searchType;
+    private BaseAdapter adapter;
 
 
     public JobAdapter(Activity activity, ArrayList list, String searchType) {
@@ -42,6 +43,7 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener {
         this.activity = activity;
         this.listjobs = list;
         this.searchType = searchType;
+        this.adapter=this;
     }
 
 
@@ -62,6 +64,8 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
+
 
         ViewHolder vholder;
         View v = convertView;
@@ -106,13 +110,13 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
                     try {
-
+                        /*
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
                         query.whereEqualTo("objectId", "2AM7fmxH5S");
-                        ParseUser user = query.getFirst();
+                        ParseUser user = query.getFirst();*/
 
                         ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
-                        queryStudent.whereEqualTo("StudentId", user);
+                        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
                         ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
                         queryJob.whereEqualTo("objectId", listjobs.get(position).getId());
                         ParseObject student = queryStudent.getFirst();
@@ -160,6 +164,8 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             dialog.cancel();
+                                            listjobs.remove(position);
+                                            adapter.notifyDataSetChanged();
                                         }
                                     });
 

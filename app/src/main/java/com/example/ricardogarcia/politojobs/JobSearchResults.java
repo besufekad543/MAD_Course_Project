@@ -316,14 +316,14 @@ public class JobSearchResults extends ActionBarActivity {
                 ParseQuery<ParseObject> studentQuery = ParseQuery.getQuery("Student");
 
                 try {
-
+                    /*
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
                     query.whereEqualTo("objectId", "2AM7fmxH5S");
-                    ParseUser user = query.getFirst();
+                    ParseUser user = query.getFirst();*/
 
 
                     studentQuery.include("StudentId");
-                    studentQuery.whereEqualTo("StudentId", user);
+                    studentQuery.whereEqualTo("StudentId", ParseUser.getCurrentUser());
 
                     ParseObject student_result = studentQuery.getFirst();
 

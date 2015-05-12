@@ -33,6 +33,7 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
     private Activity activity;
     private List<Company> listcompanies;
     private String searchType;
+    private BaseAdapter adapter;
 
 
     public CompanyAdapter(Activity activity, ArrayList list,String searchType) {
@@ -40,6 +41,7 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
         this.activity = activity;
         this.listcompanies = list;
         this.searchType=searchType;
+        this.adapter=this;
 
     }
 
@@ -156,6 +158,8 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             dialog.cancel();
+                                            listcompanies.remove(position);
+                                            adapter.notifyDataSetChanged();
                                         }
                                     });
 

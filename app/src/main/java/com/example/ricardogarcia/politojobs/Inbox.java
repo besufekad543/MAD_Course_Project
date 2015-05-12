@@ -108,7 +108,7 @@ public class Inbox extends ActionBarActivity {
 
             ArrayList<Message> result_messages=new ArrayList<Message>();
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
-            query.whereEqualTo("SenderId",params[0]);
+            query.whereEqualTo("ReceiverId",params[0]);
             try {
                 List<ParseObject> results=query.find();
                 for(ParseObject p:results){
