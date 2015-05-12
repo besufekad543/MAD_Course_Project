@@ -1,5 +1,7 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -33,23 +35,56 @@ public class ViewStudent extends ActionBarActivity {
     public void sendMessage(View view){
         Intent intent = new Intent(this, SendMessage.class);
         intent.putExtra(RECEIVER, student.getId());
-        intent.putExtra(RECEIVERTYPE, "student");
+        intent.putExtra(RECEIVERTYPE, "Student");
         startActivity(intent);
     }
 
     public void saveStudent(View view){
 
-        ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
-        queryCompany.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
-        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
-        queryStudent.whereEqualTo("objectId", student.getId());
         try {
-            ParseObject company = queryCompany.getFirst();
+
+            ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
+            queryCompany.include("CompanyId");
+            queryCompany.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
+            ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+            queryStudent.include("StudentId");
+            queryStudent.include("CurrentCompany");
+            queryStudent.whereEqualTo("objectId", student.getId());
+
             ParseObject student = queryStudent.getFirst();
-            ParseObject savedStudent = new ParseObject("SavedStudent");
-            savedStudent.put("CompanyId", company);
-            savedStudent.put("StudentId", student);
-            savedStudent.saveInBackground();
+            ParseObject company = queryCompany.getFirst();
+
+            ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedStudent");
+            querySavedCompany.whereEqualTo("StudentId", student);
+            querySavedCompany.whereEqualTo("CompanyId", company);
+            String message = null;
+
+            if (querySavedCompany.count() == 0) {
+                ParseObject savedCompany = new ParseObject("SavedStudent");
+                savedCompany.put("StudentId", student);
+                savedCompany.put("CompanyId", company);
+                savedCompany.saveInBackground();
+                message = getString(R.string.addedSavedCompanyMessage);
+
+            } else {
+                message = getString(R.string.existingSavedCompanyMessage);
+
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Save companies");
+            builder.setMessage(message);
+            builder.setCancelable(true);
+            builder.setNeutralButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

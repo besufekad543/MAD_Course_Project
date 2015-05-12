@@ -26,6 +26,7 @@ public class SendMessage extends ActionBarActivity {
 
     private String receiverId;
     private String receiverType;
+    private String receiverIdtoDB;
 
     public void goHome(View view) {
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -54,10 +55,23 @@ public class SendMessage extends ActionBarActivity {
     }
 
     public void sendMessage(View view) {
-        String senderId = ParseUser.getCurrentUser().getObjectId();
+        //String senderId = ParseUser.getCurrentUser().getObjectId();
+        //
+        String senderId =null;
+        try {
+            ParseQuery<ParseUser> query = ParseUser.getQuery();
+            query.whereEqualTo("objectId", "2AM7fmxH5S");
+            ParseUser user = null;
+            user = query.getFirst();
+            senderId = user.getObjectId();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        //
         ParseObject message = new ParseObject("Message");
         message.put("SenderId", senderId);
-        message.put("ReceiverId", receiverId);
+        message.put("ReceiverId", receiverIdtoDB);
         EditText subjectText = (EditText) findViewById(R.id.textSubject);
         String subject = subjectText.getText().toString();
         message.put("Subject", subject);
@@ -78,37 +92,33 @@ public class SendMessage extends ActionBarActivity {
         Intent intent = getIntent();
         receiverId = intent.getStringExtra(RECEIVER);
         receiverType = intent.getStringExtra(RECEIVERTYPE);
-        if(receiverType.equals("company")) {
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("Company");
-            query.getInBackground(receiverId, new GetCallback<ParseObject>() {
-                public void done(ParseObject object, ParseException e) {
-                /*if (e == null) {
-                    // object will be your game score
-                } else {
-                    // something went wrong
-                }*/
-                    if (e == null) {
-                        TextView name = (TextView) findViewById(R.id.receiverText);
-                        name.setText(object.getString("Name"));
-                    }
-                }
-            });
+        if(receiverType.equals("Company")) {
+            try {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Company");
+                query.include("CompanyId");
+                query.whereEqualTo("objectId",receiverId);
+                ParseObject object = query.getFirst();
+                ParseUser user = object.getParseUser("CompanyId");
+                receiverIdtoDB = user.getObjectId();
+                TextView name = (TextView) findViewById(R.id.receiverText);
+                name.setText(object.getString("Name").toUpperCase());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         else {
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("Student");
-            query.getInBackground(receiverId, new GetCallback<ParseObject>() {
-                public void done(ParseObject object, ParseException e) {
-                /*if (e == null) {
-                    // object will be your game score
-                } else {
-                    // something went wrong
-                }*/
-                    if (e == null) {
-                        TextView name = (TextView) findViewById(R.id.receiverText);
-                        name.setText(object.getString("Name"));
-                    }
-                }
-            });
+            try {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Student");
+                query.whereEqualTo("objectId",receiverId);
+                query.include("StudentId");
+                ParseObject object = query.getFirst();
+                ParseUser user = object.getParseUser("StudentId");
+                receiverIdtoDB = user.getObjectId();
+                TextView name = (TextView) findViewById(R.id.receiverText);
+                name.setText(object.getString("Name").toUpperCase());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
 
