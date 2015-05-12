@@ -26,17 +26,20 @@ import java.util.List;
 public class CompanyAdapter extends BaseAdapter implements View.OnClickListener {
 
     public static final String COMPANY = "com.example.ricardogarcia.politojobs.COMPANY";
+    public static final String SEARCH_TYPE = "com.example.ricardogarcia.politojobs.SEARCH_TYPE";
 
 
     private LayoutInflater inflater;
     private Activity activity;
     private List<Company> listcompanies;
+    private String searchType;
 
 
-    public CompanyAdapter(Activity activity, ArrayList list) {
+    public CompanyAdapter(Activity activity, ArrayList list,String searchType) {
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.activity = activity;
         this.listcompanies = list;
+        this.searchType=searchType;
 
     }
 
@@ -69,7 +72,7 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
                 vholder.textName = (TextView) v.findViewById(R.id.textName);
                 vholder.textIndustry = (TextView) v.findViewById(R.id.textIndustry);
                 vholder.buttonView = (Button) v.findViewById(R.id.buttonView);
-                vholder.buttonSave = (Button) v.findViewById(R.id.buttonSave);
+                vholder.buttonSaveDelete = (Button) v.findViewById(R.id.buttonSaveDelete);
                 v.setTag(vholder);
             } else {
                 vholder = (ViewHolder) v.getTag();
@@ -80,16 +83,25 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(activity, ViewCompany.class);
+                    intent.putExtra(SEARCH_TYPE, searchType);
                     intent.putExtra(COMPANY, listcompanies.get(position));
                     activity.startActivity(intent);
                 }
             });
 
-            vholder.buttonSave.setOnClickListener(new View.OnClickListener() {
+
+            if (searchType.equals("Search"))
+                vholder.buttonSaveDelete.setText(R.string.save_button);
+            else
+                vholder.buttonSaveDelete.setText(R.string.remove_button);
+
+            vholder.buttonSaveDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
+
                     try {
+
                         ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
                         queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
                         ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
@@ -102,37 +114,61 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
                         ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedCompany");
                         querySavedCompany.whereEqualTo("StudentId", student);
                         querySavedCompany.whereEqualTo("CompanyId", company);
-                        String message = null;
 
-                        if (querySavedCompany.count() == 0) {
-                            ParseObject savedCompany = new ParseObject("SavedCompany");
-                            savedCompany.put("StudentId", student);
-                            savedCompany.put("CompanyId", company);
-                            savedCompany.saveInBackground();
-                            message = activity.getString(R.string.addedSavedCompanyMessage);
+                        if(searchType.equals("Search")) {
+                            String message = null;
 
-                        } else {
-                            message = activity.getString(R.string.existingSavedCompanyMessage);
+                            if (querySavedCompany.count() == 0) {
+                                ParseObject savedCompany = new ParseObject("SavedCompany");
+                                savedCompany.put("StudentId", student);
+                                savedCompany.put("CompanyId", company);
+                                savedCompany.saveInBackground();
+                                message = activity.getString(R.string.addedSavedCompanyMessage);
+
+                            } else {
+                                message = activity.getString(R.string.existingSavedCompanyMessage);
+
+                            }
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                            builder.setTitle("Save companies");
+                            builder.setMessage(message);
+                            builder.setCancelable(true);
+                            builder.setNeutralButton(android.R.string.ok,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                        else{
+                            querySavedCompany.getFirst().deleteInBackground();
+                            String message = activity.getString(R.string.removedSavedCompanyMessage);
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                            builder.setTitle("Remove company");
+                            builder.setMessage(message);
+                            builder.setCancelable(true);
+                            builder.setNeutralButton(android.R.string.ok,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
 
                         }
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                        builder.setTitle("Save companies");
-                        builder.setMessage(message);
-                        builder.setCancelable(true);
-                        builder.setNeutralButton(android.R.string.ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-
-                        AlertDialog alert = builder.create();
-                        alert.show();
 
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
                 }
             });
 
@@ -152,6 +188,6 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
         public TextView textName;
         public TextView textIndustry;
         public Button buttonView;
-        public Button buttonSave;
+        public Button buttonSaveDelete;
     }
 }

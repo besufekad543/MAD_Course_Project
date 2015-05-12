@@ -56,10 +56,10 @@
     <string name="view_button">View</string>
     <string name="save_button">Save</string>
     <string name="edit_button">EDIT</string>
-    <string name="remove_button">REMOVE</string>
+    <string name="remove_button">Remove</string>
     <string name="cancel_button">CANCEL</string>
     <string name="update_button">UPDATE</string>
-    <string name="delete_button">DELETE</string>
+    <string name="delete_button">Delete</string>
     <string name="title_activity_list_jobs">List Job Offers</string>
     <string name="job_offers">Job Offers of Company</string>
     <string name="publish_offer">PUBLISH NEW OFFER</string>
@@ -115,6 +115,8 @@
     <string name="existingSavedJobMessage">This job has already been saved before</string>
     <string name="addedSavedCompanyMessage">This company has been saved successfully</string>
     <string name="existingSavedCompanyMessage">This company has already been saved before</string>
+    <string name="removedSavedCompanyMessage">This company has been removed from your saved companies</string>
+    <string name="removedSavedJobMessage">This company has been removed from your saved job offers</string>
 
     <string-array name="tabOptions">
         <item name="student">Student</item>

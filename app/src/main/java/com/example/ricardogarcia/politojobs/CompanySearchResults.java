@@ -29,6 +29,8 @@ import java.util.List;
 
 public class CompanySearchResults extends ActionBarActivity {
 
+    private String searchType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +110,8 @@ public class CompanySearchResults extends ActionBarActivity {
 
             ArrayList<Company> companies = new ArrayList<Company>();
             HashMap<String, String> search_data = params[0];
+
+            searchType=search_data.get(CompanySearch.INFO_SEARCHTYPE);
 
             if (search_data.get(CompanySearch.INFO_SEARCHTYPE).equals("Search")) {
                 //Search
@@ -241,7 +245,7 @@ public class CompanySearchResults extends ActionBarActivity {
                 progressDialog.dismiss();
             }
 
-            CompanyAdapter cAdapter = new CompanyAdapter(CompanySearchResults.this, companies);
+            CompanyAdapter cAdapter = new CompanyAdapter(CompanySearchResults.this, companies,searchType);
 
             ListView list_companies = (ListView) findViewById(R.id.listResults);
 

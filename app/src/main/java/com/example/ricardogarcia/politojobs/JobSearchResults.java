@@ -33,6 +33,8 @@ import java.util.Map;
 
 public class JobSearchResults extends ActionBarActivity {
 
+    private String searchType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +116,10 @@ public class JobSearchResults extends ActionBarActivity {
         @Override
         protected ArrayList<Job> doInBackground(HashMap<String, String>... params) {
 
+
             ArrayList<Job> jobs = new ArrayList<Job>();
             HashMap<String, String> search_data = params[0];
+            searchType=search_data.get(JobSearch.INFO_SEARCHTYPE);
 
             if (search_data.get(JobSearch.INFO_SEARCHTYPE).equals("Search")) {
                 //Search
@@ -312,14 +316,14 @@ public class JobSearchResults extends ActionBarActivity {
                 ParseQuery<ParseObject> studentQuery = ParseQuery.getQuery("Student");
 
                 try {
-                    /*
+
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
                     query.whereEqualTo("objectId", "2AM7fmxH5S");
-                    ParseUser user = query.getFirst();*/
+                    ParseUser user = query.getFirst();
 
 
                     studentQuery.include("StudentId");
-                    studentQuery.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+                    studentQuery.whereEqualTo("StudentId", user);
 
                     ParseObject student_result = studentQuery.getFirst();
 
@@ -401,7 +405,7 @@ public class JobSearchResults extends ActionBarActivity {
                 progressDialog.dismiss();
             }
 
-            JobAdapter jAdapter = new JobAdapter(JobSearchResults.this, jobs);
+            JobAdapter jAdapter = new JobAdapter(JobSearchResults.this, jobs,searchType);
 
             ListView list_jobs = (ListView) findViewById(R.id.listResults);
 

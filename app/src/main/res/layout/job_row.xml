@@ -63,13 +63,12 @@
             android:textSize="@dimen/text_size" />
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/buttonSaveDelete"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:background="@drawable/rounded_button"
-            android:text="@string/save_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
