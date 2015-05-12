@@ -111,6 +111,10 @@
     <string name="logoImage">Logo image</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="sampleTxt"> Sample text </string>
+    <string name="addedSavedJobMessage">This job has been saved successfully</string>
+    <string name="existingSavedJobMessage">This job has already been saved before</string>
+    <string name="addedSavedCompanyMessage">This company has been saved successfully</string>
+    <string name="existingSavedCompanyMessage">This company has already been saved before</string>
 
     <string-array name="tabOptions">
         <item name="student">Student</item>
@@ -171,9 +175,9 @@
 
     <string-array name="arrayDegree">
         <item>-</item>
-        <item>Associate's Degree</item>
-        <item>Bachelor's Degree</item>
-        <item>Master’s Degree</item>
+        <item>Associates Degree</item>
+        <item>Bachelors Degree</item>
+        <item>Masters Degree</item>
         <item>Doctorate Degree</item>
     </string-array>
 

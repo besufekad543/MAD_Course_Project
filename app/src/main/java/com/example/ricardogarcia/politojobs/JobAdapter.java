@@ -1,7 +1,9 @@
 package com.example.ricardogarcia.politojobs;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +15,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -92,13 +96,55 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener{
             vholder.buttonSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ParseObject saveJob = new ParseObject("SavedJobOffer");
-                    //TODO
-                    //saveJob.put("StudentId", ParseUser.getCurrentUser());
 
 
-                    //saveJob.put("JobId", listjobs.get(position));
-                    saveJob.saveInBackground();
+                    try {
+                        /*
+                        ParseQuery<ParseUser> query = ParseUser.getQuery();
+                        query.whereEqualTo("objectId", "2AM7fmxH5S");
+                        ParseUser user = query.getFirst();*/
+
+                        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+                        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+                        ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
+                        queryJob.whereEqualTo("objectId", listjobs.get(position).getId());
+
+                        ParseObject student = queryStudent.getFirst();
+                        ParseObject job = queryJob.getFirst();
+
+                        ParseQuery<ParseObject> querySavedJob = ParseQuery.getQuery("SavedJobOffer");
+                        querySavedJob.whereEqualTo("StudentId", student);
+                        querySavedJob.whereEqualTo("OfferId", job);
+                        String message=null;
+                        if(querySavedJob.count()==0) {
+                            ParseObject saveJob = new ParseObject("SavedJobOffer");
+                            saveJob.put("StudentId", student);
+                            saveJob.put("OfferId", job);
+                            saveJob.saveInBackground();
+                            message=activity.getString(R.string.addedSavedJobMessage);
+                        }
+                        else{
+                            message=activity.getString(R.string.existingSavedJobMessage);
+
+                        }
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setTitle("Save jobs");
+                        builder.setMessage(message);
+                        builder.setCancelable(true);
+                        builder.setNeutralButton(android.R.string.ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 

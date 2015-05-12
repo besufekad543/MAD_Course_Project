@@ -34,7 +34,7 @@ public class CompanySearchResults extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_search_results);
 
-
+        Parse.initialize(CompanySearchResults.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
