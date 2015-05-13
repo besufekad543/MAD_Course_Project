@@ -68,6 +68,20 @@
                 android:layout_below="@id/searchText"
                 android:stretchColumns="*">
 
+                <TableRow android:gravity="right">
+
+                    <Button
+                        android:id="@+id/buttonSavedStudents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_height"
+                        android:background="@drawable/rounded_button"
+                        android:onClick="goSavedStudents"
+                        android:text="@string/savedstudents_button"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+                </TableRow>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -306,14 +320,56 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
-                    <Spinner
-                        android:id="@+id/spinnerLanguage"
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
-                        android:background="@color/background_text"
-                        android:textSize="@dimen/text_size" />
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkbox_english"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/english" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_french"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/french" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_german"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/german" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_italian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/italian" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_mandarin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mandarin" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_portuguese"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/portuguese" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_spanish"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/spanish" />
+                    </LinearLayout>
+
                 </TableRow>
 
                 <TableRow
@@ -334,12 +390,11 @@
                         android:textSize="@dimen/text_size" />
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                        android:id="@+id/checkBoxAvailability"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_weight="1"
-                        android:background="@color/background_text" />
+                        android:layout_weight="1" />
                 </TableRow>
             </TableLayout>
 
@@ -374,11 +429,11 @@
             android:layout_marginTop="@dimen/margin_tab"
             android:layout_weight="1.0"
             android:background="@color/background_bottom"
+            android:onClick="goHome"
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"
-            android:onClick="goHome"/>
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="match_parent"
@@ -387,10 +442,10 @@
             android:layout_marginTop="@dimen/margin_tab"
             android:layout_weight="1.0"
             android:background="@color/background_bottom"
+            android:onClick="goProfile"
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold"
-            android:onClick="goProfile"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

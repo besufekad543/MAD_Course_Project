@@ -47,7 +47,7 @@
     <string name="save_student_button">SAVE STUDENT</string>
     <string name="title_activity_search_students">Search Filter</string>
     <string name="search_button">SEARCH</string>
-    <string name="foreign_language">FOREIGN LANGUAGE</string>
+    <string name="foreign_language">Foreign language</string>
     <string name="search_text">Search Students</string>
     <string name="show_only">Show only available students</string>
     <string name="title_activity_result_students">Search Results</string>
@@ -84,6 +84,7 @@
     <string name="searchjobs_title">Search jobs</string>
     <string name="savedjobs_button">Saved jobs</string>
     <string name="savedcompanies_button">Saved companies</string>
+    <string name="savedstudents_button">Saved students</string>
     <string name="keywords_title">Keywords</string>
     <string name="surname">Surname</string>
     <string name="studentID">Student ID</string>
@@ -118,6 +119,15 @@
     <string name="existingSavedCompanyMessage">This company has already been saved before</string>
     <string name="removedSavedCompanyMessage">This company has been removed from your saved companies</string>
     <string name="removedSavedJobMessage">This company has been removed from your saved job offers</string>
+
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="german">German</string>
+    <string name="italian">Italian</string>
+    <string name="mandarin">Mandarin</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="spanish">Spanish</string>
+
 
     <string-array name="tabOptions">
         <item name="student">Student</item>
@@ -182,17 +192,6 @@
         <item>Bachelor\'s Degree</item>
         <item>Master’s Degree</item>
         <item>Doctorate Degree</item>
-    </string-array>
-
-    <string-array name="arrayLanguages">
-        <item>-</item>
-        <item>English</item>
-        <item>French</item>
-        <item>German</item>
-        <item>Italian</item>
-        <item>Mandarin</item>
-        <item>Portuguese</item>
-        <item>Spanish</item>
     </string-array>
 
     <string-array name="arraySalary">

@@ -14,12 +14,15 @@ import android.widget.TextView;
 
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class SearchStudents extends ActionBarActivity {
 
     public static final String HASHMAP = "com.example.ricardogarcia.politojobs.HASHMAP";
+    public final static String INFO_SEARCHTYPE = "com.example.ricardogarcia.politojobs.SEARCHTYPE";
     public static final String NAME = "com.example.ricardogarcia.politojobs.STUDENTNAME";
     public static final String SURNAME = "com.example.ricardogarcia.politojobs.STUDENTSURNAME";
     public static final String LOCATION = "com.example.ricardogarcia.politojobs.STUDENTLOCATION";
@@ -30,11 +33,18 @@ public class SearchStudents extends ActionBarActivity {
     public static final String INTERESTS = "com.example.ricardogarcia.politojobs.STUDENTINTERESTS";
     public static final String LANGUAGES = "com.example.ricardogarcia.politojobs.STUDENTLANGUAGES";
     public static final String CHECK = "com.example.ricardogarcia.politojobs.STUDENTCHECK";
+    public static final String CHECK_ENGLISH = "com.example.ricardogarcia.politojobs.STUDENTCHECKENGLISH";
+    public static final String CHECK_FRENCH = "com.example.ricardogarcia.politojobs.STUDENTCHECKFRENCH";
+    public static final String CHECK_GERMAN = "com.example.ricardogarcia.politojobs.STUDENTCHECKGERMAN";
+    public static final String CHECK_ITALIAN = "com.example.ricardogarcia.politojobs.STUDENTCHECKITALIAN";
+    public static final String CHECK_MANDARIN = "com.example.ricardogarcia.politojobs.STUDENTCHECKMANDARIN";
+    public static final String CHECK_PORTUGUESE = "com.example.ricardogarcia.politojobs.STUDENTCHECKPORTUGUESE";
+    public static final String CHECK_SPANISH = "com.example.ricardogarcia.politojobs.STUDENTCHECKSPANISH";
+
 
     private ArrayAdapter<String> adapterIndustry;
     private ArrayAdapter<String> adapterExperience;
     private ArrayAdapter<String> adapterDegree;
-    private ArrayAdapter<String> adapterLanguages;
     private ArrayAdapter<String> adapterLocation;
 
     public void goHome(View view) {
@@ -74,8 +84,17 @@ public class SearchStudents extends ActionBarActivity {
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
         Spinner degree = (Spinner) findViewById(R.id.spinnerDegree);
         EditText interests = (EditText) findViewById(R.id.textInterests);
-        Spinner languages = (Spinner) findViewById(R.id.spinnerLanguage);
-        CheckBox check = (CheckBox) findViewById(R.id.checkBox);
+        CheckBox check = (CheckBox) findViewById(R.id.checkBoxAvailability);
+        CheckBox check_english = (CheckBox) findViewById(R.id.checkbox_english);
+        CheckBox check_french = (CheckBox) findViewById(R.id.checkbox_french);
+        CheckBox check_german = (CheckBox) findViewById(R.id.checkbox_german);
+        CheckBox check_italian = (CheckBox) findViewById(R.id.checkbox_italian);
+        CheckBox check_mandarin = (CheckBox) findViewById(R.id.checkbox_mandarin);
+        CheckBox check_portuguese = (CheckBox) findViewById(R.id.checkbox_portuguese);
+        CheckBox check_spanish = (CheckBox) findViewById(R.id.checkbox_spanish);
+
+
+        filters.put(INFO_SEARCHTYPE,"Search");
 
 
         if(!name.getText().toString().equals("-")) {
@@ -102,9 +121,34 @@ public class SearchStudents extends ActionBarActivity {
         if(!interests.getText().toString().equals("-")) {
             filters.put(INTERESTS,interests.getText().toString());
         }
-        if(!languages.getSelectedItem().toString().equals("-")) {
-            filters.put(LANGUAGES, languages.getSelectedItem().toString());
+
+        List<String> list_languages=new ArrayList<String>();
+        if(check_english.isSelected()) {
+            list_languages.add("English");
         }
+        if(check_french.isSelected()) {
+            list_languages.add("French");
+        }
+        if(check_german.isSelected()) {
+            list_languages.add("German");
+        }
+        if(check_italian.isSelected()) {
+            list_languages.add("Italian");
+        }
+        if(check_mandarin.isSelected()) {
+            list_languages.add("Mandarin");
+        }
+        if(check_portuguese.isSelected()) {
+            list_languages.add("Portuguese");
+        }
+        if(check_spanish.isSelected()) {
+            list_languages.add("Spanish");
+        }
+
+        if(list_languages.size()>0){
+            filters.put(LANGUAGES,list_languages.toString());
+        }
+
         if(check.isSelected()) {
             filters.put(CHECK, "TRUE");
         }
@@ -123,7 +167,6 @@ public class SearchStudents extends ActionBarActivity {
         Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
         Spinner degree = (Spinner) findViewById(R.id.spinnerDegree);
-        Spinner languages = (Spinner) findViewById(R.id.spinnerLanguage);
 
         adapterIndustry = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
         adapterIndustry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -133,16 +176,11 @@ public class SearchStudents extends ActionBarActivity {
         adapterExperience.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterDegree = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayDegree));
         adapterDegree.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterLanguages = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLanguages));
-        adapterLanguages.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         industry.setAdapter(adapterIndustry);
         location.setAdapter(adapterLocation);
         experience.setAdapter(adapterExperience);
         degree.setAdapter(adapterDegree);
-        languages.setAdapter(adapterLanguages);
-
-        //LLENAR ARRAYS
 
     }
 
@@ -156,8 +194,14 @@ public class SearchStudents extends ActionBarActivity {
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
         Spinner degree = (Spinner) findViewById(R.id.spinnerDegree);
         EditText interests = (EditText) findViewById(R.id.textInterests);
-        Spinner languages = (Spinner) findViewById(R.id.spinnerLanguage);
-        CheckBox check = (CheckBox) findViewById(R.id.checkBox);
+        CheckBox check = (CheckBox) findViewById(R.id.checkBoxAvailability);
+        CheckBox check_english = (CheckBox) findViewById(R.id.checkbox_english);
+        CheckBox check_french = (CheckBox) findViewById(R.id.checkbox_french);
+        CheckBox check_german = (CheckBox) findViewById(R.id.checkbox_german);
+        CheckBox check_italian = (CheckBox) findViewById(R.id.checkbox_italian);
+        CheckBox check_mandarin = (CheckBox) findViewById(R.id.checkbox_mandarin);
+        CheckBox check_portuguese = (CheckBox) findViewById(R.id.checkbox_portuguese);
+        CheckBox check_spanish = (CheckBox) findViewById(R.id.checkbox_spanish);
 
         savedInstanceState.putString(NAME, name.getText().toString());
         savedInstanceState.putString(SURNAME, surname.getText().toString());
@@ -175,14 +219,53 @@ public class SearchStudents extends ActionBarActivity {
             savedInstanceState.putString(DEGREE, degree.getSelectedItem().toString());
         }
         savedInstanceState.putString(INTERESTS, interests.getText().toString());
-        if(!languages.getSelectedItem().toString().equals("-")) {
-            savedInstanceState.putString(LANGUAGES, languages.getSelectedItem().toString());
+
+        if(check_english.isSelected()) {
+            savedInstanceState.putString(CHECK_ENGLISH, "TRUE");
         }
+
+        if(check_french.isSelected()) {
+            savedInstanceState.putString(CHECK_FRENCH, "TRUE");
+        }
+
+        if(check_german.isSelected()) {
+            savedInstanceState.putString(CHECK_GERMAN, "TRUE");
+        }
+
+        if(check_italian.isSelected()) {
+            savedInstanceState.putString(CHECK_ITALIAN, "TRUE");
+        }
+
+        if(check_mandarin.isSelected()) {
+            savedInstanceState.putString(CHECK_MANDARIN, "TRUE");
+        }
+
+        if(check_portuguese.isSelected()) {
+            savedInstanceState.putString(CHECK_PORTUGUESE, "TRUE");
+        }
+
+        if(check_spanish.isSelected()) {
+            savedInstanceState.putString(CHECK_SPANISH, "TRUE");
+        }
+
         if(check.isSelected()) {
             savedInstanceState.putString(CHECK, "TRUE");
         }
 
         super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void goSavedStudents(View view){
+        Intent intent = new Intent(this, ResultStudents.class);
+
+        HashMap<String,String> search_filters= new HashMap<String,String>();
+        search_filters.put(INFO_SEARCHTYPE,"Saved Students");
+
+        Bundle b = new Bundle();
+        b.putSerializable(HASHMAP,search_filters);
+        intent.putExtras(b);
+        startActivity(intent);
+
     }
 
     @Override
@@ -197,8 +280,14 @@ public class SearchStudents extends ActionBarActivity {
         Spinner experience = (Spinner) findViewById(R.id.spinnerExperience);
         Spinner degree = (Spinner) findViewById(R.id.spinnerDegree);
         EditText interests = (EditText) findViewById(R.id.textInterests);
-        Spinner languages = (Spinner) findViewById(R.id.spinnerLanguage);
-        CheckBox check = (CheckBox) findViewById(R.id.checkBox);
+        CheckBox check = (CheckBox) findViewById(R.id.checkBoxAvailability);
+        CheckBox check_english = (CheckBox) findViewById(R.id.checkbox_english);
+        CheckBox check_french = (CheckBox) findViewById(R.id.checkbox_french);
+        CheckBox check_german = (CheckBox) findViewById(R.id.checkbox_german);
+        CheckBox check_italian = (CheckBox) findViewById(R.id.checkbox_italian);
+        CheckBox check_mandarin = (CheckBox) findViewById(R.id.checkbox_mandarin);
+        CheckBox check_portuguese = (CheckBox) findViewById(R.id.checkbox_portuguese);
+        CheckBox check_spanish = (CheckBox) findViewById(R.id.checkbox_spanish);
 
         name.setText(savedInstanceState.getString(NAME));
         surname.setText(savedInstanceState.getString(SURNAME));
@@ -216,9 +305,35 @@ public class SearchStudents extends ActionBarActivity {
             degree.setSelection(adapterDegree.getPosition(savedInstanceState.getString(DEGREE)));
         }
         interests.setText(savedInstanceState.getString(INTERESTS));
-        if(savedInstanceState.containsKey(LANGUAGES)) {
-            languages.setSelection(adapterLanguages.getPosition(savedInstanceState.getString(LANGUAGES)));
+
+        if(savedInstanceState.containsKey(CHECK_ENGLISH)){
+            check_english.setSelected(true);
         }
+
+        if(savedInstanceState.containsKey(CHECK_FRENCH)){
+            check_french.setSelected(true);
+        }
+
+        if(savedInstanceState.containsKey(CHECK_GERMAN)){
+            check_german.setSelected(true);
+        }
+
+        if(savedInstanceState.containsKey(CHECK_ITALIAN)){
+            check_italian.setSelected(true);
+        }
+
+        if(savedInstanceState.containsKey(CHECK_PORTUGUESE)){
+            check_portuguese.setSelected(true);
+        }
+
+        if(savedInstanceState.containsKey(CHECK_MANDARIN)){
+            check_mandarin.setSelected(true);
+        }
+
+        if(savedInstanceState.containsKey(CHECK_SPANISH)){
+            check_spanish.setSelected(true);
+        }
+
         if(savedInstanceState.containsKey(CHECK)) {
             check.setSelected(true);
         }

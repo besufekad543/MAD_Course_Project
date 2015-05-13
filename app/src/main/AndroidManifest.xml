@@ -51,11 +51,7 @@
         <activity
             android:name=".CompanySearch"
             android:label="@string/title_activity_company_search" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -77,7 +73,13 @@
         <activity
             android:name=".SearchStudents"
             android:label="@string/title_activity_search_students" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
         <activity
             android:name=".ResultStudents"
             android:label="@string/title_activity_result_students" >

@@ -1,17 +1,35 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class ResultStudents extends ActionBarActivity {
 
+    private String searchType;
     public static final String STUDENT = "com.example.ricardogarcia.politojobs.STUDENT";
 
     public void goHome(View view) {
@@ -44,6 +62,13 @@ public class ResultStudents extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_students);
+
+        Parse.initialize(ResultStudents.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        new RetrieveFromDatabase().execute((HashMap<String, String>) b.getSerializable(SearchStudents.HASHMAP));
+
     }
 
 
@@ -67,5 +92,36 @@ public class ResultStudents extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private class RetrieveFromDatabase extends AsyncTask<HashMap<String, String>, Void, ArrayList<Job>> {
+
+        private ProgressDialog progressDialog = new ProgressDialog(ResultStudents.this);
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setTitle("Loading students");
+            if (!progressDialog.isShowing()) {
+                progressDialog.show();
+            }
+        }
+
+        @Override
+        protected ArrayList<Job> doInBackground(HashMap<String, String>... params) {
+
+
+        return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Job> jobs) {
+            super.onPostExecute(jobs);
+
+
+
+        }
     }
 }
