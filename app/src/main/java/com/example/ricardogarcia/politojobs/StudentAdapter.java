@@ -18,6 +18,8 @@ public class StudentAdapter extends BaseAdapter{
 
     private ArrayList<Student> listStudents;
     private Activity activity;
+    public static final String SEARCH_TYPE = "com.example.ricardogarcia.politojobs.SEARCH_TYPE";
+    public static final String STUDENT = "com.example.ricardogarcia.politojobs.STUDENT";
 
     public StudentAdapter(Activity activity, ArrayList<Student> listStudents) {
         this.listStudents = listStudents;
@@ -61,7 +63,7 @@ public class StudentAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ViewStudent.class);
-                intent.putExtra(ResultStudents.STUDENT,item);
+                intent.putExtra(STUDENT,item);
                 activity.startActivity(intent);
             }
         });

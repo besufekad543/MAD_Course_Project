@@ -46,7 +46,8 @@
     <string name="phone">Phone number</string>
     <string name="languages">Languages</string>
     <string name="title_activity_view_student">Student Information</string>
-    <string name="save_student_button">SAVE STUDENT</string>
+    <string name="save_student_button">Save Student</string>
+    <string name="remove_student_button">Remove Student</string>
     <string name="title_activity_search_students">Search Filter</string>
     <string name="search_button">SEARCH</string>
     <string name="foreign_language">Foreign language</string>
@@ -123,6 +124,9 @@
     <string name="removedSavedJobMessage">This company has been removed from your saved job offers</string>
     <string name="addedApplyMessage">The application has been sent successfully</string>
     <string name="existingApplication">This application has already been sent before</string>
+    <string name="addedSavedStudentMessage">This student has been saved successfully</string>
+    <string name="existingSavedStudentMessage">This student has already been saved before</string>
+    <string name="removedSavedStudentMessage">This student has been removed from your saved students</string>
 
     <string name="english">English</string>
     <string name="french">French</string>

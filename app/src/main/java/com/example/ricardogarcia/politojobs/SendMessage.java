@@ -55,18 +55,17 @@ public class SendMessage extends ActionBarActivity {
     }
 
     public void sendMessage(View view) {
-        //String senderId = ParseUser.getCurrentUser().getObjectId();
+        String senderId = ParseUser.getCurrentUser().getObjectId();
         //
-        String senderId =null;
+        /*String senderId =null;
         try {
             ParseQuery<ParseUser> query = ParseUser.getQuery();
-            query.whereEqualTo("objectId", "2AM7fmxH5S");
-            ParseUser user = null;
-            user = query.getFirst();
+            query.whereEqualTo("objectId", "y7djJxGraH");
+            ParseUser user = query.getFirst();
             senderId = user.getObjectId();
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
 
         //
         ParseObject message = new ParseObject("Message");
@@ -115,7 +114,7 @@ public class SendMessage extends ActionBarActivity {
                 ParseUser user = object.getParseUser("StudentId");
                 receiverIdtoDB = user.getObjectId();
                 TextView name = (TextView) findViewById(R.id.receiverText);
-                name.setText(object.getString("Name").toUpperCase());
+                name.setText(object.getString("Name").toUpperCase()+" "+object.getString("Surname").toUpperCase());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
