@@ -127,6 +127,9 @@
     <string name="addedSavedStudentMessage">This student has been saved successfully</string>
     <string name="existingSavedStudentMessage">This student has already been saved before</string>
     <string name="removedSavedStudentMessage">This student has been removed from your saved students</string>
+    <string name="myApplicationsButton">My Job Applications</string>
+    <string name="myApplicantsButton">My Job Applicants</string>
+
 
     <string name="english">English</string>
     <string name="french">French</string>

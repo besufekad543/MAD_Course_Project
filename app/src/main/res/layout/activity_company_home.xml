@@ -107,6 +107,18 @@
                     android:onClick="viewMessages"/>
 
                 <Button
+                    android:id="@+id/viewApplicantsButton"
+                    android:layout_width="@dimen/width_buttons"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/myApplicantsButton"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:textStyle="bold" />
+
+                <Button
                     android:id="@+id/buttonLogOut"
                     android:layout_width="@dimen/width_buttons"
                     android:layout_height="@dimen/button_height"
