@@ -13,6 +13,7 @@
     <string name="company_web">Website</string>
     <string name="send_button">Send Message</string>
     <string name="save_company_button">Save Company</string>
+    <string name="remove_company_button">Remove Company</string>
     <string name="back_button">Back to Results</string>
     <string name="home_button">HOME</string>
     <string name="profile_button">PROFILE</string>
@@ -30,7 +31,8 @@
     <string name="job_type">Type of Job</string>
     <string name="job_duration">Duration</string>
     <string name="apply_button">APPLY NOW</string>
-    <string name="save_job_button">SAVE JOB</string>
+    <string name="save_job_button">Save Job</string>
+    <string name="remove_job_button">Remove Job</string>
     <string name="student_surname">Surname</string>
     <string name="date_birth">Date of birth</string>
     <string name="place_birth">Place of birth</string>
@@ -119,6 +121,8 @@
     <string name="existingSavedCompanyMessage">This company has already been saved before</string>
     <string name="removedSavedCompanyMessage">This company has been removed from your saved companies</string>
     <string name="removedSavedJobMessage">This company has been removed from your saved job offers</string>
+    <string name="addedApplyMessage">The application has been sent successfully</string>
+    <string name="existingApplication">This application has already been sent before</string>
 
     <string name="english">English</string>
     <string name="french">French</string>

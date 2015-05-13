@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
@@ -33,6 +34,7 @@ public class ViewCompany extends ActionBarActivity {
     public static final String RECEIVERTYPE = "com.example.ricardogarcia.politojobs.RECEIVERTYPE";
 
     private Company company;
+    private String save_delete_type;
 
     public void saveCompany(View view) {
 
@@ -51,33 +53,41 @@ public class ViewCompany extends ActionBarActivity {
             ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedCompany");
             querySavedCompany.whereEqualTo("StudentId", student);
             querySavedCompany.whereEqualTo("CompanyId", company);
-            String message = null;
 
-            if (querySavedCompany.count() == 0) {
-                ParseObject savedCompany = new ParseObject("SavedCompany");
-                savedCompany.put("StudentId", student);
-                savedCompany.put("CompanyId", company);
-                savedCompany.saveInBackground();
-                message = getString(R.string.addedSavedCompanyMessage);
+            if(save_delete_type.equals("Search")) {
+                String message = null;
 
-            } else {
-                message = getString(R.string.existingSavedCompanyMessage);
+                if (querySavedCompany.count() == 0) {
+                    ParseObject savedCompany = new ParseObject("SavedCompany");
+                    savedCompany.put("StudentId", student);
+                    savedCompany.put("CompanyId", company);
+                    savedCompany.saveInBackground();
+                    message = getString(R.string.addedSavedCompanyMessage);
+
+                } else {
+                    message = getString(R.string.existingSavedCompanyMessage);
+
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Save companies");
+                builder.setMessage(message);
+                builder.setCancelable(true);
+                builder.setNeutralButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+            else{
+                querySavedCompany.getFirst().deleteInBackground();
+                ViewCompany.this.finish();
 
             }
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Save companies");
-            builder.setMessage(message);
-            builder.setCancelable(true);
-            builder.setNeutralButton(android.R.string.ok,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-
-            AlertDialog alert = builder.create();
-            alert.show();
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -129,6 +139,7 @@ public class ViewCompany extends ActionBarActivity {
 
         Intent intent = getIntent();
         company = (Company) intent.getSerializableExtra(CompanyAdapter.COMPANY);
+        save_delete_type = (String) intent.getSerializableExtra(CompanyAdapter.SEARCH_TYPE);
 
         TextView name = (TextView) findViewById(R.id.companyName);
         name.setText(company.getName().toUpperCase());
@@ -144,6 +155,14 @@ public class ViewCompany extends ActionBarActivity {
         website.setText(company.getWebsite());
         TextView clients = (TextView) findViewById(R.id.clients);
         clients.setText(clients.getText().toString());
+
+        Button save_delete = (Button) findViewById(R.id.saveButton);
+        if(save_delete_type.equals("Search")){
+            save_delete.setText(getResources().getString(R.string.save_company_button));
+        }
+        else {
+            save_delete.setText(getResources().getString(R.string.remove_company_button));
+        }
 
     }
 

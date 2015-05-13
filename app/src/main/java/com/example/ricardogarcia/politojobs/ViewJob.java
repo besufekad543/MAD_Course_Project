@@ -1,13 +1,17 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -28,37 +32,107 @@ public class ViewJob extends ActionBarActivity {
     private static final String CONTRACT = "com.example.ricardogarcia.politojobs.CONTRACT";
 
     private Job job;
+    private String save_delete_type;
 
     public void applyNow(View view) {
 
-        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
-        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
-        ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
-        queryJob.whereEqualTo("objectId", job.getId());
         try {
+            ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+            queryStudent.include("StudentId");
+            queryStudent.include("CurrentCompany");
+            queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+
+            ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
+            queryJob.include("CompanyId");
+            queryJob.whereEqualTo("objectId", job.getId());
             ParseObject student = queryStudent.getFirst();
             ParseObject job = queryJob.getFirst();
-            ParseObject applyJob = new ParseObject("ApplyJob");
-            applyJob.put("StudentId", student);
-            applyJob.put("JobId", job);
-            applyJob.saveInBackground();
+
+
+            ParseQuery<ParseObject> queryApply = ParseQuery.getQuery("ApplyJob");
+            queryApply.whereEqualTo("StudentId", student);
+            queryApply.whereEqualTo("JobId", job);
+            String message = null;
+
+            if (queryApply.count() == 0) {
+                ParseObject applyJob = new ParseObject("ApplyJob");
+                applyJob.put("StudentId", student);
+                applyJob.put("JobId", job);
+                applyJob.saveInBackground();
+                message = getString(R.string.addedApplyMessage);
+
+            } else {
+                message = getString(R.string.existingApplication);
+
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Apply Jobs");
+            builder.setMessage(message);
+            builder.setCancelable(true);
+            builder.setNeutralButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
     public void saveJob(View view) {
-        ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
-        queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
-        ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
-        queryJob.whereEqualTo("objectId", job.getId());
         try {
+            ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+            queryStudent.include("StudentId");
+            queryStudent.include("CurrentCompany");
+            queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+
+            ParseQuery<ParseObject> queryJob = ParseQuery.getQuery("JobOffer");
+            queryJob.include("CompanyId");
+            queryJob.whereEqualTo("objectId", job.getId());
+
             ParseObject student = queryStudent.getFirst();
             ParseObject job = queryJob.getFirst();
-            ParseObject saveJob = new ParseObject("SavedJobOffer");
-            saveJob.put("StudentId", student);
-            saveJob.put("OfferId", job);
-            saveJob.saveInBackground();
+
+            ParseQuery<ParseObject> querySavedJob = ParseQuery.getQuery("SavedJobOffer");
+            querySavedJob.whereEqualTo("StudentId", student);
+            querySavedJob.whereEqualTo("OfferId", job);
+            if (save_delete_type.equals("Search")) {
+                String message = null;
+                if (querySavedJob.count() == 0) {
+                    ParseObject saveJob = new ParseObject("SavedJobOffer");
+                    saveJob.put("StudentId", student);
+                    saveJob.put("OfferId", job);
+                    saveJob.saveInBackground();
+                    message = getString(R.string.addedSavedJobMessage);
+                } else {
+                    message = getString(R.string.existingSavedJobMessage);
+
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Save jobs");
+                builder.setMessage(message);
+                builder.setCancelable(true);
+                builder.setNeutralButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+            } else {
+                querySavedJob.getFirst().deleteInBackground();
+                ViewJob.this.finish();
+            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -102,6 +176,7 @@ public class ViewJob extends ActionBarActivity {
 
         Intent intent = getIntent();
         job = (Job) intent.getSerializableExtra(JobAdapter.JOB);
+        save_delete_type = (String) intent.getSerializableExtra(JobAdapter.SEARCH_TYPE);
 
         TextView position = (TextView) findViewById(R.id.jobPosition);
         position.setText(job.getPosition());
@@ -123,6 +198,15 @@ public class ViewJob extends ActionBarActivity {
         duration.setText(job.getDuration());
         TextView contract = (TextView) findViewById(R.id.typeOfContract);
         contract.setText(job.getContractType());
+
+        Button save_delete = (Button) findViewById(R.id.saveButton);
+        if(save_delete_type.equals("Search")){
+            save_delete.setText(getResources().getString(R.string.save_job_button));
+        }
+        else {
+            save_delete.setText(getResources().getString(R.string.remove_job_button));
+        }
+
 
     }
 
