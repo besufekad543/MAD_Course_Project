@@ -195,7 +195,7 @@ public class ViewJob extends ActionBarActivity {
         TextView type = (TextView) findViewById(R.id.jobType);
         type.setText(job.getTypeJob());
         TextView duration = (TextView) findViewById(R.id.jobDuration);
-        duration.setText(job.getDuration());
+        duration.setText(String.valueOf(job.getDuration()));
         TextView contract = (TextView) findViewById(R.id.typeOfContract);
         contract.setText(job.getContractType());
 

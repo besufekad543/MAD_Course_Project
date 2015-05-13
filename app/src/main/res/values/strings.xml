@@ -129,7 +129,10 @@
     <string name="removedSavedStudentMessage">This student has been removed from your saved students</string>
     <string name="myApplicationsButton">My Job Applications</string>
     <string name="myApplicantsButton">My Job Applicants</string>
-
+    <string name="backListApplications">Back to Applications</string>
+    <string name="backListApplicants">Back to Applicants</string>
+    <string name="titleApplications">Applications</string>
+    <string name="backHome">Return to Home</string>
 
     <string name="english">English</string>
     <string name="french">French</string>
@@ -258,5 +261,7 @@
     <string name="companySize">Company size</string>
     <string name="title_activity_company_view">CompanyView</string>
     <string name="message_prev">Message Preview</string>
+    <string name="title_activity_list_application">Job Applications</string>
+    <string name="title_activity_application_description">Application Description</string>
 
 </resources>
