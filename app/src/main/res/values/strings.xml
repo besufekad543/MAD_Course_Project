@@ -132,6 +132,7 @@
     <string name="backListApplications">Back to Applications</string>
     <string name="backListApplicants">Back to Applicants</string>
     <string name="titleApplications">Applications</string>
+    <string name="titleApplicants">Applicants</string>
     <string name="backHome">Return to Home</string>
 
     <string name="english">English</string>
@@ -263,5 +264,7 @@
     <string name="message_prev">Message Preview</string>
     <string name="title_activity_list_application">Job Applications</string>
     <string name="title_activity_application_description">Application Description</string>
+    <string name="title_activity_list_applicant">List Applicants</string>
+    <string name="title_activity_applicant_description">Applicant Description</string>
 
 </resources>

@@ -97,6 +97,14 @@
         <activity
             android:name=".ListApplication"
             android:label="@string/title_activity_list_application" >
+        </activity>
+        <activity
+            android:name=".ApplicationDescription"
+            android:label="@string/title_activity_application_description" >
+        </activity>
+        <activity
+            android:name=".ListApplicant"
+            android:label="@string/title_activity_list_applicant" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -104,8 +112,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ApplicationDescription"
-            android:label="@string/title_activity_application_description" >
+            android:name=".ApplicantDescription"
+            android:label="@string/title_activity_applicant_description" >
         </activity>
     </application>
 
