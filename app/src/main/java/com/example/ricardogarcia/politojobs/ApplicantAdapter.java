@@ -64,10 +64,12 @@ public class ApplicantAdapter extends BaseAdapter implements View.OnClickListene
                 vholder.textStudent.setText(name.substring(0, 78) + "...");
             else
                 vholder.textStudent.setText(name);
-            if (listApplications.get(position).getStudent().getDescription().length() > 78)
-                vholder.textDescription.setText(listApplications.get(position).getStudent().getDescription().substring(0, 78) + "...");
-            else
-                vholder.textDescription.setText(listApplications.get(position).getStudent().getDescription());
+            if(listApplications.get(position).getStudent().getDescription()!=null){
+                if (listApplications.get(position).getStudent().getDescription().length() > 78)
+                    vholder.textDescription.setText(listApplications.get(position).getStudent().getDescription().substring(0, 78) + "...");
+                else
+                    vholder.textDescription.setText(listApplications.get(position).getStudent().getDescription());
+            }
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

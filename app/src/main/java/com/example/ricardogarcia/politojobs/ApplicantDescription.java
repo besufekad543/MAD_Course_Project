@@ -66,37 +66,40 @@ public class ApplicantDescription extends ActionBarActivity {
             name.setText(application.getStudent().getName() + " " + application.getStudent().getSurname());
         TextView description = (TextView) findViewById(R.id.studentDescription);
         if(application.getStudent().getDescription()!=null)
-            description.setText(application.getStudent().getDescription());
+            description.setText(description.getText().toString()+"\n"+application.getStudent().getDescription()+"\n");
         TextView industry = (TextView) findViewById(R.id.studentIndustry);
         if(application.getStudent().getIndustry()!=null)
-            industry.setText(application.getStudent().getIndustry());
+            industry.setText(industry.getText().toString()+"\n"+application.getStudent().getIndustry()+"\n");
         TextView techSkills = (TextView) findViewById(R.id.techSkills);
-        techSkills.setText("Technical Skills");
-        if(application.getStudent().getSkills()!=null)
-            for(int i=0; i<application.getStudent().getSkills().size(); i++){
-                techSkills.setText(techSkills.getText().toString()+"\n"+application.getStudent().getSkills().get(i));
+        if(application.getStudent().getSkills()!=null) {
+            for (int i = 0; i < application.getStudent().getSkills().size(); i++) {
+                techSkills.setText(techSkills.getText().toString() + "\n" + application.getStudent().getSkills().get(i));
             }
+            techSkills.setText(techSkills.getText().toString() + "\n");
+        }
         TextView experience = (TextView) findViewById(R.id.yearsExperience);
         if(application.getStudent().getExperienceyears()>0)
-            experience.setText(application.getStudent().getExperienceyears());
+            experience.setText(experience.getText().toString()+ "\n" +Integer.toString(application.getStudent().getExperienceyears())+ "\n");
         TextView degree = (TextView) findViewById(R.id.typeOfDegree);
         if(application.getStudent().getDegree()!=null)
-        degree.setText(application.getStudent().getDegree());
+            degree.setText(degree.getText().toString()+ "\n"+application.getStudent().getDegree()+ "\n");
         TextView interests = (TextView) findViewById(R.id.interests);
-        interests.setText("Interests");
-        if(application.getStudent().getInterests()!=null)
-            for(int i=0; i<application.getStudent().getInterests().size(); i++){
-                interests.setText(interests.getText().toString()+"\n"+application.getStudent().getInterests().get(i));
+        if(application.getStudent().getInterests()!=null) {
+            for (int i = 0; i < application.getStudent().getInterests().size(); i++) {
+                interests.setText(interests.getText().toString() + "\n" + application.getStudent().getInterests().get(i));
             }
+            interests.setText(interests.getText().toString() + "\n");
+        }
         TextView company = (TextView) findViewById(R.id.currentCompany);
         if(application.getStudent().getCurrent_company()!=null)
-            company.setText(application.getStudent().getCurrent_company().getName());
+            company.setText(company.getText().toString()+ "\n"+ application.getStudent().getCurrent_company().getName()+"\n");
         TextView languages = (TextView) findViewById(R.id.languages);
-        languages.setText("Languages");
-        if(application.getStudent().getLanguages()!=null)
-            for(int i=0; i<application.getStudent().getLanguages().size(); i++){
-                languages.setText(languages.getText().toString()+"\n"+application.getStudent().getLanguages().get(i));
+        if(application.getStudent().getLanguages()!=null) {
+            for (int i = 0; i < application.getStudent().getLanguages().size(); i++) {
+                languages.setText(languages.getText().toString() + "\n" + application.getStudent().getLanguages().get(i));
             }
+            languages.setText(languages.getText().toString() + "\n");
+        }
     }
 
     @Override

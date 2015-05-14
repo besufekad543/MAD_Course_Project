@@ -179,25 +179,35 @@ public class ViewJob extends ActionBarActivity {
         save_delete_type = (String) intent.getSerializableExtra(JobAdapter.SEARCH_TYPE);
 
         TextView position = (TextView) findViewById(R.id.jobPosition);
-        position.setText(job.getPosition());
+        if(job.getPosition()!=null)
+            position.setText(position.getText().toString()+"\n"+ job.getPosition()+"\n");
         TextView company = (TextView) findViewById(R.id.companyName);
-        company.setText(job.getCompany().getName());
+        if(job.getCompany()!=null)
+            company.setText(company.getText().toString()+"\n"+ job.getCompany().getName()+"\n");
         TextView industry = (TextView) findViewById(R.id.companyIndustry);
-        industry.setText(job.getIndustry());
+        if(job.getIndustry()!=null)
+            industry.setText(industry.getText().toString()+"\n"+job.getIndustry()+"\n");
         TextView date = (TextView) findViewById(R.id.datePosted);
-        date.setText(job.getDate());
+        if(job.getDate()!=null)
+            date.setText(date.getText().toString()+"\n"+job.getDate()+"\n");
         TextView description = (TextView) findViewById(R.id.jobDescription);
-        description.setText(job.getDescription());
+        if(job.getDescription()!=null)
+            description.setText(description.getText().toString()+"\n"+ job.getDescription()+"\n");
         TextView salary = (TextView) findViewById(R.id.salary);
-        salary.setText(job.getSalary());
+        if(job.getSalary()!=null)
+            salary.setText(salary.getText().toString()+"\n"+  job.getSalary()+"\n");
         TextView location = (TextView) findViewById(R.id.jobLocation);
-        location.setText(job.getLocation());
+        if(job.getLocation()!=null)
+            location.setText(location.getText().toString()+"\n"+ job.getLocation()+"\n");
         TextView type = (TextView) findViewById(R.id.jobType);
-        type.setText(job.getTypeJob());
+        if(job.getTypeJob()!=null)
+            type.setText(type.getText().toString()+"\n"+ job.getTypeJob()+"\n");
         TextView duration = (TextView) findViewById(R.id.jobDuration);
-        duration.setText(String.valueOf(job.getDuration()));
+        if(job.getDuration()>0)
+            duration.setText(duration.getText().toString()+"\n"+ String.valueOf(job.getDuration())+"\n");
         TextView contract = (TextView) findViewById(R.id.typeOfContract);
-        contract.setText(job.getContractType());
+        if(job.getContractType()!=null)
+            contract.setText(contract.getText().toString()+"\n"+ job.getContractType()+"\n");
 
         Button save_delete = (Button) findViewById(R.id.saveButton);
         if(save_delete_type.equals("Search")){

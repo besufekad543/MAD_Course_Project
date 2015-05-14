@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,19 +60,18 @@ public class ListApplicant extends ActionBarActivity {
 
         try {
             //
-                Parse.initialize(this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+                /*Parse.initialize(this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
                 ParseQuery<ParseUser> query = ParseUser.getQuery();
                 query.whereEqualTo("objectId", "y7djJxGraH");
-                ParseUser user = query.getFirst();
+                ParseUser user = query.getFirst();*/
             //
 
             ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Company");
             queryStudent.include("CompanyId");
-            //queryStudent.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
-            //
-                queryStudent.whereEqualTo("CompanyId", user);
-            //
+            queryStudent.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
+
             ParseObject company = queryStudent.getFirst();
+
 
             new RetrieveFromDatabase().execute(company);
 
@@ -132,16 +132,27 @@ public class ListApplicant extends ActionBarActivity {
                     ParseObject job_result = p.getParseObject("JobId");
 
                     ParseObject companyCurrent = job_result.getParseObject("CompanyId");
-                    if(companyCurrent!=null && companyCurrent.getObjectId()==params[0].getObjectId()){
+
+                    //
+                    /*
+                    Log.d("companyID params ",params[0].getObjectId());
+                    Log.d("student_result ",student_result.getObjectId());
+
+                    Log.d("job_result ",job_result.getObjectId());
+                    Log.d("companyCurrent de job ",companyCurrent.getObjectId());*/
+                    //
+
+                    if(companyCurrent!=null && companyCurrent.getObjectId().equals(params[0].getObjectId())){
+
                         Application app = new Application();
                         app.setPosition(job_result.getString("Position"));
                         Student student = new Student();
                         if(student_result.getObjectId() != null)
                             student.setId(student_result.getObjectId());
                         if(student_result.getString("Name")!=null)
-                            student.setName(student_result.getString("Name"));
+                            student.setName(student_result.getString("Name").toUpperCase());
                         if(student_result.getString("Surname")!=null)
-                            student.setSurname(student_result.getString("Surname"));
+                            student.setSurname(student_result.getString("Surname").toUpperCase());
                         if(student_result.getString("Location")!=null)
                             student.setLocation(student_result.getString("Location"));
                         if(student_result.getString("Industry")!=null)
@@ -154,7 +165,7 @@ public class ListApplicant extends ActionBarActivity {
                             student.setDescription(student_result.getString("Description"));
                         if(student_result.getString("TypeOfDegree")!=null)
                             student.setDegree(student_result.getString("TypeOfDegree"));
-                        if(student_result.getNumber("PhoneNumber").toString()!=null)
+                        if(student_result.getNumber("PhoneNumber")!=null)
                             student.setPhonenumber(student_result.getNumber("PhoneNumber").toString());
                         if(student_result.getNumber("ExperienceYears")!=null)
                             student.setExperienceyears(student_result.getNumber("ExperienceYears").intValue());
@@ -192,6 +203,7 @@ public class ListApplicant extends ActionBarActivity {
                         if(student_result.get("Interests")!=null)
                             student.setInterests((ArrayList<String>) student_result.get("Interests"));
 
+                        app.setStudent(student);
                         result_applications.add(app);
                     }
 

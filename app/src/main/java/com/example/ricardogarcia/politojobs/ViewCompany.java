@@ -144,17 +144,22 @@ public class ViewCompany extends ActionBarActivity {
         TextView name = (TextView) findViewById(R.id.companyName);
         name.setText(company.getName().toUpperCase());
         TextView industry = (TextView) findViewById(R.id.companyIndustry);
-        industry.setText(company.getIndustry());
+        if(company.getIndustry()!=null)
+            industry.setText(industry.getText().toString()+"\n"+ company.getIndustry()+"\n");
         TextView description = (TextView) findViewById(R.id.companyDescription);
-        description.setText(company.getDescription());
+        if(company.getDescription()!=null)
+            description.setText(description.getText().toString()+"\n"+company.getDescription()+"\n");
         TextView location = (TextView) findViewById(R.id.companyLocation);
         location.setText(company.getLocation());
         TextView size = (TextView) findViewById(R.id.companySize);
-        size.setText(String.valueOf(company.getCompany_size()));
+        if(company.getCompany_size()>0)
+            size.setText(size.getText().toString()+"\n"+ String.valueOf(company.getCompany_size()) + "\n");
         TextView website = (TextView) findViewById(R.id.website);
-        website.setText(company.getWebsite());
+        if(company.getWebsite()!=null)
+            website.setText(website.getText().toString()+"\n"+ company.getWebsite()+"\n");
         TextView clients = (TextView) findViewById(R.id.clients);
-        clients.setText(clients.getText().toString());
+        if(company.getClients()!=null)
+            clients.setText(clients.getText().toString()+"\n"+company.getClients()+"\n");
 
         Button save_delete = (Button) findViewById(R.id.saveButton);
         if(save_delete_type.equals("Search")){

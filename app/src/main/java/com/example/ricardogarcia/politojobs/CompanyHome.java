@@ -63,6 +63,11 @@ public class CompanyHome extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void viewApplicants(View view){
+        Intent intent= new Intent(this,ListApplicant.class);
+        startActivity(intent);
+    }
+
     public void logoutCurrentUser()
     {
         ParseUser.logOut();

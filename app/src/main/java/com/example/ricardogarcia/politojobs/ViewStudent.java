@@ -160,37 +160,40 @@ public class ViewStudent extends ActionBarActivity {
             name.setText(student.getName() + " " + student.getSurname());
         TextView description = (TextView) findViewById(R.id.studentDescription);
         if(student.getDescription()!=null)
-            description.setText(student.getDescription());
+            description.setText(description.getText().toString()+"\n"+student.getDescription()+"\n");
         TextView industry = (TextView) findViewById(R.id.studentIndustry);
         if(student.getIndustry()!=null)
-            industry.setText(student.getIndustry());
+            industry.setText(industry.getText().toString()+"\n"+student.getIndustry()+"\n");
         TextView techSkills = (TextView) findViewById(R.id.techSkills);
-        techSkills.setText("Technical Skills");
-        if(student.getSkills()!=null)
-            for(int i=0; i<student.getSkills().size(); i++){
-                techSkills.setText(techSkills.getText().toString()+"\n"+student.getSkills().get(i));
+        if(student.getSkills()!=null) {
+            for (int i = 0; i < student.getSkills().size(); i++) {
+                techSkills.setText(techSkills.getText().toString() + "\n" + student.getSkills().get(i));
             }
+            techSkills.setText(techSkills.getText().toString() + "\n");
+        }
         TextView experience = (TextView) findViewById(R.id.yearsExperience);
         if(student.getExperienceyears()>0)
-            experience.setText(student.getExperienceyears());
+            experience.setText(experience.getText().toString()+ "\n" +Integer.toString(student.getExperienceyears())+ "\n");
         TextView degree = (TextView) findViewById(R.id.typeOfDegree);
         if(student.getDegree()!=null)
-            degree.setText(student.getDegree());
+            degree.setText(degree.getText().toString()+ "\n"+student.getDegree()+ "\n");
         TextView interests = (TextView) findViewById(R.id.interests);
-        interests.setText("Interests");
-        if(student.getInterests()!=null)
-            for(int i=0; i<student.getInterests().size(); i++){
-                interests.setText(interests.getText().toString()+"\n"+student.getInterests().get(i));
+        if(student.getInterests()!=null) {
+            for (int i = 0; i < student.getInterests().size(); i++) {
+                interests.setText(interests.getText().toString() + "\n" + student.getInterests().get(i));
             }
+            interests.setText(interests.getText().toString() + "\n");
+        }
         TextView company = (TextView) findViewById(R.id.currentCompany);
         if(student.getCurrent_company()!=null)
-            company.setText(student.getCurrent_company().getName());
+            company.setText(company.getText().toString()+ "\n"+ student.getCurrent_company().getName()+"\n");
         TextView languages = (TextView) findViewById(R.id.languages);
-        languages.setText("Languages");
-        if(student.getLanguages()!=null)
-            for(int i=0; i<student.getLanguages().size(); i++){
-                languages.setText(languages.getText().toString()+"\n"+student.getLanguages().get(i));
+        if(student.getLanguages()!=null) {
+            for (int i = 0; i < student.getLanguages().size(); i++) {
+                languages.setText(languages.getText().toString() + "\n" + student.getLanguages().get(i));
             }
+            languages.setText(languages.getText().toString() + "\n");
+        }
 
         Button save_delete = (Button) findViewById(R.id.saveButton);
         if(save_delete_type.equals("Search")){

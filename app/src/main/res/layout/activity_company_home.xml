@@ -116,7 +116,8 @@
                     android:text="@string/myApplicantsButton"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="viewApplicants"/>
 
                 <Button
                     android:id="@+id/buttonLogOut"

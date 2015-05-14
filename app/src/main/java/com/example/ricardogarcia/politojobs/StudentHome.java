@@ -47,6 +47,11 @@ public class StudentHome extends ActionBarActivity {
         startActivity(new Intent(this,ManageSession.class));
     }
 
+    public void viewApplications(View view){
+        Intent intent= new Intent(this,ListApplication.class);
+        startActivity(intent);
+    }
+
     public void onSearchCompaniesClick(View v)
     {
         startActivity(new Intent(this,CompanySearch.class));
