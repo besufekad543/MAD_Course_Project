@@ -20,7 +20,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,15 +32,14 @@ public class ProfileCompany extends ActionBarActivity {
     private EditText AddressView;
     private Spinner IndustryView;
     private EditText DescriptionView;
-    private EditText ComapnySizeView;
+    private EditText CompanySizeView;
     private EditText WebsiteView;
     private EditText ClientsView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_company);
-            //Parse.enableLocalDatastore(this);
-            //Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
+
             NameView = (EditText) findViewById(R.id.textName);
             LocationView = (EditText) findViewById(R.id.textLocation);
             AddressView = (EditText) findViewById(R.id.textAddress);
@@ -53,7 +51,7 @@ public class ProfileCompany extends ActionBarActivity {
             IndustryView.setAdapter(adapter1);
 
             DescriptionView  = (EditText) findViewById(R.id.descriptionText);
-            ComapnySizeView  = (EditText) findViewById(R.id.textSize);
+            CompanySizeView = (EditText) findViewById(R.id.textSize);
             WebsiteView  = (EditText) findViewById(R.id.textWeb);
             ClientsView = (EditText) findViewById(R.id.textClients);
 
@@ -62,13 +60,13 @@ public class ProfileCompany extends ActionBarActivity {
                 public void onClick(View view) {
 
                     final String name = NameView.getText().toString();
-                    final String adress = AddressView.getText().toString();
+                    final String address = AddressView.getText().toString();
                     final String location = LocationView.getText().toString();
                     final String industry = IndustryView.getSelectedItem().toString();
 
 
                     final String description = DescriptionView.getText().toString();
-                    final Integer comapnysize = Integer.parseInt(ComapnySizeView.getText().toString());
+                    final Integer companysize = Integer.parseInt(CompanySizeView.getText().toString());
                     final String website = WebsiteView.getText().toString();
                     final String clients = ClientsView.getText().toString();
 
@@ -96,7 +94,7 @@ public class ProfileCompany extends ActionBarActivity {
                         validationErrorMessage.append(getResources().getString(R.string.error_invalid_Description));
                     }
 
-                    if (isEmpty(ComapnySizeView)) {
+                    if (isEmpty(CompanySizeView)) {
                         validationError = true;
                         validationErrorMessage.append(getResources().getString(R.string.error_invalid_Companysize));
                     }
@@ -110,7 +108,6 @@ public class ProfileCompany extends ActionBarActivity {
                         validationErrorMessage.append(getResources().getString(R.string.error_invalid_Clients));
                     }
 
-                    validationErrorMessage.append(getResources().getString(R.string.error_end));
 
                     // If there is a validation error, display the error
                     if (validationError) {
@@ -131,10 +128,10 @@ public class ProfileCompany extends ActionBarActivity {
                     //student.put("CompanyId", ParseUser.getCurrentUser());
                     student.put("Name", name);
                     student.put("Location", location);
-                    student.put("Address", adress);
+                    student.put("Address", address);
                     student.put("Industry", industry);
                     student.put("Description", description);
-                    student.put("Size", comapnysize);
+                    student.put("Size", companysize);
                     student.put("Website", website);
                     student.put("Clients", clients);
 
@@ -197,7 +194,7 @@ public class ProfileCompany extends ActionBarActivity {
                                     update.put("Address", LocationView.getText().toString());
                                     update.put("Industry", IndustryView.getSelectedItem().toString());
                                     update.put("Description", DescriptionView.getText().toString());
-                                    update.put("Size", Integer.parseInt(ComapnySizeView.getText().toString()));
+                                    update.put("Size", Integer.parseInt(CompanySizeView.getText().toString()));
                                     update.put("Website", WebsiteView.getText().toString());
                                     update.put("Clients", ClientsView.getText().toString());
                                     update.saveInBackground();
