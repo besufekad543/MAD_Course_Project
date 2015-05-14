@@ -265,19 +265,29 @@
 
 
 
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
     <string name="error_intro">"Please "</string>
-    <string name="error_blank_username">enter a username</string>
-    <string name="error_blank_password">enter a password</string>
-    <string name="error_blank_studentID">enter a studentID</string>
-    <string name="error_blank_name">enter a name</string>
-    <string name="error_blank_surname">enter a surname</string>
-    <string name="error_blank_address">enter an address</string>
-    <string name="error_blank_location">enter a location</string>
-    <string name="error_mismatched_passwords">enter the same password twice</string>
-    <string name="error_join">", and "</string>
-    <string name="error_end">.</string>
+    <string name="error_invalid_Jobposition">Invalid Job Position</string>
+    <string name="error_invalid_location">Invalid Location</string>
+    <string name="error_invalid_Description">Invalid Description</string>
+    <string name="error_invalid_Salary">Invalid Salary</string>
+    <string name="error_invalid_typeofjob">Invalid Type of Job</string>
+    <string name="error_invalid_duration">Invalid Job duration</string>
+    <string name="error_invalid_industry">Invalid Job industry</string>
+
+    <string name="error_invalid_name">Invalid Name</string>
+    <string name="error_invalid_surname">Invalid Surname</string>
+    <string name="error_invalid_DateOfBirth">Invalid Date Of Birth</string>
+    <string name="error_invalid_PlaceOfBirth">Invalid Place Of Birth</string>
+    <string name="error_invalid_TechnicalSkills">Invalid TechnicalSkills</string>
+
+    <string name="error_invalid_Languages">Invalid Languages</string>
+    <string name="error_invalid_YearOfExp">Invalid Year Of Experience</string>
+    <string name="error_invalid_Seniority">Invalid Seniority</string>
+    <string name="error_invalid_PhoneNumber">Invalid PhoneNumber</string>
+
+    <string name="error_invalid_address">Invalid address</string>
+    <string name="error_invalid_Website">Invalid Website</string>
+    <string name="error_invalid_Companysize">Invalid Companysize</string>
+    <string name="error_invalid_Clients">Invalid Clients</string>
 
 </resources>
