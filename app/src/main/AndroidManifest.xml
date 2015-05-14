@@ -33,6 +33,7 @@
         <activity
             android:name=".JobSearch"
             android:label="@string/title_activity_job_search" >
+
         </activity>
         <activity
             android:name=".LogIn"
@@ -41,6 +42,7 @@
         <activity
             android:name=".Registration"
             android:label="@string/title_activity_registration" >
+
         </activity>
         <activity
             android:name=".StudentHome"
@@ -49,6 +51,8 @@
         <activity
             android:name=".CompanySearch"
             android:label="@string/title_activity_company_search" >
+
+
         </activity>
         <activity
             android:name=".ViewCompany"
@@ -69,7 +73,13 @@
         <activity
             android:name=".SearchStudents"
             android:label="@string/title_activity_search_students" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
         <activity
             android:name=".ResultStudents"
             android:label="@string/title_activity_result_students" >
@@ -94,27 +104,8 @@
             android:name=".ProfileCompany"
             android:label="@string/title_activity_profile_company" >
         </activity>
-        <activity
-            android:name=".ListApplication"
-            android:label="@string/title_activity_list_application" >
-        </activity>
-        <activity
-            android:name=".ApplicationDescription"
-            android:label="@string/title_activity_application_description" >
-        </activity>
-        <activity
-            android:name=".ListApplicant"
-            android:label="@string/title_activity_list_applicant" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ApplicantDescription"
-            android:label="@string/title_activity_applicant_description" >
-        </activity>
+
     </application>
 
 </manifest>

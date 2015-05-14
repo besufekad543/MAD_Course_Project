@@ -66,9 +66,10 @@ public class MessageAdapter extends BaseAdapter implements View.OnClickListener 
             } else {
                 vholder = (ViewHolder) v.getTag();
             }
+            if(listmessages.get(position).getSubject()!=null)
             vholder.textSubject.setText(listmessages.get(position).getSubject());
 
-            if (listmessages.get(position).getMessage().length() > 78)
+            if (listmessages.get(position).getMessage()!=null && listmessages.get(position).getMessage().length() > 78)
                 vholder.textMessage.setText(listmessages.get(position).getMessage().substring(0, 78) + "...");
             else
                 vholder.textMessage.setText(listmessages.get(position).getMessage());
