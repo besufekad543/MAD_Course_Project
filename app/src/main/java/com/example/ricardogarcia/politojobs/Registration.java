@@ -99,7 +99,7 @@ public class Registration extends Activity {
             data[0] = studentName.getText().toString();
             data[1] = surname.getText().toString();
 
-            registerUser("Student", studentName.getText().toString(), studentPassword.getText().toString(), data);
+            registerUser("Student", studentName.getText().toString()+surname.getText().toString(), studentPassword.getText().toString(), data);
         }
     }
 
