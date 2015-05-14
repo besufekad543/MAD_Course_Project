@@ -1,26 +1,163 @@
 package com.example.ricardogarcia.politojobs;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TabHost;
+import android.widget.Toast;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 
-public class Registration extends ActionBarActivity {
+public class Registration extends Activity {
+
+    private EditText studentName;
+    private EditText studentPassword;
+    private EditText surname;
+    private EditText studentID;
+
+    private EditText companyName;
+    private EditText companyPassword;
+    private EditText address;
+    private EditText location;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        final TabHost tabHost= (TabHost) findViewById(R.id.tabhost);
+        final TabHost tabHost= (TabHost) findViewById(R.id.mainTabbHost);
         tabHost.setup();
 
         createTabs(tabHost);
+        init();
     }
 
+    private void init()
+    {
+        studentName = (EditText) findViewById(R.id.studentNameTxt);
+        studentPassword = (EditText) findViewById(R.id.studentPasswordTxt);
+        surname = (EditText) findViewById(R.id.studentSrnameTxt);
+        studentID = (EditText) findViewById(R.id.studentIDTxt);
+
+        companyName = (EditText) findViewById(R.id.companyNameTxt);
+        companyPassword = (EditText) findViewById(R.id.companyPasswordTxt);
+        address = (EditText) findViewById(R.id.companyAddressTxt);
+        location = (EditText) findViewById(R.id.companyLocationTxt);
+    }
+
+    public void onRegisterCompanyClick(View v)
+    {
+        ParseApplication manageRegistration = new ParseApplication();
+        String []data=  new String[2];
+        // Check for input data validation error, display the error
+        //false used as a flag to say company
+        if (validateRegisterInput(false)) {
+            data[0] = location.getText().toString();
+            data[1] = address.getText().toString();
+            registerUser("Company",companyName.getText().toString(),companyPassword.getText().toString(),data);
+        }
+    }
+
+    public void onRegisterStudentClick(View v)
+    {
+        ParseApplication manageRegistration = new ParseApplication();
+        String []data=  new String[2];
+        // Check for input data validation error, display the error
+        //true used as a flag to say student
+        if (validateRegisterInput(true)) {
+            data[0] = studentName.getText().toString();
+            data[1] = surname.getText().toString();
+
+            registerUser("Student", studentName.getText().toString(), studentPassword.getText().toString(), data);
+        }
+    }
+
+    //use type value = true for student and false for company data
+    private boolean validateRegisterInput(boolean type)
+    {
+        // Validate the sign up data
+        boolean validationError = false;
+        StringBuilder validationErrorMessage =
+                new StringBuilder(getResources().getString(R.string.error_intro));
+        if(type)
+        {
+            if (isEmpty(studentName)) {
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_name));
+            }
+            if (isEmpty(surname)) {
+                if (validationError) {
+                    validationErrorMessage.append(getResources().getString(R.string.error_join));
+                }
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_surname));
+            }
+            if (isEmpty(studentID)) {
+                if (validationError) {
+                    validationErrorMessage.append(getResources().getString(R.string.error_join));
+                }
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_studentID));
+            }
+            if (isEmpty(studentPassword)) {
+                if (validationError) {
+                    validationErrorMessage.append(getResources().getString(R.string.error_join));
+                }
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_password));
+            }
+        }
+        else {
+            if (isEmpty(companyName)) {
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_name));
+            }
+            if (isEmpty(address)) {
+                if (validationError) {
+                    validationErrorMessage.append(getResources().getString(R.string.error_join));
+                }
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_address));
+            }
+            if (isEmpty(location)) {
+                if (validationError) {
+                    validationErrorMessage.append(getResources().getString(R.string.error_join));
+                }
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_location));
+            }
+            if (isEmpty(companyPassword)) {
+                if (validationError) {
+                    validationErrorMessage.append(getResources().getString(R.string.error_join));
+                }
+                validationError = true;
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_password));
+            }
+        }
+        validationErrorMessage.append(getResources().getString(R.string.error_end));
+
+        // If there is a validation error, display the error
+        if (validationError) {
+            Toast.makeText(getBaseContext(), validationErrorMessage.toString(), Toast.LENGTH_LONG).show();
+            return false;//invalid input
+        }
+        return true;//valid input
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,16 +183,18 @@ public class Registration extends ActionBarActivity {
 
     private void createTabs(final TabHost tabHost)
     {
-        String []tabOptions = getResources().getStringArray(R.array.tabOptions);
+        String []tabNames = getResources().getStringArray(R.array.tabNames);
         TabHost.TabSpec spec1 = tabHost.newTabSpec("tab1");
-        spec1.setContent(R.id.tab1);
-        spec1.setIndicator(tabOptions[0]);//"Mon", null);//res.getDrawable(R..drawable.tab_icon);
+        spec1.setContent(R.id.scroller1);
+        spec1.setIndicator(tabNames[0]);//"Mon", null);//res.getDrawable(R..drawable.tab_icon);
         tabHost.addTab(spec1);
 
         TabHost.TabSpec spec2 = tabHost.newTabSpec("tab2");
-        spec2.setContent(R.id.tab2);
-        spec2.setIndicator(tabOptions[1], null);
+        spec2.setContent(R.id.scroller2);
+        spec2.setIndicator(tabNames[1], null);
         tabHost.addTab(spec2);
+
+        tabHost.setCurrentTabByTag("tab1");
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -64,5 +203,97 @@ public class Registration extends ActionBarActivity {
             }
         });
         //populateListView(tabHost,"");
+    }
+
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    protected void registerUser(final String type,String username,String password,String[] data)
+    {
+        ParseUser user = new ParseUser();
+        final ParseObject registerStudent = new ParseObject("Student");
+        final ParseObject registerCompany = new ParseObject("Company");
+        user.setUsername(username);
+        user.setPassword(password);
+        // String id =  getObjectID(username,password);
+        if(type.equals("Student"))
+        {
+            registerStudent.put("Name",data[0]);//data[0] name of student"
+            registerStudent.put("Surname", data[1]);//data[1] surname of student"
+            user.put("TypeUser","Student");
+        }
+        else
+        {
+            registerCompany.put("Name",username);
+            registerCompany.put("Location",data[0]);//data[0] is Company Location
+            registerCompany.put("Address", data[1]);//data[1] is address of company
+            user.put("TypeUser","Company");
+        }
+
+
+        // Set up a progress dialog
+        final ProgressDialog dlg = new ProgressDialog(Registration.this);
+        dlg.setTitle("Please wait.");
+        dlg.setMessage("Signing up.  Please wait.");
+        dlg.show();
+
+
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {//Sign up succeed
+                    dlg.dismiss();
+                    if (type.equals("Student")) {
+                        //Toast.makeText(ParseApplication.this, ParseUser.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
+                        registerStudent.put("StudentId",ParseUser.getCurrentUser());//act like a foreign key
+                        registerStudent.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                Intent intent = new Intent(Registration.this, StudentHome.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    else {
+                        // Toast.makeText(ParseApplication.this, ParseUser.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
+                        registerCompany.put("CompanyId",ParseUser.getCurrentUser());//act like a foreign key
+                        registerCompany.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                Intent intent = new Intent(Registration.this, CompanyHome.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                }
+                else {
+                    // Sign up didn't succeed.
+                    String errorMessage = "";
+                    // Sign up didn't succeed. Look at the ParseException
+                    // to figure out what went wrong
+                    switch (e.getCode()) {
+                        case ParseException.USERNAME_TAKEN:
+                            errorMessage = "Sorry, this username has already been taken.";
+                            break;
+                        case ParseException.USERNAME_MISSING:
+                            errorMessage = "Sorry, you must supply a username to register.";
+                            break;
+                        case ParseException.PASSWORD_MISSING:
+                            errorMessage = "Sorry, you must supply a password to register.";
+                            break;
+                        default:
+                            errorMessage = e.getLocalizedMessage();
+                    }
+                    Toast.makeText(Registration.this, errorMessage, Toast.LENGTH_LONG).show();
+                    dlg.dismiss();
+                }
+            }
+        });
     }
 }

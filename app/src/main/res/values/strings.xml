@@ -144,15 +144,11 @@
     <string name="spanish">Spanish</string>
 
 
-    <string-array name="tabOptions">
+    <string-array name="tabNames">
         <item name="student">Student</item>
         <item name="company">Company</item>
-        <item name="home">Home</item>
-        <item name="profile">Profile</item>
-        <item name="searchComanyBtn">Search</item>
-        <item name="job">Job feeds</item>
-        <item name="interview">Interviews</item>
     </string-array>
+
 
     <string-array name="arrayIndustry">
         <item>-</item>
@@ -266,5 +262,22 @@
     <string name="title_activity_application_description">Application Description</string>
     <string name="title_activity_list_applicant">List Applicants</string>
     <string name="title_activity_applicant_description">Applicant Description</string>
+
+
+
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_intro">"Please "</string>
+    <string name="error_blank_username">enter a username</string>
+    <string name="error_blank_password">enter a password</string>
+    <string name="error_blank_studentID">enter a studentID</string>
+    <string name="error_blank_name">enter a name</string>
+    <string name="error_blank_surname">enter a surname</string>
+    <string name="error_blank_address">enter an address</string>
+    <string name="error_blank_location">enter a location</string>
+    <string name="error_mismatched_passwords">enter the same password twice</string>
+    <string name="error_join">", and "</string>
+    <string name="error_end">.</string>
 
 </resources>

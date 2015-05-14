@@ -63,5 +63,28 @@ public class CompanyHome extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void logoutCurrentUser()
+    {
+        ParseUser.logOut();
+        startActivity(new Intent(this, ManageSession.class));
+    }
+
+    public void onSearchStudentsClick(View v)
+    {
+        startActivity(new Intent(this, SearchStudents.class));
+    }
+
+    public void onViewJobOffersClick(View v)
+    {
+        startActivity(new Intent(this,ViewJob.class));
+    }
+
+    public void onViewCompnayMessageClick(View v)
+    {
+        startActivity(new Intent(this,Message.class));
+    }
+
+
+
 
 }

@@ -131,7 +131,7 @@
                         android:layout_weight="1"
                         android:background="@color/background_text"
                         android:textSize="@dimen/text_size"
-                        android:entries="@array/tabOptions" />
+                        android:entries="@array/tabNames" />
                 </TableRow>
 
 

@@ -1,6 +1,7 @@
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+<TabHost
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tabhost"
+    android:id="@+id/mainTabbHost"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_layout"
@@ -18,27 +19,26 @@
             android:id="@+id/header"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/height_header"
-            android:layout_alignParentTop="true"
             android:background="@color/background_header"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true">
 
 
-            <ImageView
-                android:layout_width="@dimen/square_logo"
+            <ImageView android:layout_width="@dimen/square_logo"
                 android:layout_height="@dimen/square_logo"
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/logopolito"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:background="@drawable/logopolito" />
+                />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginLeft="@dimen/margin_header"
                 android:text="@string/header"
                 android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/margin_header"
                 android:textSize="@dimen/text_size"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal|center_vertical"/>
 
         </LinearLayout>
 
@@ -49,7 +49,8 @@
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></TabWidget>
+            android:layout_height="wrap_content">
+        </TabWidget>
 
         <FrameLayout
             android:id="@android:id/tabcontent"
@@ -60,332 +61,303 @@
                 android:id="@+id/scroller1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:fillViewport="true"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
+                android:fillViewport="true">
 
                 <RelativeLayout
                     android:id="@+id/tab1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="30dp">
 
                     <TextView
                         android:id="@+id/headerLbl2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/margin_top_title"
                         android:paddingLeft="@dimen/abc_control_padding_material"
                         android:paddingRight="@dimen/abc_control_padding_material"
+                        android:layout_marginTop="@dimen/margin_top_title"
                         android:text="@string/registration"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                     <TableLayout
                         android:id="@+id/table"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/headerLbl2"
-                        android:stretchColumns="*">
-
+                        android:stretchColumns="*"
+                        android:layout_below="@id/headerLbl2">
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top_title">
-
-                            <TextView
+                            <TextView android:text="@string/name"
                                 android:id="@+id/studentName"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/name"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
 
                             <EditText
-                                android:id="@+id/textName"
+                                android:id="@+id/studentNameTxt"
+                                android:inputType="textPersonName"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="textPersonName"
-                                android:textSize="@dimen/text_size" />
-
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-
-                            <TextView
+                            <TextView android:text="@string/student_surname"
                                 android:id="@+id/studentSurname"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/student_surname"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
-
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
                             <EditText
-                                android:id="@+id/textSurname"
+                                android:id="@+id/studentSrnameTxt"
+                                android:inputType="textPersonName"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="textPersonName"
-                                android:textSize="@dimen/text_size" />
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-
-                            <TextView
+                            <TextView android:text="@string/studentID"
                                 android:id="@+id/studentIDLbl"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/studentID"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
-
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
                             <EditText
                                 android:id="@+id/studentIDTxt"
+                                android:inputType="text"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="text"
-                                android:textSize="@dimen/text_size" />
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-
-                            <TextView
+                            <TextView android:text="@string/password"
                                 android:id="@+id/studentPasswordLbl"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/password"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
-
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
                             <EditText
-                                android:id="@+id/StudentPasswordTxt"
+                                android:id="@+id/studentPasswordTxt"
+                                android:inputType="textPassword"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="textPassword"
-                                android:textSize="@dimen/text_size" />
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
                     </TableLayout>
 
                     <Button
-                        android:id="@+id/StudentRegisterBtn"
-                        android:layout_width="@dimen/width_buttons"
+                        android:id="@+id/studentRegisterBtn"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/button_height"
                         android:layout_below="@+id/table"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/margin_top"
-                        android:background="@drawable/rounded_button"
-                        android:text="@string/register"
+                        android:layout_marginTop="33dp"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
-                        android:textStyle="bold" />
+                        android:background="@drawable/background_color"
+                        android:textStyle="bold"
+                        android:paddingLeft="@dimen/abc_control_padding_material"
+                        android:paddingRight="@dimen/abc_control_padding_material"
+                        android:text="@string/register"
+                        android:onClick="onRegisterStudentClick" />
 
                 </RelativeLayout>
+
             </ScrollView>
 
             <ScrollView
                 android:id="@+id/scroller2"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:fillViewport="true"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
+                android:fillViewport="true">
 
                 <RelativeLayout
                     android:id="@+id/tab2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="30dp">
 
                     <TextView
                         android:id="@+id/headerLbl4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/margin_top_title"
                         android:paddingLeft="@dimen/abc_control_padding_material"
                         android:paddingRight="@dimen/abc_control_padding_material"
+                        android:layout_marginTop="@dimen/margin_top_title"
                         android:text="@string/registration"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                     <TableLayout
                         android:id="@+id/table2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/headerLbl4"
-                        android:stretchColumns="*">
-
+                        android:stretchColumns="*"
+                        android:layout_below="@id/headerLbl4">
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top_title">
-
-                            <TextView
+                            <TextView android:text="@string/name"
                                 android:id="@+id/companyNameLbl"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/name"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
 
                             <EditText
                                 android:id="@+id/companyNameTxt"
+                                android:inputType="textPersonName"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="textPersonName"
-                                android:textSize="@dimen/text_size" />
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-
-                            <TextView
+                            <TextView android:text="@string/address"
                                 android:id="@+id/companyAddressLbl"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/address"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
-
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
                             <EditText
-                                android:id="@+id/addressCompanyTxt"
+                                android:id="@+id/companyAddressTxt"
+                                android:inputType="textPostalAddress"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="textPostalAddress"
-                                android:textSize="@dimen/text_size" />
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-
-                            <TextView
+                            <TextView android:text="@string/location"
                                 android:id="@+id/companyLocationLbl"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/location"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
-
-
-                            <Spinner
-                                android:id="@+id/spinnerLocation"
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
+                            <EditText
+                                android:id="@+id/companyLocationTxt"
+                                android:inputType="text"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:textSize="@dimen/text_size" />
-                            
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-
-                            <TextView
+                            <TextView android:text="@string/password"
                                 android:id="@+id/companyPasswordLbl"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
                                 android:gravity="start"
                                 android:paddingLeft="@dimen/padding_left"
-                                android:text="@string/password"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size" />
-
+                                android:layout_weight="1"
+                                android:textColor="@color/material_blue_grey_800"
+                                android:textSize="@dimen/text_size"/>
                             <EditText
-                                android:id="@+id/comanyPasswordTxt"
+                                android:id="@+id/companyPasswordTxt"
+                                android:inputType="textPassword"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:background="@color/background_text"
-                                android:inputType="textPassword"
-                                android:textSize="@dimen/text_size" />
+                                android:textSize="@dimen/text_size"
+                                android:background="@color/background_text"/>
                         </TableRow>
                     </TableLayout>
 
                     <Button
                         android:id="@+id/companyRegisterBtn"
-                        android:layout_width="@dimen/width_buttons"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/button_height"
                         android:layout_below="@+id/table2"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/margin_top"
-                        android:background="@drawable/rounded_button"
+                        android:layout_marginTop="33dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:background="@drawable/background_color"
+                        android:textStyle="bold"
                         android:paddingLeft="@dimen/abc_control_padding_material"
                         android:paddingRight="@dimen/abc_control_padding_material"
                         android:text="@string/register"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size"
-                        android:textStyle="bold" />
+                        android:onClick="onRegisterCompanyClick" />
 
 
                 </RelativeLayout>
+
             </ScrollView>
         </FrameLayout>
     </LinearLayout>

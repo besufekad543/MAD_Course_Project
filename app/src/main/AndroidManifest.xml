@@ -8,8 +8,9 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:name="com.example.ricardogarcia.politojobs.ParseApplication"
         android:label="@string/app_name"
-        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"  >
         <activity
             android:name=".Inbox"
             android:label="@string/app_name" >
@@ -36,11 +37,13 @@
         </activity>
         <activity
             android:name=".LogIn"
-            android:label="@string/title_activity_log_in" >
+            android:label="@string/title_activity_log_in"
+            android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <activity
             android:name=".Registration"
-            android:label="@string/title_activity_registration" >
+            android:label="@string/title_activity_registration"
+            android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <activity
             android:name=".StudentHome"
@@ -103,8 +106,12 @@
             android:label="@string/title_activity_application_description" >
         </activity>
         <activity
-            android:name=".ListApplicant"
-            android:label="@string/title_activity_list_applicant" >
+            android:name=".ManageSession"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_ENABLED"
+                android:value="true"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
