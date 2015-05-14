@@ -34,7 +34,7 @@ public class Registration extends Activity {
     public final static String INFO_COMPANYADDRESS = "com.example.ricardogarcia.politojobs.COMPANYADDRESS";
     public final static String INFO_COMPANYLOCATION = "com.example.ricardogarcia.politojobs.COMPANYLOCATION";
 
-
+    public final static String CURRENTAB = "com.example.ricardogarcia.politojobs.CURRENTAB";
 
     private EditText studentName;
     private EditText studentPassword;
@@ -45,6 +45,10 @@ public class Registration extends Activity {
     private EditText address;
     private Spinner location;
     private ArrayAdapter<String> adapterLocation;
+
+    private TabHost tabHost;
+    private String defaultTab = null;
+    private int defaultTabIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,7 +61,8 @@ public class Registration extends Activity {
         adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         location.setAdapter(adapterLocation);
 
-        final TabHost tabHost= (TabHost) findViewById(R.id.mainTabbHost);
+        //final TabHost tabHost= (TabHost) findViewById(R.id.mainTabbHost);
+        tabHost= (TabHost) findViewById(R.id.mainTabbHost);
         tabHost.setup();
 
         createTabs(tabHost);
@@ -99,7 +104,7 @@ public class Registration extends Activity {
             data[0] = studentName.getText().toString();
             data[1] = surname.getText().toString();
 
-            registerUser("Student", studentName.getText().toString()+surname.getText().toString(), studentPassword.getText().toString(), data);
+            registerUser("Student", studentName.getText().toString().toLowerCase()+surname.getText().toString().toLowerCase(), studentPassword.getText().toString(), data);
         }
     }
 
@@ -289,5 +294,40 @@ public class Registration extends Activity {
             }
         });
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+
+        String currentTabTag = tabHost.getCurrentTabTag();
+        if (currentTabTag != null) {
+            savedInstanceState.putString(CURRENTAB, currentTabTag);
+        }
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ensureTabHost();
+        String cur = savedInstanceState.getString(CURRENTAB);
+        if (cur != null) {
+            tabHost.setCurrentTabByTag(cur);
+        }
+        if (tabHost.getCurrentTab() < 0) {
+            if (defaultTab != null) {
+                tabHost.setCurrentTabByTag(defaultTab);
+            } else if (defaultTabIndex >= 0) {
+                tabHost.setCurrentTab(defaultTabIndex);
+            }
+        }
+    }
+
+    private void ensureTabHost() {
+        if (tabHost == null) {
+            this.setContentView(R.layout.activity_registration);
+        }
+    }
+
 
 }

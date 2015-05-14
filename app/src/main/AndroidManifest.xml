@@ -132,10 +132,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ApplicantDescription"
-            android:label="@string/title_activity_applicant_description" >
-        </activity>
     </application>
 
 </manifest>
