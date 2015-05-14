@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -24,21 +26,36 @@ import com.parse.SignUpCallback;
 
 public class Registration extends Activity {
 
+    public final static String INFO_STUDENTNAME = "com.example.ricardogarcia.politojobs.STUDENTNAME";
+    public final static String INFO_STUDENTPASSWORD = "com.example.ricardogarcia.politojobs.STUDENTPASSWORD";
+    public final static String INFO_STUDENTSURNAME = "com.example.ricardogarcia.politojobs.STUDENTSURNAME";
+    public final static String INFO_COMPANYNAME = "com.example.ricardogarcia.politojobs.COMPANYNAME";
+    public final static String INFO_COMPANYPASSWORD = "com.example.ricardogarcia.politojobs.COMPANYPASSWORD";
+    public final static String INFO_COMPANYADDRESS = "com.example.ricardogarcia.politojobs.COMPANYADDRESS";
+    public final static String INFO_COMPANYLOCATION = "com.example.ricardogarcia.politojobs.COMPANYLOCATION";
+
+
+
     private EditText studentName;
     private EditText studentPassword;
     private EditText surname;
-    private EditText studentID;
 
     private EditText companyName;
     private EditText companyPassword;
     private EditText address;
-    private EditText location;
+    private Spinner location;
+    private ArrayAdapter<String> adapterLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
+        adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
+        adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        location.setAdapter(adapterLocation);
 
         final TabHost tabHost= (TabHost) findViewById(R.id.mainTabbHost);
         tabHost.setup();
@@ -52,12 +69,11 @@ public class Registration extends Activity {
         studentName = (EditText) findViewById(R.id.studentNameTxt);
         studentPassword = (EditText) findViewById(R.id.studentPasswordTxt);
         surname = (EditText) findViewById(R.id.studentSrnameTxt);
-        studentID = (EditText) findViewById(R.id.studentIDTxt);
 
         companyName = (EditText) findViewById(R.id.companyNameTxt);
         companyPassword = (EditText) findViewById(R.id.companyPasswordTxt);
         address = (EditText) findViewById(R.id.companyAddressTxt);
-        location = (EditText) findViewById(R.id.companyLocationTxt);
+        location=(Spinner) findViewById(R.id.spinnerLocation);
     }
 
     public void onRegisterCompanyClick(View v)
@@ -67,7 +83,7 @@ public class Registration extends Activity {
         // Check for input data validation error, display the error
         //false used as a flag to say company
         if (validateRegisterInput(false)) {
-            data[0] = location.getText().toString();
+            data[0] = location.getSelectedItem().toString();
             data[1] = address.getText().toString();
             registerUser("Company",companyName.getText().toString(),companyPassword.getText().toString(),data);
         }
@@ -93,63 +109,40 @@ public class Registration extends Activity {
         // Validate the sign up data
         boolean validationError = false;
         StringBuilder validationErrorMessage =
-                new StringBuilder(getResources().getString(R.string.error_intro));
+                new StringBuilder(getResources().getString(R.string.error_intro)+"\n");
         if(type)
         {
             if (isEmpty(studentName)) {
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_name));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_name)+"\n");
             }
             if (isEmpty(surname)) {
-                if (validationError) {
-                    validationErrorMessage.append(getResources().getString(R.string.error_join));
-                }
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_surname));
-            }
-            if (isEmpty(studentID)) {
-                if (validationError) {
-                    validationErrorMessage.append(getResources().getString(R.string.error_join));
-                }
-                validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_studentID));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_surname)+"\n");
             }
             if (isEmpty(studentPassword)) {
-                if (validationError) {
-                    validationErrorMessage.append(getResources().getString(R.string.error_join));
-                }
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_password));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_password)+"\n");
             }
         }
         else {
             if (isEmpty(companyName)) {
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_name));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_name)+"\n");
             }
             if (isEmpty(address)) {
-                if (validationError) {
-                    validationErrorMessage.append(getResources().getString(R.string.error_join));
-                }
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_address));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_address)+"\n");
             }
-            if (isEmpty(location)) {
-                if (validationError) {
-                    validationErrorMessage.append(getResources().getString(R.string.error_join));
-                }
+            if (location.getSelectedItem().toString().equals("-")) {
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_location));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_location)+"\n");
             }
             if (isEmpty(companyPassword)) {
-                if (validationError) {
-                    validationErrorMessage.append(getResources().getString(R.string.error_join));
-                }
                 validationError = true;
-                validationErrorMessage.append(getResources().getString(R.string.error_blank_password));
+                validationErrorMessage.append(getResources().getString(R.string.error_blank_password)+"\n");
             }
         }
-        validationErrorMessage.append(getResources().getString(R.string.error_end));
 
         // If there is a validation error, display the error
         if (validationError) {
@@ -223,15 +216,15 @@ public class Registration extends Activity {
         // String id =  getObjectID(username,password);
         if(type.equals("Student"))
         {
-            registerStudent.put("Name",data[0]);//data[0] name of student"
-            registerStudent.put("Surname", data[1]);//data[1] surname of student"
+            registerStudent.put("Name",data[0].toLowerCase());//data[0] name of student"
+            registerStudent.put("Surname", data[1].toLowerCase());//data[1] surname of student"
             user.put("TypeUser","Student");
         }
         else
         {
-            registerCompany.put("Name",username);
-            registerCompany.put("Location",data[0]);//data[0] is Company Location
-            registerCompany.put("Address", data[1]);//data[1] is address of company
+            registerCompany.put("Name",username.toLowerCase());
+            registerCompany.put("Location",data[0].toLowerCase());//data[0] is Company Location
+            registerCompany.put("Address", data[1].toLowerCase());//data[1] is address of company
             user.put("TypeUser","Company");
         }
 
@@ -296,4 +289,5 @@ public class Registration extends Activity {
             }
         });
     }
+
 }

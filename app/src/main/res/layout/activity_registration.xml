@@ -142,30 +142,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top">
-                            <TextView android:text="@string/studentID"
-                                android:id="@+id/studentIDLbl"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:gravity="start"
-                                android:paddingLeft="@dimen/padding_left"
-                                android:layout_weight="1"
-                                android:textColor="@color/material_blue_grey_800"
-                                android:textSize="@dimen/text_size"/>
-                            <EditText
-                                android:id="@+id/studentIDTxt"
-                                android:inputType="text"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:layout_weight="1"
-                                android:textSize="@dimen/text_size"
-                                android:background="@color/background_text"/>
-                        </TableRow>
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_top">
                             <TextView android:text="@string/password"
                                 android:id="@+id/studentPasswordLbl"
                                 android:layout_width="0dp"
@@ -303,15 +279,14 @@
                                 android:layout_weight="1"
                                 android:textColor="@color/material_blue_grey_800"
                                 android:textSize="@dimen/text_size"/>
-                            <EditText
-                                android:id="@+id/companyLocationTxt"
-                                android:inputType="text"
+                            <Spinner
+                                android:id="@+id/spinnerLocation"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:layout_weight="1"
-                                android:textSize="@dimen/text_size"
-                                android:background="@color/background_text"/>
+                                android:background="@color/background_text"
+                                android:textSize="@dimen/text_size" />
                         </TableRow>
                         <TableRow
                             android:layout_width="match_parent"

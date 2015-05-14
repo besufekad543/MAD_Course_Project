@@ -2,7 +2,8 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="*">
+    android:stretchColumns="*"
+    android:paddingTop="@dimen/margin_top">
 
     <TableRow>
 
@@ -21,9 +22,9 @@
             android:id="@+id/editButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/background_color"
             android:gravity="center"
             android:onClick=""
             android:text="@string/edit_button"
@@ -49,9 +50,9 @@
             android:id="@+id/removeButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/background_color"
             android:gravity="center"
             android:onClick=""
             android:text="@string/remove_button"

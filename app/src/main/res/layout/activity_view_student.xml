@@ -159,7 +159,7 @@
                 android:onClick="sendMessage"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:textStyle="bold"
                 />
             <Button
@@ -173,7 +173,7 @@
                 android:onClick="saveStudent"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:textStyle="bold"
                 />
             <Button
@@ -187,7 +187,7 @@
                 android:onClick="backToResults"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:textStyle="bold"
                 />
         </RelativeLayout>

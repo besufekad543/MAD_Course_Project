@@ -107,7 +107,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:text="@string/backinbox_button"
                 android:textColor="#ffffffff"
                 android:textStyle="bold"

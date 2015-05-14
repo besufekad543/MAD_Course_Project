@@ -77,8 +77,9 @@ public class StudentAdapter extends BaseAdapter {
                 vholder = (ViewHolder) v.getTag();
             }
 
-            if (listStudents.get(position).getName() != null)
-                vholder.textName.setText(listStudents.get(position).getName().substring(0, 1).toUpperCase() + listStudents.get(position).getName().substring(1));
+            if (listStudents.get(position).getName() != null && listStudents.get(position).getSurname()!=null)
+                vholder.textName.setText(listStudents.get(position).getName().substring(0, 1).toUpperCase() + listStudents.get(position).getName().substring(1).toLowerCase()+
+                " "+listStudents.get(position).getSurname().substring(0,1).toUpperCase()+listStudents.get(position).getSurname().substring(1).toLowerCase());
 
             if (listStudents.get(position).getDescription() != null)
                 vholder.textDescription.setText(listStudents.get(position).getDescription().substring(0, 1) + listStudents.get(position).getDescription().substring(1));

@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/button_height"
                         android:onClick="goSavedCompanies"
-                        android:background="@drawable/rounded_button"
+                        android:background="@drawable/background_color"
                         android:text="@string/savedcompanies_button"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
@@ -194,7 +194,7 @@
                 android:layout_below="@+id/table"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_top_title"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:text="@string/search_button"
                 android:onClick="searchCompanies"
                 android:textColor="@color/white"
@@ -222,7 +222,8 @@
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goHome"/>
 
         <Button
             android:layout_width="match_parent"
@@ -234,6 +235,7 @@
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 </RelativeLayout>

@@ -36,8 +36,6 @@ public class CompanySearchResults extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_search_results);
 
-        Parse.initialize(CompanySearchResults.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
-
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
@@ -252,7 +250,7 @@ public class CompanySearchResults extends ActionBarActivity {
 
             Button newSearchButton = new Button(CompanySearchResults.this);
 
-            Drawable background = getResources().getDrawable(R.drawable.rounded_button);
+            Drawable background = getResources().getDrawable(R.drawable.background_color);
 
             if (android.os.Build.VERSION.SDK_INT >= 16)
                 newSearchButton.setBackground(background);

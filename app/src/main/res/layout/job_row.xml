@@ -5,7 +5,8 @@
     android:id="@+id/table"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="*">
+    android:stretchColumns="*"
+    android:paddingTop="@dimen/margin_top">
 
     <TableRow>
 
@@ -26,7 +27,7 @@
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/background_color"
             android:text="@string/view_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
@@ -68,7 +69,7 @@
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/background_color"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />

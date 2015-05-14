@@ -41,9 +41,6 @@ public class JobSearchResults extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_search_results);
 
-        Parse.initialize(JobSearchResults.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
-
-
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         new RetrieveFromDatabase().execute((HashMap<String, String>) b.getSerializable(JobSearch.INFO_HASH));
@@ -411,7 +408,7 @@ public class JobSearchResults extends ActionBarActivity {
 
             Button newSearchButton = new Button(JobSearchResults.this);
 
-            Drawable background = getResources().getDrawable(R.drawable.rounded_button);
+            Drawable background = getResources().getDrawable(R.drawable.background_color);
 
             if (android.os.Build.VERSION.SDK_INT >= 16)
                 newSearchButton.setBackground(background);

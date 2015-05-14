@@ -79,7 +79,7 @@
             android:layout_height="@dimen/button_height"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/background_color"
             android:text="@string/new_search_button"
             android:onClick="newSearch"
             android:textColor="@color/white"
