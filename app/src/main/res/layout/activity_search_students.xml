@@ -217,7 +217,6 @@
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:inputType="text"
                         android:textSize="@dimen/text_size" />
                 </TableRow>
 
@@ -299,7 +298,6 @@
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:inputType="text"
                         android:textSize="@dimen/text_size" />
                 </TableRow>
 

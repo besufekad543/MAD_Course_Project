@@ -3,6 +3,7 @@ package com.example.ricardogarcia.politojobs;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -97,11 +99,11 @@ public class SearchStudents extends ActionBarActivity {
         filters.put(INFO_SEARCHTYPE,"Search");
 
 
-        if(!name.getText().toString().equals("-")) {
-            filters.put(NAME,name.getText().toString());
+        if(!name.getText().toString().equals("")) {
+            filters.put(NAME,name.getText().toString().toLowerCase());
         }
-        if(!surname.getText().toString().equals("-")) {
-            filters.put(SURNAME,surname.getText().toString());
+        if(!surname.getText().toString().equals("")) {
+            filters.put(SURNAME,surname.getText().toString().toLowerCase());
         }
         if(!location.getSelectedItem().toString().equals("-")) {
             filters.put(LOCATION,location.getSelectedItem().toString());
@@ -109,8 +111,8 @@ public class SearchStudents extends ActionBarActivity {
         if(!industry.getSelectedItem().toString().equals("-")) {
             filters.put(INDUSTRY, industry.getSelectedItem().toString());
         }
-        if(!techSkills.getText().toString().equals("-")) {
-            filters.put(TECHSKILLS,techSkills.getText().toString());
+        if(!techSkills.getText().toString().equals("")) {
+            filters.put(TECHSKILLS,techSkills.getText().toString().toLowerCase());
         }
         if(!experience.getSelectedItem().toString().equals("-")) {
             filters.put(EXPERIENCE, experience.getSelectedItem().toString());
@@ -118,38 +120,47 @@ public class SearchStudents extends ActionBarActivity {
         if(!degree.getSelectedItem().toString().equals("-")) {
             filters.put(DEGREE, degree.getSelectedItem().toString());
         }
-        if(!interests.getText().toString().equals("-")) {
-            filters.put(INTERESTS,interests.getText().toString());
+        if(!interests.getText().toString().equals("")) {
+            filters.put(INTERESTS,interests.getText().toString().toLowerCase());
         }
 
         List<String> list_languages=new ArrayList<String>();
-        if(check_english.isSelected()) {
+        if(check_english.isChecked()) {
             list_languages.add("English");
         }
-        if(check_french.isSelected()) {
+        if(check_french.isChecked()) {
             list_languages.add("French");
         }
-        if(check_german.isSelected()) {
+        if(check_german.isChecked()) {
             list_languages.add("German");
         }
-        if(check_italian.isSelected()) {
+        if(check_italian.isChecked()) {
             list_languages.add("Italian");
         }
-        if(check_mandarin.isSelected()) {
+        if(check_mandarin.isChecked()) {
             list_languages.add("Mandarin");
         }
-        if(check_portuguese.isSelected()) {
+        if(check_portuguese.isChecked()) {
             list_languages.add("Portuguese");
         }
-        if(check_spanish.isSelected()) {
+        if(check_spanish.isChecked()) {
             list_languages.add("Spanish");
         }
 
         if(list_languages.size()>0){
-            filters.put(LANGUAGES,list_languages.toString());
+            String langs="";
+            for(int i=0;i<list_languages.size();i++){
+                langs+=list_languages.get(i);
+                if(i<list_languages.size()-1){
+                    langs+=",";
+                }
+            }
+            filters.put(LANGUAGES,langs);
         }
 
-        if(check.isSelected()) {
+
+
+        if(check.isChecked()) {
             filters.put(CHECK, "TRUE");
         }
 
@@ -220,35 +231,35 @@ public class SearchStudents extends ActionBarActivity {
         }
         savedInstanceState.putString(INTERESTS, interests.getText().toString());
 
-        if(check_english.isSelected()) {
+        if(check_english.isChecked()) {
             savedInstanceState.putString(CHECK_ENGLISH, "TRUE");
         }
 
-        if(check_french.isSelected()) {
+        if(check_french.isChecked()) {
             savedInstanceState.putString(CHECK_FRENCH, "TRUE");
         }
 
-        if(check_german.isSelected()) {
+        if(check_german.isChecked()) {
             savedInstanceState.putString(CHECK_GERMAN, "TRUE");
         }
 
-        if(check_italian.isSelected()) {
+        if(check_italian.isChecked()) {
             savedInstanceState.putString(CHECK_ITALIAN, "TRUE");
         }
 
-        if(check_mandarin.isSelected()) {
+        if(check_mandarin.isChecked()) {
             savedInstanceState.putString(CHECK_MANDARIN, "TRUE");
         }
 
-        if(check_portuguese.isSelected()) {
+        if(check_portuguese.isChecked()) {
             savedInstanceState.putString(CHECK_PORTUGUESE, "TRUE");
         }
 
-        if(check_spanish.isSelected()) {
+        if(check_spanish.isChecked()) {
             savedInstanceState.putString(CHECK_SPANISH, "TRUE");
         }
 
-        if(check.isSelected()) {
+        if(check.isChecked()) {
             savedInstanceState.putString(CHECK, "TRUE");
         }
 

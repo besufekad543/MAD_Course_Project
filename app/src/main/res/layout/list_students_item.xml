@@ -15,14 +15,13 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/name"
             android:textSize="@dimen/text_size" />
 
         <Button
             android:id="@+id/viewButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
             android:background="@drawable/rounded_button"
             android:onClick=""
@@ -42,7 +41,6 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/industry"
             android:textSize="@dimen/text_size" />
     </TableRow>
 
@@ -56,18 +54,15 @@
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/description"
             android:textSize="@dimen/text_size" />
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/saveDeleteButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_small"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
             android:background="@drawable/rounded_button"
-            android:onClick=""
-            android:text="@string/save_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />

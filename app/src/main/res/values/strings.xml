@@ -192,8 +192,8 @@
     <string-array name="arrayExperience">
         <item>-</item>
         <item>No experience</item>
-        <item>Less than 1 year</item>
-        <item>1 year - 3 years</item>
+        <item>1 year</item>
+        <item>2 years</item>
         <item>More than 3 years</item>
     </string-array>
 
