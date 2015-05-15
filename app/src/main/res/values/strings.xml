@@ -30,7 +30,7 @@
     <string name="salary">Salary</string>
     <string name="job_type">Type of Job</string>
     <string name="job_duration">Duration</string>
-    <string name="apply_button">Apply Now</string>
+    <string name="apply_button">APPLY NOW</string>
     <string name="save_job_button">Save Job</string>
     <string name="remove_job_button">Remove Job</string>
     <string name="student_surname">Surname</string>
@@ -49,7 +49,7 @@
     <string name="save_student_button">Save Student</string>
     <string name="remove_student_button">Remove Student</string>
     <string name="title_activity_search_students">Search Filter</string>
-    <string name="search_button">Search</string>
+    <string name="search_button">SEARCH</string>
     <string name="foreign_language">Foreign language</string>
     <string name="search_text">Search Students</string>
     <string name="show_only">Show only available students</string>
@@ -58,21 +58,21 @@
     <string name="new_search_button">New Search</string>
     <string name="view_button">View</string>
     <string name="save_button">Save</string>
-    <string name="edit_button">Edit</string>
+    <string name="edit_button">EDIT</string>
     <string name="remove_button">Remove</string>
-    <string name="cancel_button">Cancel</string>
-    <string name="update_button">Update</string>
+    <string name="cancel_button">CANCEL</string>
+    <string name="update_button">UPDATE</string>
     <string name="delete_button">Delete</string>
     <string name="title_activity_list_jobs">List Job Offers</string>
     <string name="job_offers">Job Offers of Company</string>
-    <string name="publish_offer">Publish new offer</string>
-    <string name="publish_button">Publish</string>
+    <string name="publish_offer">PUBLISH NEW OFFER</string>
+    <string name="publish_button">PUBLISH</string>
     <string name="title_activity_publish_offer">Publish Job Offer</string>
     <string name="new_job">New Job Offer</string>
     <string name="title_activity_update_offer">Update Job Offer</string>
     <string name="title_activity_profile_student">Students Profile</string>
     <string name="title_activity_profile_company">Profile Company</string>
-    <string name="profile">Profile</string>
+    <string name="profile">PROFILE</string>
     <string name="title_activity_log_in">Log In</string>
     <string name="login">Log In</string>
     <string name="username">Username</string>
@@ -265,6 +265,7 @@
 
 
 
+    <string name="error_intro">"Please "</string>
     <string name="error_invalid_Jobposition">Invalid Job Position</string>
     <string name="error_invalid_location">Invalid Location</string>
     <string name="error_invalid_Description">Invalid Description</string>
@@ -288,19 +289,5 @@
     <string name="error_invalid_Website">Invalid Website</string>
     <string name="error_invalid_Companysize">Invalid Companysize</string>
     <string name="error_invalid_Clients">Invalid Clients</string>
-
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="error_intro">Missing fields:</string>
-    <string name="error_blank_username">Enter a username</string>
-    <string name="error_blank_password">Enter a password</string>
-    <string name="error_blank_name">Enter a name</string>
-    <string name="error_blank_surname">Enter a surname</string>
-    <string name="error_blank_address">Enter an address</string>
-    <string name="error_blank_location">Enter a location</string>
-    <string name="error_mismatched_passwords">Enter the same password twice</string>
-    <string name="error_join">", and "</string>
-    <string name="error_end">.</string>
 
 </resources>
