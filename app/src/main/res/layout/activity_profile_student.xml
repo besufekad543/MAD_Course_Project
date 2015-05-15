@@ -79,7 +79,7 @@
                         android:layout_weight="1.0"
                         android:background="@drawable/background_color"
                         android:gravity="center"
-                        android:onClick="editProfile"
+                        android:onClick=""
                         android:text="@string/edit_button"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
@@ -166,8 +166,7 @@
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:textSize="@dimen/text_size"
-                     />
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
 
                 <TableRow
@@ -222,8 +221,7 @@
                         android:layout_weight="1"
                         android:background="@color/background_text"
                         android:inputType="date"
-                        android:textSize="@dimen/text_size"
-                        android:hint="@string/dateFormat"/>
+                        android:textSize="@dimen/text_size" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
@@ -495,15 +493,15 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
-                    <Spinner
-                        android:id="@+id/spinnerCurrentCompany"
+                    <EditText
+                        android:id="@+id/textCompany"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
+                        android:inputType="text"
                         android:textSize="@dimen/text_size" />
-
                 </TableRow>
             </TableLayout>
 
@@ -516,7 +514,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top"
                 android:background="@drawable/background_color"
-                android:onClick="saveProfile"
+                android:onClick=""
                 android:text="@string/save_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
