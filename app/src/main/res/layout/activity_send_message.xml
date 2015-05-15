@@ -130,7 +130,7 @@
                 android:layout_below="@+id/textMessage"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="@dimen/margin_top_title"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:onClick="sendMessage"
                 android:text="@string/send_button"
                 android:textColor="@color/white"

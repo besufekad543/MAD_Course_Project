@@ -34,9 +34,7 @@ public class PublishOffer extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish_offer);
-        //Parse.enableLocalDatastore(this);
 
-        //Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
 
         JobView = (EditText) findViewById(R.id.textJob);
 
@@ -70,112 +68,7 @@ public class PublishOffer extends ActionBarActivity {
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         TypeOfContractView.setAdapter(adapter3);
 
-        // Set up the publish button click handler
-        findViewById(R.id.publishButton).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
 
-                final String position = JobView.getText().toString();
-                final String location = LocationView.getSelectedItem().toString();
-                final String description = DescriptionView.getText().toString();
-                String salary1 = SalaryView.getText().toString();
-                final Integer salary = Integer.parseInt(salary1);
-                final String typejob = TypeJobView.getSelectedItem().toString();
-                final Integer duration = Integer.parseInt(DurationView.getText().toString());
-                final String industry = IndustryView.getSelectedItem().toString();
-                final String typeofcontract = TypeOfContractView.getSelectedItem().toString();
-
-                // Validate the sign up data
-                boolean validationError = false;
-                StringBuilder validationErrorMessage = new StringBuilder(getResources().getString(R.string.error_intro));
-                if (isEmpty(JobView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_Jobposition));
-                }
-                if (isEmpty(LocationView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_location));
-                }
-                if (isEmpty(DescriptionView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_Description));
-                }
-                if (isEmpty(SalaryView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_Salary));
-                }
-                if (isEmpty(TypeJobView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_typeofjob));
-                }
-                if (isEmpty(DurationView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_duration));
-                }
-
-                if (isEmpty(IndustryView)) {
-                    validationError = true;
-                    validationErrorMessage.append(getResources().getString(R.string.error_invalid_duration));
-                }
-                validationErrorMessage.append(getResources().getString(R.string.error_end));
-
-                // If there is a validation error, display the error
-                if (validationError) {
-                    Toast.makeText(PublishOffer.this, validationErrorMessage.toString(), Toast.LENGTH_LONG)
-                            .show();
-                    return;
-                }
-
-                // Set up a progress dialog
-                final ProgressDialog dlg = new ProgressDialog(PublishOffer.this);
-                dlg.setTitle("Please wait.");
-                dlg.setMessage("Publishing Job.  Please wait.");
-                dlg.show();
-
-                //save the data to parse.com
-
-                ParseObject jobOffer = new ParseObject("JobOffer");
-
-                jobOffer.put("Position", position);
-                jobOffer.put("Location", location);
-                jobOffer.put("Description", description);
-                jobOffer.put("Salary", salary);
-                jobOffer.put("JobType", typejob);
-                jobOffer.put("CompanyId", ParseUser.getCurrentUser());
-                jobOffer.put("Duration", duration);
-                jobOffer.put("Industry", industry);
-                jobOffer.put("ContractType", typeofcontract);
-
-                jobOffer.saveInBackground(new SaveCallback() {
-
-                    @Override
-                    public void done(ParseException e) {
-                        dlg.dismiss();
-
-                        if (e != null) {
-
-                            Log.e("PARSE.COM", "FAILED" + e.getMessage());
-
-                        } else {
-                            Log.e("PARSE.COM", "SUCCESS");
-                        }
-                    }
-                });
-
-            }
-
-        });
-        findViewById(R.id.cancelButton).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                JobView.setText("");
-                LocationView.setSelection(0);
-                DescriptionView.setText("");
-                SalaryView.setText("");
-                TypeJobView.setSelection(0);
-                DurationView.setText("");
-                IndustryView.setSelection(0);
-                TypeOfContractView.setSelection(0);
-            }
-        });
     }
     private boolean isEmpty(EditText etText) {
         if (etText.getText().toString().trim().length() > 0) {
@@ -184,13 +77,7 @@ public class PublishOffer extends ActionBarActivity {
             return true;
         }
     }
-    private boolean isEmpty(Spinner seltext) {
-        if (seltext.getSelectedItem().toString().trim().length() > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -237,5 +124,111 @@ public class PublishOffer extends ActionBarActivity {
             Intent intent = new Intent(this, ProfileCompany.class);
             startActivity(intent);
         }
+    }
+
+
+    public void publishOffer(View view){
+
+        final String position = JobView.getText().toString();
+        final String location = LocationView.getSelectedItem().toString();
+        final String description = DescriptionView.getText().toString();
+        String salary1 = SalaryView.getText().toString();
+        final Integer salary = Integer.parseInt(salary1);
+        final String typejob = TypeJobView.getSelectedItem().toString();
+        final Integer duration = Integer.parseInt(DurationView.getText().toString());
+        final String industry = IndustryView.getSelectedItem().toString();
+        final String typeofcontract = TypeOfContractView.getSelectedItem().toString();
+
+        // Validate the sign up data
+        boolean validationError = false;
+        StringBuilder validationErrorMessage = new StringBuilder(getResources().getString(R.string.error_intro));
+        if (isEmpty(JobView)) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_Jobposition));
+        }
+        if (LocationView.getSelectedItem().toString().equals("-")) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_location));
+        }
+        if (isEmpty(DescriptionView)) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_Description));
+        }
+        if (isEmpty(SalaryView)) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_Salary));
+        }
+        if (TypeJobView.getSelectedItem().toString().equals("-")) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_typeofjob));
+        }
+        if (isEmpty(DurationView)) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_duration));
+        }
+
+        if (IndustryView.getSelectedItem().toString().equals("-")) {
+            validationError = true;
+            validationErrorMessage.append(getResources().getString(R.string.error_invalid_duration));
+        }
+        validationErrorMessage.append(getResources().getString(R.string.error_end));
+
+        // If there is a validation error, display the error
+        if (validationError) {
+            Toast.makeText(PublishOffer.this, validationErrorMessage.toString(), Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+
+        // Set up a progress dialog
+        final ProgressDialog dlg = new ProgressDialog(PublishOffer.this);
+        dlg.setTitle("Please wait.");
+        dlg.setMessage("Publishing Job.  Please wait.");
+        dlg.show();
+
+        //save the data to parse.com
+
+        ParseObject jobOffer = new ParseObject("JobOffer");
+
+        jobOffer.put("Position", position);
+        jobOffer.put("Location", location);
+        jobOffer.put("Description", description);
+        jobOffer.put("Salary", salary);
+        jobOffer.put("JobType", typejob);
+        jobOffer.put("CompanyId", ParseUser.getCurrentUser());
+        jobOffer.put("Duration", duration);
+        jobOffer.put("Industry", industry);
+        jobOffer.put("ContractType", typeofcontract);
+
+        jobOffer.saveInBackground(new SaveCallback() {
+
+            @Override
+            public void done(ParseException e) {
+                dlg.dismiss();
+
+                if (e != null) {
+
+                    Log.e("PARSE.COM", "FAILED" + e.getMessage());
+
+                } else {
+                    Log.e("PARSE.COM", "SUCCESS");
+                }
+            }
+        });
+
+    }
+
+    public void cancel(View view){
+
+        JobView.setText("");
+        LocationView.setSelection(0);
+        DescriptionView.setText("");
+        SalaryView.setText("");
+        TypeJobView.setSelection(0);
+        DurationView.setText("");
+        IndustryView.setSelection(0);
+        TypeOfContractView.setSelection(0);
+        finish();
+
     }
 }

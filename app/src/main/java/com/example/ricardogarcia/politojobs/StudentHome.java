@@ -41,10 +41,20 @@ public class StudentHome extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void logoutCurrentUser()
+
+    public void searchCompanies(View v)
     {
-        ParseUser.logOut();
-        startActivity(new Intent(this,ManageSession.class));
+        startActivity(new Intent(this,CompanySearch.class));
+    }
+
+    public void searchJobOffers(View v)
+    {
+        startActivity(new Intent(this, JobSearch.class));
+    }
+
+    public void viewMessages(View v)
+    {
+        startActivity(new Intent(this, Inbox.class));
     }
 
     public void viewApplications(View view){
@@ -52,24 +62,38 @@ public class StudentHome extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void onSearchCompaniesClick(View v)
+    public void logOut(View v)
     {
-        startActivity(new Intent(this,CompanySearch.class));
+        ParseUser.logOut();
+        startActivity(new Intent(this,ManageSession.class));
     }
 
-    public void onSearchJobOffersClick(View v)
-    {
-        startActivity(new Intent(this, JobSearch.class));
+    public void goHome(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, StudentHome.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, CompanyHome.class);
+            startActivity(intent);
+        }
     }
 
-    public void onViewMessageClick(View v)
-    {
-        startActivity(new Intent(this, Message.class));
+    public void goProfile(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, ProfileStudent.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, ProfileCompany.class);
+            startActivity(intent);
+        }
     }
 
-    public void onStudentLogoutClick(View v)
-    {
-        logoutCurrentUser();
-    }
+
 
 }

@@ -65,8 +65,6 @@ public class ResultStudents extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_students);
 
-        Parse.initialize(ResultStudents.this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
-
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         new RetrieveFromDatabase().execute((HashMap<String, String>) b.getSerializable(SearchStudents.HASHMAP));
@@ -129,7 +127,7 @@ public class ResultStudents extends ActionBarActivity {
                 }
 
                 //Surname filter
-                if(search_data.containsKey(SearchStudents.NAME)){
+                if(search_data.containsKey(SearchStudents.SURNAME)){
                     searchStudentQuery.whereContains("Surname",search_data.get(SearchStudents.SURNAME));
                 }
 
@@ -208,10 +206,10 @@ public class ResultStudents extends ActionBarActivity {
                                 Student student= new Student();
                                 student.setId(parseStudent.getObjectId());
                                 if(parseStudent.get("Name")!=null){
-                                    student.setName(parseStudent.getString("Name"));
+                                    student.setName(parseStudent.getString("Name").toUpperCase());
                                 }
                                 if(parseStudent.get("Surname")!=null){
-                                    student.setSurname(parseStudent.getString("Username"));
+                                    student.setSurname(parseStudent.getString("Surname").toUpperCase());
                                 }
                                 if(parseStudent.get("Location")!=null){
                                     student.setLocation(parseStudent.getString("Location"));
@@ -254,16 +252,17 @@ public class ResultStudents extends ActionBarActivity {
                         }
 
                     if(!search_data.containsKey(SearchStudents.CHECK)){
+                        Log.d("Size", String.valueOf(results.size()));
                         for(ParseObject parseStudent:results){
                             ParseObject current_company=parseStudent.getParseObject("CurrentCompany");
                             if(current_company!=null){
                                 Student student= new Student();
                                 student.setId(parseStudent.getObjectId());
                                 if(parseStudent.get("Name")!=null){
-                                    student.setName(parseStudent.getString("Name"));
+                                    student.setName(parseStudent.getString("Name").toUpperCase());
                                 }
                                 if(parseStudent.get("Surname")!=null){
-                                    student.setSurname(parseStudent.getString("Username"));
+                                    student.setSurname(parseStudent.getString("Surname").toUpperCase());
                                 }
                                 if(parseStudent.get("Location")!=null){
                                     student.setLocation(parseStudent.getString("Location"));
@@ -322,6 +321,7 @@ public class ResultStudents extends ActionBarActivity {
                                 if (current_company.get("Clients") != null)
                                     company.setClients(current_company.get("Clients").toString());
 
+
                                 student.setCurrent_company(company);
                                 students.add(student);
                             }
@@ -374,7 +374,7 @@ public class ResultStudents extends ActionBarActivity {
                             student.setName(student_result.getString("Name"));
                         }
                         if(student_result.get("Surname")!=null){
-                            student.setSurname(student_result.getString("Username"));
+                            student.setSurname(student_result.getString("Surname"));
                         }
                         if(student_result.get("Location")!=null){
                             student.setLocation(student_result.getString("Location"));
@@ -465,7 +465,7 @@ public class ResultStudents extends ActionBarActivity {
 
             Button newSearchButton = new Button(ResultStudents.this);
 
-            Drawable background = getResources().getDrawable(R.drawable.rounded_button);
+            Drawable background = getResources().getDrawable(R.drawable.background_color);
 
             if (android.os.Build.VERSION.SDK_INT >= 16)
                 newSearchButton.setBackground(background);

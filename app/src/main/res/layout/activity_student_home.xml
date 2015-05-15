@@ -74,8 +74,9 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@drawable/rounded_button"
+                    android:background="@drawable/background_color"
                     android:text="@string/searchcompanies_button"
+                    android:onClick="searchCompanies"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
                     android:textStyle="bold" />
@@ -87,7 +88,8 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@drawable/rounded_button"
+                    android:background="@drawable/background_color"
+                    android:onClick="searchJobOffers"
                     android:text="@string/searchjobs_button"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
@@ -100,8 +102,9 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@drawable/rounded_button"
+                    android:background="@drawable/background_color"
                     android:text="@string/view_messages_button"
+                    android:onClick="viewMessages"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
                     android:textStyle="bold" />
@@ -112,7 +115,7 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@drawable/rounded_button"
+                    android:background="@drawable/background_color"
                     android:text="@string/myApplicationsButton"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
@@ -125,8 +128,9 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@drawable/rounded_button"
+                    android:background="@drawable/background_color"
                     android:text="@string/log_out_button"
+                    android:onClick="logOut"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size"
                     android:textStyle="bold" />
@@ -153,7 +157,8 @@
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goHome"/>
 
         <Button
             android:layout_width="match_parent"
@@ -165,7 +170,8 @@
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 
 </RelativeLayout>

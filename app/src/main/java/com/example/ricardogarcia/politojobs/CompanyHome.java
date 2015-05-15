@@ -57,38 +57,42 @@ public class CompanyHome extends ActionBarActivity {
 
     }
 
+    public void viewApplicants(View view){
+        Intent intent= new Intent(this,ListApplicant.class);
+        startActivity(intent);
+    }
+
     public void logOut(View view){
         ParseUser.logOut();
         Intent intent= new Intent(this,LogIn.class);
         startActivity(intent);
     }
 
-    public void viewApplicants(View view){
-        Intent intent= new Intent(this,ListApplicant.class);
-        startActivity(intent);
+    public void goHome(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, StudentHome.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, CompanyHome.class);
+            startActivity(intent);
+        }
     }
 
-    public void logoutCurrentUser()
-    {
-        ParseUser.logOut();
-        startActivity(new Intent(this, ManageSession.class));
+    public void goProfile(View view) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String typeUser = currentUser.getString("TypeUser");
+        if(typeUser.equals("Student")){
+            Intent intent = new Intent(this, ProfileStudent.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, ProfileCompany.class);
+            startActivity(intent);
+        }
     }
-
-    public void onSearchStudentsClick(View v)
-    {
-        startActivity(new Intent(this, SearchStudents.class));
-    }
-
-    public void onViewJobOffersClick(View v)
-    {
-        startActivity(new Intent(this,ViewJob.class));
-    }
-
-    public void onViewCompnayMessageClick(View v)
-    {
-        startActivity(new Intent(this,Message.class));
-    }
-
 
 
 

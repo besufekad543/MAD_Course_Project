@@ -159,14 +159,13 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
-                    <EditText
-                        android:id="@+id/textLocation"
+                    <Spinner
+                        android:id="@+id/spinnerLocation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:inputType="text"
                         android:textSize="@dimen/text_size" />
                 </TableRow>
 
@@ -529,7 +528,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"
-                android:onClick=""
+                android:layout_marginTop="@dimen/margin_top"
+                android:onClick="deleteProfile"
                 android:text="@string/delete_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -556,7 +556,8 @@
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goHome"/>
 
         <Button
             android:layout_width="match_parent"
@@ -568,6 +569,7 @@
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 </RelativeLayout>

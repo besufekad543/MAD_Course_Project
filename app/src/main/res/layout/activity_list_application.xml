@@ -67,7 +67,7 @@
         android:id="@+id/emptyView"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/height_header"
-        android:layout_below="@id/titleSearchResults"
+        android:layout_below="@id/titleApplications"
         android:layout_above="@id/bottomTab"
         android:orientation="vertical">
         <TextView
