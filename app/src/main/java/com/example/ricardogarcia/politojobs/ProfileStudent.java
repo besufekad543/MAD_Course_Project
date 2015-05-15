@@ -28,6 +28,28 @@ import java.util.List;
 
 public class ProfileStudent extends ActionBarActivity {
 
+    private static final String INFO_NAME = "com.example.ricardogarcia.politojobs.INFO_NAME";
+    private static final String INFO_SURNAME = "com.example.ricardogarcia.politojobs.INFO_SURNAME";
+    private static final String INFO_LOCATION = "com.example.ricardogarcia.politojobs.INFO_LOCATION";
+    private static final String INFO_INDUSTRY = "com.example.ricardogarcia.politojobs.INFO_INDUSTRY";
+    private static final String INFO_BIRTHDATE = "com.example.ricardogarcia.politojobs.INFO_BIRTHDATE";
+    private static final String INFO_BIRTHPLACE = "com.example.ricardogarcia.politojobs.INFO_BIRTHPLACE";
+    private static final String INFO_DESCRIPTION = "com.example.ricardogarcia.politojobs.INFO_DESCRIPTION";
+    private static final String INFO_TECHSKILLS = "com.example.ricardogarcia.politojobs.INFO_TECHSKILLS";
+    private static final String INFO_ENGLISH = "com.example.ricardogarcia.politojobs.INFO_ENGLISH";
+    private static final String INFO_FRENCH = "com.example.ricardogarcia.politojobs.INFO_FRENCH";
+    private static final String INFO_GERMAN = "com.example.ricardogarcia.politojobs.INFO_GERMAN";
+    private static final String INFO_ITALIAN = "com.example.ricardogarcia.politojobs.INFO_ITALIAN";
+    private static final String INFO_MANDARIN = "com.example.ricardogarcia.politojobs.INFO_MANDARIN";
+    private static final String INFO_PORTUGUESE = "com.example.ricardogarcia.politojobs.INFO_PORTUGUESE";
+    private static final String INFO_SPANISH = "com.example.ricardogarcia.politojobs.INFO_SPANISH";
+    private static final String INFO_INTERESTS = "com.example.ricardogarcia.politojobs.INFO_INTERESTS";
+    private static final String INFO_EXPERIENCE = "com.example.ricardogarcia.politojobs.INFO_EXPERIENCE";
+    private static final String INFO_DEGREE = "com.example.ricardogarcia.politojobs.INFO_DEGREE";
+    private static final String INFO_PHONE = "com.example.ricardogarcia.politojobs.INFO_PHONE";
+    private static final String INFO_CURRENT_COMPANY = "com.example.ricardogarcia.politojobs.INFO_CURRENT_COMPANY";
+
+
     private EditText NameView;
     private EditText SurnameView;
     private Spinner LocationView;
@@ -49,6 +71,11 @@ public class ProfileStudent extends ActionBarActivity {
     private EditText PhoneNumberView;
     private Spinner CurrentCompanyView;
 
+    private ArrayAdapter<String> adapterLocation;
+    private ArrayAdapter<String> adapterIndustry;
+    private ArrayAdapter<String> adapterDegree;
+    private ArrayAdapter<String> adapterCurrentCompany;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +84,13 @@ public class ProfileStudent extends ActionBarActivity {
         NameView = (EditText) findViewById(R.id.textName);
         SurnameView = (EditText) findViewById(R.id.textSurname);
         LocationView = (Spinner) findViewById(R.id.spinnerLocation);
-        ArrayAdapter<String> adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
+        adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
         adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationView.setAdapter(adapterLocation);
 
 
         IndustryView = (Spinner) findViewById(R.id.spinnerIndustry);
-        ArrayAdapter<String> adapterIndustry = new ArrayAdapter<String>(ProfileStudent.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
+        adapterIndustry = new ArrayAdapter<String>(ProfileStudent.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
         adapterIndustry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         IndustryView.setAdapter(adapterIndustry);
 
@@ -84,7 +111,7 @@ public class ProfileStudent extends ActionBarActivity {
         YearOfExpView = (EditText) findViewById(R.id.textExperience);
         TypeOfDegreeView = (Spinner) findViewById(R.id.spinnerDegree);
         String[] TypeOfDegree = getResources().getStringArray(R.array.arrayDegree);
-        ArrayAdapter<String> adapterDegree = new ArrayAdapter<String>(ProfileStudent.this, android.R.layout.simple_spinner_item, TypeOfDegree);
+        adapterDegree = new ArrayAdapter<String>(ProfileStudent.this, android.R.layout.simple_spinner_item, TypeOfDegree);
         adapterDegree.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         TypeOfDegreeView.setAdapter(adapterDegree);
 
@@ -104,7 +131,7 @@ public class ProfileStudent extends ActionBarActivity {
             e.printStackTrace();
         }
 
-        ArrayAdapter<String> adapterCurrentCompany = new ArrayAdapter<String>(ProfileStudent.this, android.R.layout.simple_spinner_item, displayCompanies);
+        adapterCurrentCompany = new ArrayAdapter<String>(ProfileStudent.this, android.R.layout.simple_spinner_item, displayCompanies);
         adapterCurrentCompany.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CurrentCompanyView.setAdapter(adapterCurrentCompany);
 
@@ -126,7 +153,7 @@ public class ProfileStudent extends ActionBarActivity {
             SurnameView.setFocusableInTouchMode(false);
             SurnameView.setClickable(false);
 
-            if (student.get("Location")==null) {
+            if (student.get("Location") == null) {
                 LocationView.setSelection(0);
             } else {
                 LocationView.setSelection(adapterLocation.getPosition(student.getString("Location")));
@@ -137,7 +164,7 @@ public class ProfileStudent extends ActionBarActivity {
             LocationView.setEnabled(false);
 
 
-            if (student.get("Industry")==null) {
+            if (student.get("Industry") == null) {
                 IndustryView.setSelection(0);
             } else {
                 IndustryView.setSelection(adapterIndustry.getPosition(student.getString("Industry")));
@@ -156,50 +183,50 @@ public class ProfileStudent extends ActionBarActivity {
             DateOfBirthView.setFocusableInTouchMode(false);
             DateOfBirthView.setClickable(false);
 
-            if(student.getString("Birthplace")!=null) {
+            if (student.getString("Birthplace") != null) {
                 PlaceOfBirthView.setText(student.getString("Birthplace"));
             }
             PlaceOfBirthView.setFocusable(false);
             PlaceOfBirthView.setFocusableInTouchMode(false);
             PlaceOfBirthView.setClickable(false);
 
-            if(student.getString("Description")!=null) {
+            if (student.getString("Description") != null) {
                 DescriptionView.setText(student.getString("Description"));
             }
             DescriptionView.setFocusable(false);
             DescriptionView.setFocusableInTouchMode(false);
             DescriptionView.setClickable(false);
 
-            if(student.get("TechnicalSkills")!=null) {
-                ArrayList<String> technical_skills= (ArrayList<String>) student.get("TechnicalSkills");
-                TechnicalSkillsView.setText(technical_skills.toString().substring(1,technical_skills.toString().length()-1));
+            if (student.get("TechnicalSkills") != null) {
+                ArrayList<String> technical_skills = (ArrayList<String>) student.get("TechnicalSkills");
+                TechnicalSkillsView.setText(technical_skills.toString().substring(1, technical_skills.toString().length() - 1));
             }
             TechnicalSkillsView.setFocusable(false);
             TechnicalSkillsView.setFocusableInTouchMode(false);
             TechnicalSkillsView.setClickable(false);
 
 
-            if(student.get("Languages")!=null){
-                ArrayList<String> languages = (ArrayList<String>)student.get("Languages");
-                if(languages.contains("English")){
+            if (student.get("Languages") != null) {
+                ArrayList<String> languages = (ArrayList<String>) student.get("Languages");
+                if (languages.contains("English")) {
                     language_eng.setChecked(true);
                 }
-                if(languages.contains("French")){
+                if (languages.contains("French")) {
                     language_fra.setChecked(true);
                 }
-                if(languages.contains("German")){
+                if (languages.contains("German")) {
                     language_ger.setChecked(true);
                 }
-                if(languages.contains("Italian")){
+                if (languages.contains("Italian")) {
                     language_ita.setChecked(true);
                 }
-                if(languages.contains("Mandarin")){
+                if (languages.contains("Mandarin")) {
                     language_man.setChecked(true);
                 }
-                if(languages.contains("Portuguese")){
+                if (languages.contains("Portuguese")) {
                     language_por.setChecked(true);
                 }
-                if(languages.contains("Spanish")){
+                if (languages.contains("Spanish")) {
                     language_spa.setChecked(true);
                 }
             }
@@ -214,23 +241,23 @@ public class ProfileStudent extends ActionBarActivity {
             language_spa.setClickable(false);
 
 
-            if(student.get("Interests")!=null) {
-                ArrayList<String> interests= (ArrayList<String>) student.get("Interests");
-                InterestsView.setText(interests.toString().substring(1,interests.toString().length()-1));
+            if (student.get("Interests") != null) {
+                ArrayList<String> interests = (ArrayList<String>) student.get("Interests");
+                InterestsView.setText(interests.toString().substring(1, interests.toString().length() - 1));
             }
             InterestsView.setFocusable(false);
             InterestsView.setFocusableInTouchMode(false);
             InterestsView.setClickable(false);
 
-            if(student.get("ExperienceYears")!=null) {
-                int yearExperience=student.getInt("ExperienceYears");
+            if (student.get("ExperienceYears") != null) {
+                int yearExperience = student.getInt("ExperienceYears");
                 YearOfExpView.setText(String.valueOf(yearExperience));
             }
             YearOfExpView.setFocusable(false);
             YearOfExpView.setFocusableInTouchMode(false);
             YearOfExpView.setClickable(false);
 
-            if (student.get("TypeOfDegree")==null) {
+            if (student.get("TypeOfDegree") == null) {
                 TypeOfDegreeView.setSelection(0);
             } else {
                 TypeOfDegreeView.setSelection(adapterDegree.getPosition(student.getString("TypeOfDegree")));
@@ -240,7 +267,7 @@ public class ProfileStudent extends ActionBarActivity {
             TypeOfDegreeView.setClickable(false);
             TypeOfDegreeView.setEnabled(false);
 
-            if(student.get("PhoneNumber")!=null) {
+            if (student.get("PhoneNumber") != null) {
                 PhoneNumberView.setText(student.getString("PhoneNumber"));
             }
             PhoneNumberView.setFocusable(false);
@@ -264,6 +291,153 @@ public class ProfileStudent extends ActionBarActivity {
             e.printStackTrace();
         }
 
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        NameView = (EditText) findViewById(R.id.textName);
+        SurnameView = (EditText) findViewById(R.id.textSurname);
+        LocationView = (Spinner) findViewById(R.id.spinnerLocation);
+        IndustryView = (Spinner) findViewById(R.id.spinnerIndustry);
+        DateOfBirthView = (EditText) findViewById(R.id.dateBirthText);
+        PlaceOfBirthView = (EditText) findViewById(R.id.placeBirthText);
+        DescriptionView = (EditText) findViewById(R.id.descriptionText);
+        TechnicalSkillsView = (EditText) findViewById(R.id.textTechSkills);
+        language_eng = ((CheckBox) findViewById(R.id.checkbox_english));
+        language_fra = ((CheckBox) findViewById(R.id.checkbox_french));
+        language_ger = ((CheckBox) findViewById(R.id.checkbox_german));
+        language_ita = ((CheckBox) findViewById(R.id.checkbox_italian));
+        language_man = ((CheckBox) findViewById(R.id.checkbox_mandarin));
+        language_por = ((CheckBox) findViewById(R.id.checkbox_portuguese));
+        language_spa = ((CheckBox) findViewById(R.id.checkbox_spanish));
+        InterestsView = (EditText) findViewById(R.id.textInterests);
+        YearOfExpView = (EditText) findViewById(R.id.textExperience);
+        TypeOfDegreeView = (Spinner) findViewById(R.id.spinnerDegree);
+        PhoneNumberView = (EditText) findViewById(R.id.textPhone);
+        CurrentCompanyView = (Spinner) findViewById(R.id.spinnerCurrentCompany);
+
+        outState.putString(INFO_NAME, NameView.getText().toString());
+        outState.putString(INFO_SURNAME, SurnameView.getText().toString());
+
+        if (!LocationView.getSelectedItem().toString().equals("-"))
+            outState.putString(INFO_LOCATION, LocationView.getSelectedItem().toString());
+
+        if (!IndustryView.getSelectedItem().toString().equals("-"))
+            outState.putString(INFO_INDUSTRY, IndustryView.getSelectedItem().toString());
+
+        if(!DateOfBirthView.getText().toString().equals(""))
+            outState.putString(INFO_BIRTHDATE,DateOfBirthView.getText().toString());
+
+        if(!PlaceOfBirthView.getText().toString().equals(""))
+            outState.putString(INFO_BIRTHPLACE,PlaceOfBirthView.getText().toString());
+
+        if(!DescriptionView.getText().toString().equals(""))
+            outState.putString(INFO_DESCRIPTION,DescriptionView.getText().toString());
+
+        if(!TechnicalSkillsView.getText().toString().equals(""))
+            outState.putString(INFO_TECHSKILLS,TechnicalSkillsView.getText().toString());
+
+        if(language_eng.isChecked())
+            outState.putString(INFO_ENGLISH,"TRUE");
+
+        if(language_fra.isChecked())
+            outState.putString(INFO_FRENCH,"TRUE");
+
+        if(language_ger.isChecked())
+            outState.putString(INFO_GERMAN,"TRUE");
+
+        if(language_ita.isChecked())
+            outState.putString(INFO_ITALIAN,"TRUE");
+
+        if(language_man.isChecked())
+            outState.putString(INFO_MANDARIN,"TRUE");
+
+        if(language_por.isChecked())
+            outState.putString(INFO_PORTUGUESE,"TRUE");
+
+        if(language_spa.isChecked())
+            outState.putString(INFO_SPANISH,"TRUE");
+
+        if(!InterestsView.getText().toString().equals(""))
+            outState.putString(INFO_INTERESTS,InterestsView.getText().toString());
+
+        if(!YearOfExpView.getText().toString().equals(""))
+            outState.putString(INFO_EXPERIENCE,YearOfExpView.getText().toString());
+
+        if(!TypeOfDegreeView.getSelectedItem().toString().equals("-"))
+            outState.putString(INFO_DEGREE,TypeOfDegreeView.getSelectedItem().toString());
+
+        if(!PhoneNumberView.getText().toString().equals(""))
+            outState.putString(INFO_PHONE,PhoneNumberView.getText().toString());
+
+        if(!CurrentCompanyView.getSelectedItem().toString().equals("-"))
+            outState.putString(INFO_CURRENT_COMPANY,CurrentCompanyView.getSelectedItem().toString());
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        NameView.setText(savedInstanceState.getString(INFO_NAME));
+        SurnameView.setText(savedInstanceState.getString(INFO_SURNAME));
+
+        if(savedInstanceState.containsKey(INFO_LOCATION))
+            LocationView.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
+
+        if(savedInstanceState.containsKey(INFO_INDUSTRY))
+            IndustryView.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
+
+        if(savedInstanceState.containsKey(INFO_BIRTHDATE))
+            DateOfBirthView.setText(savedInstanceState.getString(INFO_BIRTHDATE));
+
+        if(savedInstanceState.containsKey(INFO_BIRTHPLACE))
+            PlaceOfBirthView.setText(savedInstanceState.getString(INFO_BIRTHPLACE));
+
+        if(savedInstanceState.containsKey(INFO_DESCRIPTION))
+            DescriptionView.setText(savedInstanceState.getString(INFO_DESCRIPTION));
+
+        if(savedInstanceState.containsKey(INFO_TECHSKILLS))
+            TechnicalSkillsView.setText(savedInstanceState.getString(INFO_TECHSKILLS));
+
+        if(savedInstanceState.containsKey(INFO_ENGLISH))
+            language_eng.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_FRENCH))
+            language_fra.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_GERMAN))
+            language_ger.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_ITALIAN))
+            language_ita.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_MANDARIN))
+            language_man.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_SPANISH))
+            language_spa.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_PORTUGUESE))
+            language_por.setChecked(true);
+
+        if(savedInstanceState.containsKey(INFO_INTERESTS))
+            InterestsView.setText(savedInstanceState.getString(INFO_INTERESTS));
+
+        if(savedInstanceState.containsKey(INFO_EXPERIENCE))
+            YearOfExpView.setText(savedInstanceState.getString(INFO_EXPERIENCE));
+
+        if(savedInstanceState.containsKey(INFO_DEGREE))
+            TypeOfDegreeView.setSelection(adapterDegree.getPosition(savedInstanceState.getString(INFO_DEGREE)));
+
+        if(savedInstanceState.containsKey(INFO_PHONE))
+            PhoneNumberView.setText(savedInstanceState.getString(INFO_PHONE));
+
+        if(savedInstanceState.containsKey(INFO_CURRENT_COMPANY))
+            CurrentCompanyView.setSelection(adapterCurrentCompany.getPosition(savedInstanceState.getString(INFO_CURRENT_COMPANY)));
 
     }
 
@@ -494,10 +668,88 @@ public class ProfileStudent extends ActionBarActivity {
 
     public void deleteProfile(View view) {
 
-        //TODO
-        //Delete requires not only to delete the row on one table but all the associated data
-        //in the other tables
+        try {
+            //
+                /*Parse.initialize(this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                query.whereEqualTo("objectId", "2AM7fmxH5Sk");
+                ParseUser user = query.getFirst();*/
+            //
 
+            ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+            queryStudent.include("StudentId");
+            queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+
+            ParseObject student = queryStudent.getFirst();
+
+            ParseQuery<ParseObject> queryApplyJob = ParseQuery.getQuery("ApplyJob");
+            queryApplyJob.include("StudentId");
+            queryApplyJob.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsApplyJob = queryApplyJob.find();
+            for (ParseObject p : resultsApplyJob) {
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedCompany");
+            querySavedCompany.include("StudentId");
+            querySavedCompany.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsSavedCompany = querySavedCompany.find();
+            for (ParseObject p : resultsSavedCompany) {
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedJobOffer = ParseQuery.getQuery("SavedJobOffer");
+            querySavedJobOffer.include("StudentId");
+            querySavedJobOffer.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsSavedJobOffer = querySavedJobOffer.find();
+            for (ParseObject p : resultsSavedJobOffer) {
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedStudent = ParseQuery.getQuery("SavedStudent");
+            querySavedStudent.include("StudentId");
+            querySavedStudent.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsSavedStudent = querySavedStudent.find();
+            for (ParseObject p : resultsSavedStudent) {
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> queryMessage = ParseQuery.getQuery("Message");
+            queryMessage.whereEqualTo("SenderId", ParseUser.getCurrentUser().getObjectId());
+            List<ParseObject> resultsMessage = queryMessage.find();
+            for (ParseObject p : resultsMessage) {
+                p.delete();
+            }
+
+            queryMessage = ParseQuery.getQuery("Message");
+            queryMessage.whereEqualTo("ReceiverId", ParseUser.getCurrentUser().getObjectId());
+            resultsMessage = queryMessage.find();
+            for (ParseObject p : resultsMessage) {
+                p.delete();
+            }
+
+            student.delete();
+            ParseUser.getCurrentUser().delete();
+            //String objectId = ParseUser.getCurrentUser().getObjectId();
+            ParseUser.logOut();
+
+
+
+            /*ParseQuery<ParseUser> query = ParseUser.getQuery();
+            query.whereEqualTo("objectId", objectId);
+            ParseUser user = query.getFirst();
+            user.delete();*/
+
+            startActivity(new Intent(this, ManageSession.class));
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 }

@@ -16,13 +16,22 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 
 public class PublishOffer extends ActionBarActivity {
-    //public static final String APPLICATION_ID = "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc";
-    //public static final String CLIENT_KEY = "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M";
+
+    private static final String POSITION = "com.example.ricardogarcia.politojobs.POSITION";
+    private static final String INDUSTRY = "com.example.ricardogarcia.politojobs.INDUSTRY";
+    private static final String DESCRIPTION = "com.example.ricardogarcia.politojobs.DESCRIPTION";
+    private static final String SALARY = "com.example.ricardogarcia.politojobs.SALARY";
+    private static final String LOCATION = "com.example.ricardogarcia.politojobs.LOCATION";
+    private static final String TYPE = "com.example.ricardogarcia.politojobs.TYPE";
+    private static final String DURATION = "com.example.ricardogarcia.politojobs.DURATION";
+    private static final String CONTRACT = "com.example.ricardogarcia.politojobs.CONTRACT";
+
     private EditText JobView;
     private Spinner LocationView;
     private EditText DescriptionView;
@@ -31,43 +40,46 @@ public class PublishOffer extends ActionBarActivity {
     private EditText DurationView;
     private Spinner IndustryView;
     private Spinner TypeOfContractView;
+    private ArrayAdapter<String> adapterLocation;
+    private ArrayAdapter<String> adapterTypeJob;
+    private ArrayAdapter<String> adapterIndustry;
+    private ArrayAdapter<String> adapterTypeContract;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish_offer);
 
-
         JobView = (EditText) findViewById(R.id.textJob);
-
         LocationView = (Spinner) findViewById(R.id.spinnerLocation);
         String[] Location = getResources().getStringArray(R.array.arrayLocation);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, Location);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        LocationView.setAdapter(adapter);
+        adapterLocation = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, Location);
+        adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        LocationView.setAdapter(adapterLocation);
 
         DescriptionView = (EditText) findViewById(R.id.textDescription);
         SalaryView = (EditText) findViewById(R.id.textSalary);
 
         TypeJobView = (Spinner) findViewById(R.id.spinnerJobType);
         String[] JobType = getResources().getStringArray(R.array.arrayJobType);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, JobType);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        TypeJobView.setAdapter(adapter1);
+        adapterTypeJob = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, JobType);
+        adapterTypeJob.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        TypeJobView.setAdapter(adapterTypeJob);
 
         DurationView = (EditText) findViewById(R.id.textDuration);
 
         IndustryView = (Spinner) findViewById(R.id.spinnerJobIndustry);
         String[] Industry = getResources().getStringArray(R.array.arrayIndustry);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, Industry);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        IndustryView.setAdapter(adapter2);
+        adapterIndustry = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, Industry);
+        adapterIndustry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        IndustryView.setAdapter(adapterIndustry);
 
 
         TypeOfContractView = (Spinner) findViewById(R.id.spinnerTypeOfContract);
         String[] TypeOfContract = getResources().getStringArray(R.array.arrayContractType);
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, TypeOfContract);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        TypeOfContractView.setAdapter(adapter3);
+        adapterTypeContract = new ArrayAdapter<String>(PublishOffer.this, android.R.layout.simple_list_item_1, TypeOfContract);
+        adapterTypeContract.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        TypeOfContractView.setAdapter(adapterTypeContract);
 
 
     }
@@ -101,6 +113,70 @@ public class PublishOffer extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        EditText position = (EditText) findViewById(R.id.textJob);
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
+        EditText description = (EditText) findViewById(R.id.textDescription);
+        EditText salary = (EditText) findViewById(R.id.textSalary);
+        Spinner typeJob = (Spinner) findViewById(R.id.spinnerJobType);
+        EditText duration = (EditText) findViewById(R.id.textDuration);
+        Spinner industry = (Spinner) findViewById(R.id.spinnerJobIndustry);
+        Spinner contract = (Spinner) findViewById(R.id.spinnerTypeOfContract);
+
+        outState.putString(POSITION, position.getText().toString());
+        if(!location.getSelectedItem().toString().equals("-")) {
+            outState.putString(LOCATION, location.getSelectedItem().toString());
+        }
+        outState.putString(DESCRIPTION, description.getText().toString());
+        outState.putString(SALARY, salary.getText().toString());
+        if(!typeJob.getSelectedItem().toString().equals("-")) {
+            outState.putString(TYPE, typeJob.getSelectedItem().toString());
+        }
+        outState.putString(DURATION, duration.getText().toString());
+        if(!industry.getSelectedItem().toString().equals("-")) {
+            outState.putString(INDUSTRY, industry.getSelectedItem().toString());
+        }
+        if(!contract.getSelectedItem().toString().equals("-")) {
+            outState.putString(CONTRACT, contract.getSelectedItem().toString());
+        }
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        EditText position = (EditText) findViewById(R.id.textJob);
+        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
+        EditText description = (EditText) findViewById(R.id.textDescription);
+        EditText salary = (EditText) findViewById(R.id.textSalary);
+        Spinner typeJob = (Spinner) findViewById(R.id.spinnerJobType);
+        EditText duration = (EditText) findViewById(R.id.textDuration);
+        Spinner industry = (Spinner) findViewById(R.id.spinnerJobIndustry);
+        Spinner contract = (Spinner) findViewById(R.id.spinnerTypeOfContract);
+
+        position.setText(savedInstanceState.getString(POSITION));
+        if(savedInstanceState.containsKey(INDUSTRY)) {
+            industry.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INDUSTRY)));
+        }
+        description.setText(savedInstanceState.getString(DESCRIPTION));
+        salary.setText(savedInstanceState.getString(SALARY));
+        if(savedInstanceState.containsKey(LOCATION)) {
+            location.setSelection(adapterLocation.getPosition(savedInstanceState.getString(LOCATION)));
+        }
+        if(savedInstanceState.containsKey(TYPE)){
+            typeJob.setSelection(adapterTypeJob.getPosition(savedInstanceState.getString(TYPE)));
+        }
+        duration.setText(savedInstanceState.getString(DURATION));
+        if(savedInstanceState.containsKey(CONTRACT)){
+            contract.setSelection(adapterTypeContract.getPosition(savedInstanceState.getString(CONTRACT)));
+        }
+    }
+
     public void goHome(View view) {
         ParseUser currentUser = ParseUser.getCurrentUser();
         String typeUser = currentUser.getString("TypeUser");
@@ -130,49 +206,13 @@ public class PublishOffer extends ActionBarActivity {
 
     public void publishOffer(View view){
 
-        final String position = JobView.getText().toString();
-        final String location = LocationView.getSelectedItem().toString();
-        final String description = DescriptionView.getText().toString();
-        String salary1 = SalaryView.getText().toString();
-        final Integer salary = Integer.parseInt(salary1);
-        final String typejob = TypeJobView.getSelectedItem().toString();
-        final Integer duration = Integer.parseInt(DurationView.getText().toString());
-        final String industry = IndustryView.getSelectedItem().toString();
-        final String typeofcontract = TypeOfContractView.getSelectedItem().toString();
-
         // Validate the sign up data
         boolean validationError = false;
         StringBuilder validationErrorMessage = new StringBuilder(getResources().getString(R.string.error_intro));
-        if (isEmpty(JobView)) {
+        if (JobView.getText().toString().equals("")) {
             validationError = true;
             validationErrorMessage.append(getResources().getString(R.string.error_invalid_Jobposition));
         }
-        if (LocationView.getSelectedItem().toString().equals("-")) {
-            validationError = true;
-            validationErrorMessage.append(getResources().getString(R.string.error_invalid_location));
-        }
-        if (isEmpty(DescriptionView)) {
-            validationError = true;
-            validationErrorMessage.append(getResources().getString(R.string.error_invalid_Description));
-        }
-        if (isEmpty(SalaryView)) {
-            validationError = true;
-            validationErrorMessage.append(getResources().getString(R.string.error_invalid_Salary));
-        }
-        if (TypeJobView.getSelectedItem().toString().equals("-")) {
-            validationError = true;
-            validationErrorMessage.append(getResources().getString(R.string.error_invalid_typeofjob));
-        }
-        if (isEmpty(DurationView)) {
-            validationError = true;
-            validationErrorMessage.append(getResources().getString(R.string.error_invalid_duration));
-        }
-
-        if (IndustryView.getSelectedItem().toString().equals("-")) {
-            validationError = true;
-            validationErrorMessage.append(getResources().getString(R.string.error_invalid_duration));
-        }
-        validationErrorMessage.append(getResources().getString(R.string.error_end));
 
         // If there is a validation error, display the error
         if (validationError) {
@@ -183,53 +223,61 @@ public class PublishOffer extends ActionBarActivity {
 
         // Set up a progress dialog
         final ProgressDialog dlg = new ProgressDialog(PublishOffer.this);
-        dlg.setTitle("Please wait.");
-        dlg.setMessage("Publishing Job.  Please wait.");
+        dlg.setTitle(R.string.saveprofiletitle);
+        dlg.setMessage(getString(R.string.publishoffermessage));
         dlg.show();
 
         //save the data to parse.com
 
         ParseObject jobOffer = new ParseObject("JobOffer");
 
-        jobOffer.put("Position", position);
-        jobOffer.put("Location", location);
-        jobOffer.put("Description", description);
-        jobOffer.put("Salary", salary);
-        jobOffer.put("JobType", typejob);
-        jobOffer.put("CompanyId", ParseUser.getCurrentUser());
-        jobOffer.put("Duration", duration);
-        jobOffer.put("Industry", industry);
-        jobOffer.put("ContractType", typeofcontract);
+        jobOffer.put("Position", JobView.getText().toString().toLowerCase());
+
+        if(!LocationView.getSelectedItem().toString().equals("-"))
+        jobOffer.put("Location", LocationView.getSelectedItem().toString());
+
+        if(!DescriptionView.getText().toString().equals(""))
+        jobOffer.put("Description", DescriptionView.getText().toString());
+
+        if(!SalaryView.getText().toString().equals(""))
+        jobOffer.put("Salary", Integer.valueOf(SalaryView.getText().toString()));
+
+        if(!TypeJobView.getSelectedItem().toString().equals("-"))
+        jobOffer.put("JobType", TypeJobView.getSelectedItem().toString());
+
+
+        try {
+            ParseQuery companyQuery= new ParseQuery("Company");
+            companyQuery.whereEqualTo("CompanyId",ParseUser.getCurrentUser());
+            ParseObject company=companyQuery.getFirst();
+            jobOffer.put("CompanyId", company);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        if(!DurationView.getText().toString().equals(""))
+        jobOffer.put("Duration", Integer.valueOf(DurationView.getText().toString()));
+
+        if(!IndustryView.getSelectedItem().toString().equals("-"))
+        jobOffer.put("Industry", IndustryView.getSelectedItem().toString());
+
+        if(!TypeOfContractView.getSelectedItem().toString().equals("-"))
+        jobOffer.put("ContractType", TypeOfContractView.getSelectedItem().toString());
 
         jobOffer.saveInBackground(new SaveCallback() {
 
             @Override
             public void done(ParseException e) {
                 dlg.dismiss();
-
-                if (e != null) {
-
-                    Log.e("PARSE.COM", "FAILED" + e.getMessage());
-
-                } else {
-                    Log.e("PARSE.COM", "SUCCESS");
-                }
             }
         });
 
+        Intent intent = new Intent(PublishOffer.this, ListJobs.class);
+        startActivity(intent);
     }
 
-    public void cancel(View view){
-
-        JobView.setText("");
-        LocationView.setSelection(0);
-        DescriptionView.setText("");
-        SalaryView.setText("");
-        TypeJobView.setSelection(0);
-        DurationView.setText("");
-        IndustryView.setSelection(0);
-        TypeOfContractView.setSelection(0);
+    public void cancelOffer(View view){
         finish();
-
     }
 }

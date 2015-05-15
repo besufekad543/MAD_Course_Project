@@ -17,8 +17,22 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ProfileCompany extends ActionBarActivity {
+
+
+    private static final String INFO_NAME = "com.example.ricardogarcia.politojobs.INFO_NAME";
+    private static final String INFO_LOCATION = "com.example.ricardogarcia.politojobs.INFO_LOCATION";
+    private static final String INFO_ADDRESS = "com.example.ricardogarcia.politojobs.INFO_ADDRESS";
+    private static final String INFO_INDUSTRY = "com.example.ricardogarcia.politojobs.INFO_INDUSTRY";
+    private static final String INFO_DESCRIPTION = "com.example.ricardogarcia.politojobs.INFO_DESCRIPTION";
+    private static final String INFO_SIZE = "com.example.ricardogarcia.politojobs.INFO_SIZE";
+    private static final String INFO_WEBSITE = "com.example.ricardogarcia.politojobs.INFO_WEBSITE";
+    private static final String INFO_CLIENTS = "com.example.ricardogarcia.politojobs.INFO_CLIENTS";
+
     private EditText NameView;
     private Spinner LocationView;
     private EditText AddressView;
@@ -28,6 +42,9 @@ public class ProfileCompany extends ActionBarActivity {
     private EditText WebsiteView;
     private EditText ClientsView;
 
+    private ArrayAdapter<String> adapterLocation;
+    private ArrayAdapter<String> adapterIndustry;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +53,12 @@ public class ProfileCompany extends ActionBarActivity {
         NameView = (EditText) findViewById(R.id.textName);
         AddressView = (EditText) findViewById(R.id.textAddress);
         LocationView = (Spinner) findViewById(R.id.spinnerLocation);
-        ArrayAdapter<String> adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
+        adapterLocation = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayLocation));
         adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationView.setAdapter(adapterLocation);
 
         IndustryView = (Spinner) findViewById(R.id.spinnerIndustry);
-        ArrayAdapter<String> adapterIndustry = new ArrayAdapter<String>(ProfileCompany.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
+        adapterIndustry = new ArrayAdapter<String>(ProfileCompany.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayIndustry));
         adapterIndustry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         IndustryView.setAdapter(adapterIndustry);
 
@@ -123,6 +140,71 @@ public class ProfileCompany extends ActionBarActivity {
         }
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        NameView = (EditText) findViewById(R.id.textName);
+        AddressView = (EditText) findViewById(R.id.textAddress);
+        LocationView = (Spinner) findViewById(R.id.spinnerLocation);
+        IndustryView = (Spinner) findViewById(R.id.spinnerIndustry);
+        DescriptionView = (EditText) findViewById(R.id.descriptionText);
+        CompanySizeView = (EditText) findViewById(R.id.textSize);
+        WebsiteView = (EditText) findViewById(R.id.textWeb);
+        ClientsView = (EditText) findViewById(R.id.textClients);
+
+        outState.putString(INFO_NAME,NameView.getText().toString());
+        outState.putString(INFO_ADDRESS,AddressView.getText().toString());
+        outState.putString(INFO_LOCATION,LocationView.getSelectedItem().toString());
+
+        if(!IndustryView.getSelectedItem().toString().equals("-"))
+            outState.putString(INFO_INDUSTRY,IndustryView.getSelectedItem().toString());
+
+        if(!DescriptionView.getText().toString().equals(""))
+            outState.putString(INFO_DESCRIPTION,DescriptionView.getText().toString());
+
+        if(!CompanySizeView.getText().toString().equals(""))
+            outState.putString(INFO_SIZE,CompanySizeView.getText().toString());
+
+        if(!WebsiteView.getText().toString().equals(""))
+            outState.putString(INFO_WEBSITE,WebsiteView.getText().toString());
+
+        if(!ClientsView.getText().toString().equals(""))
+            outState.putString(INFO_CLIENTS,ClientsView.getText().toString());
+
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        NameView.setText(savedInstanceState.getString(INFO_NAME));
+        AddressView.setText(savedInstanceState.getString(INFO_ADDRESS));
+        LocationView.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
+
+        if(savedInstanceState.containsKey(INFO_INDUSTRY)){
+            IndustryView.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
+        }
+
+        if(savedInstanceState.containsKey(INFO_DESCRIPTION)){
+            DescriptionView.setText(savedInstanceState.getString(INFO_DESCRIPTION));
+        }
+
+        if(savedInstanceState.containsKey(INFO_SIZE)){
+            CompanySizeView.setText(savedInstanceState.getString(INFO_SIZE));
+        }
+
+        if(savedInstanceState.containsKey(INFO_WEBSITE)){
+            WebsiteView.setText(savedInstanceState.getString(INFO_WEBSITE));
+        }
+
+        if(savedInstanceState.containsKey(INFO_CLIENTS)){
+            ClientsView.setText(savedInstanceState.getString(INFO_CLIENTS));
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -250,10 +332,89 @@ public class ProfileCompany extends ActionBarActivity {
 
     public void deleteProfile(View view) {
 
-        //TODO
-        //Delete requires not only to delete the row on one table but all the associated data
-        //in the other tables
+        try {
+            //
+                /*Parse.initialize(this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                query.whereEqualTo("objectId", "2AM7fmxH5Sk");
+                ParseUser user = query.getFirst();*/
+            //
 
+            ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Student");
+            queryStudent.include("StudentId");
+            queryStudent.whereEqualTo("StudentId", ParseUser.getCurrentUser());
+
+            ParseObject student = queryStudent.getFirst();
+
+            ParseQuery<ParseObject> queryApplyJob = ParseQuery.getQuery("ApplyJob");
+            queryApplyJob.include("StudentId");
+            queryApplyJob.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsApplyJob=queryApplyJob.find();
+            for(ParseObject p:resultsApplyJob){
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedCompany");
+            querySavedCompany.include("StudentId");
+            querySavedCompany.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsSavedCompany=querySavedCompany.find();
+            for(ParseObject p:resultsSavedCompany){
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedJobOffer = ParseQuery.getQuery("SavedJobOffer");
+            querySavedJobOffer.include("StudentId");
+            querySavedJobOffer.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsSavedJobOffer=querySavedJobOffer.find();
+            for(ParseObject p:resultsSavedJobOffer){
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedStudent = ParseQuery.getQuery("SavedStudent");
+            querySavedStudent.include("StudentId");
+            querySavedStudent.whereEqualTo("StudentId", student);
+
+            List<ParseObject> resultsSavedStudent=querySavedStudent.find();
+            for(ParseObject p:resultsSavedStudent){
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> queryMessage = ParseQuery.getQuery("Message");
+            queryMessage.whereEqualTo("SenderId", ParseUser.getCurrentUser().getObjectId());
+            List<ParseObject> resultsMessage=queryMessage.find();
+            for(ParseObject p:resultsMessage){
+                p.delete();
+            }
+
+            queryMessage = ParseQuery.getQuery("Message");
+            queryMessage.whereEqualTo("ReceiverId", ParseUser.getCurrentUser().getObjectId());
+            resultsMessage=queryMessage.find();
+            for(ParseObject p:resultsMessage){
+                p.delete();
+            }
+
+            student.delete();
+            ParseUser.getCurrentUser().delete();
+            //String objectId = ParseUser.getCurrentUser().getObjectId();
+            ParseUser.logOut();
+
+
+
+            /*ParseQuery<ParseUser> query = ParseUser.getQuery();
+            query.whereEqualTo("objectId", objectId);
+            ParseUser user = query.getFirst();
+            user.delete();*/
+
+            startActivity(new Intent(this, ManageSession.class));
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
+
 }
