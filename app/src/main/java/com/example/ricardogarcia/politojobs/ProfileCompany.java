@@ -205,27 +205,104 @@ public class ProfileCompany extends ActionBarActivity {
 
     public void deleteProfile(View view) {
 
-        //TODO
-        //Delete requires not only to delete the row on one table but all the associated data
-        //in the other tables
+        try {
+            //
+                /*Parse.initialize(this, "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc", "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M");
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                query.whereEqualTo("objectId", "2AM7fmxH5Sk");
+                ParseUser user = query.getFirst();*/
+            //
 
-        final View temp = view;
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Company");
-        query.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> company, ParseException e) {
-                if (e == null) {
-                    for (ParseObject delete : company) {
-                        delete.remove(ParseUser.getCurrentUser().getObjectId());
-                        delete.deleteInBackground();
-                    }
-                    Toast.makeText(temp.getContext(), "Company Profile Deleted", Toast.LENGTH_LONG).show();
-                } else {
-                    Log.e("Error", e.getMessage());
-                    Toast.makeText(temp.getContext(), "Error deleting Company Profile", Toast.LENGTH_LONG).show();
+            ParseQuery<ParseObject> queryCompany = ParseQuery.getQuery("Company");
+            queryCompany.include("CompanyId");
+            queryCompany.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
+
+            ParseObject company = queryCompany.getFirst();
+
+            ParseQuery<ParseObject> queryApplyJob = ParseQuery.getQuery("ApplyJob");
+            queryApplyJob.include("JobId");
+            queryApplyJob.include("JobId.CompanyId");
+            //queryApplyJob.whereEqualTo("JobId.CompanyId", company);
+
+            List<ParseObject> resultsApplyJob=queryApplyJob.find();
+            for(ParseObject p:resultsApplyJob){
+                ParseObject job_result = p.getParseObject("JobId");
+
+                ParseObject companyCurrent = job_result.getParseObject("CompanyId");
+                if(companyCurrent!=null && companyCurrent.getObjectId().equals(company.getObjectId())){
+                    p.delete();
                 }
             }
-        });
+
+            ParseQuery<ParseObject> querySavedCompany = ParseQuery.getQuery("SavedCompany");
+            querySavedCompany.include("CompanyId");
+            querySavedCompany.whereEqualTo("CompanyId", company);
+
+            List<ParseObject> resultsSavedCompany=querySavedCompany.find();
+            for(ParseObject p:resultsSavedCompany){
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> querySavedJobOffer = ParseQuery.getQuery("SavedJobOffer");
+            querySavedJobOffer.include("OfferId");
+            querySavedJobOffer.include("OfferId.CompanyId");
+            //querySavedJobOffer.whereEqualTo("OfferId.CompanyId", company);
+
+            List<ParseObject> resultsSavedJobOffer=querySavedJobOffer.find();
+            for(ParseObject p:resultsSavedJobOffer){
+                ParseObject job_result = p.getParseObject("OfferId");
+
+                ParseObject companyCurrent = job_result.getParseObject("CompanyId");
+                if(companyCurrent!=null && companyCurrent.getObjectId().equals(company.getObjectId())){
+                    p.delete();
+                }
+            }
+
+            ParseQuery<ParseObject> querySavedStudent = ParseQuery.getQuery("SavedStudent");
+            querySavedStudent.include("CompanyId");
+            querySavedStudent.whereEqualTo("CompanyId", company);
+
+            List<ParseObject> resultsSavedStudent=querySavedStudent.find();
+            for(ParseObject p:resultsSavedStudent){
+                p.delete();
+            }
+
+            ParseQuery<ParseObject> queryJobOffer = ParseQuery.getQuery("JobOffer");
+            queryJobOffer.include("CompanyId");
+            queryJobOffer.whereEqualTo("CompanyId", company);
+
+            List<ParseObject> resultsJobOffer=queryJobOffer.find();
+            for(ParseObject p:resultsJobOffer){
+                p.delete();
+            }
+
+
+            ParseQuery<ParseObject> queryMessage = ParseQuery.getQuery("Message");
+            queryMessage.whereEqualTo("SenderId", ParseUser.getCurrentUser().getObjectId());
+            List<ParseObject> resultsMessage=queryMessage.find();
+            for(ParseObject p:resultsMessage){
+                p.delete();
+            }
+
+            queryMessage = ParseQuery.getQuery("Message");
+            queryMessage.whereEqualTo("ReceiverId", ParseUser.getCurrentUser().getObjectId());
+            resultsMessage=queryMessage.find();
+            for(ParseObject p:resultsMessage){
+                p.delete();
+            }
+
+            company.delete();
+            ParseUser.getCurrentUser().delete();
+            //String objectId = ParseUser.getCurrentUser().getObjectId();
+            ParseUser.logOut();
+
+
+            startActivity(new Intent(this, ManageSession.class));
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 }

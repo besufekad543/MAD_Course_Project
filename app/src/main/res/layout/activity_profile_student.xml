@@ -529,7 +529,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"
                 android:layout_marginTop="@dimen/margin_top"
-                android:onClick=""
+                android:onClick="deleteProfile"
                 android:text="@string/delete_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
