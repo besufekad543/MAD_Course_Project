@@ -281,13 +281,14 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top"
                 android:background="@drawable/rounded_button"
-                android:onClick=""
+                android:onClick="update"
                 android:text="@string/update_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 
             <Button
+                android:layout_marginTop="@dimen/margin_between"
                 android:id="@+id/cancelButton"
                 android:layout_width="@dimen/width_buttons"
                 android:layout_height="@dimen/button_height"
@@ -295,7 +296,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"
-                android:onClick=""
+                android:onClick="goBack"
                 android:text="@string/cancel_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -321,7 +322,8 @@
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goHome"/>
 
         <Button
             android:layout_width="match_parent"
@@ -333,6 +335,7 @@
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 </RelativeLayout>
