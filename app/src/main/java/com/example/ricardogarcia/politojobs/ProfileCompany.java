@@ -2,26 +2,20 @@ package com.example.ricardogarcia.politojobs;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfileCompany extends ActionBarActivity {
@@ -56,10 +50,69 @@ public class ProfileCompany extends ActionBarActivity {
         WebsiteView = (EditText) findViewById(R.id.textWeb);
         ClientsView = (EditText) findViewById(R.id.textClients);
 
-        //TODO
-        //Initialize fields with the values found on the table for the current user and display the values to the user
-        //without the possibility of changing them. They can be changed only when user clicks the edit button
+        ParseQuery query = new ParseQuery("Company");
+        query.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
 
+        try {
+            ParseObject company = query.getFirst();
+            NameView.setText(company.getString("Name"));
+            NameView.setFocusable(false);
+            NameView.setFocusableInTouchMode(false);
+            NameView.setClickable(false);
+
+            AddressView.setText(company.getString("Address"));
+            AddressView.setFocusable(false);
+            AddressView.setFocusableInTouchMode(false);
+            AddressView.setClickable(false);
+
+            LocationView.setSelection(adapterLocation.getPosition(company.getString("Location")));
+            LocationView.setFocusable(false);
+            LocationView.setFocusableInTouchMode(false);
+            LocationView.setClickable(false);
+            LocationView.setEnabled(false);
+
+            if(company.get("Description")!=null) {
+                DescriptionView.setText(company.getString("Description"));
+            }
+            DescriptionView.setFocusable(false);
+            DescriptionView.setFocusableInTouchMode(false);
+            DescriptionView.setClickable(false);
+
+            if (company.get("Industry")==null) {
+                IndustryView.setSelection(0);
+            } else {
+                IndustryView.setSelection(adapterIndustry.getPosition(company.getString("Industry")));
+            }
+            IndustryView.setFocusable(false);
+            IndustryView.setFocusableInTouchMode(false);
+            IndustryView.setClickable(false);
+            IndustryView.setEnabled(false);
+
+            if(company.get("Size")!=null){
+                int csize=company.getInt("Size");
+                CompanySizeView.setText(String.valueOf(csize));
+            }
+            CompanySizeView.setFocusable(false);
+            CompanySizeView.setFocusableInTouchMode(false);
+            CompanySizeView.setClickable(false);
+
+            if(company.getString("Website")!=null) {
+                WebsiteView.setText(company.getString("Website"));
+            }
+            WebsiteView.setFocusable(false);
+            WebsiteView.setFocusableInTouchMode(false);
+            WebsiteView.setClickable(false);
+
+            if(company.getString("Clients")!=null) {
+                ClientsView.setText(company.getString("Clients"));
+            }
+            ClientsView.setFocusable(false);
+            ClientsView.setFocusableInTouchMode(false);
+            ClientsView.setClickable(false);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isEmpty(EditText etText) {
@@ -120,86 +173,78 @@ public class ProfileCompany extends ActionBarActivity {
 
     public void saveProfile(View view) {
 
-        final String name = NameView.getText().toString();
-        final String address = AddressView.getText().toString();
-        final String location = LocationView.getSelectedItem().toString();
-        final String industry = IndustryView.getSelectedItem().toString();
-
-        final String description = DescriptionView.getText().toString();
-        final Integer companysize = Integer.parseInt(CompanySizeView.getText().toString());
-        final String website = WebsiteView.getText().toString();
-        final String clients = ClientsView.getText().toString();
-
         // Set up a progress dialog
         final ProgressDialog dlg = new ProgressDialog(ProfileCompany.this);
-        dlg.setTitle("Please wait.");
-        dlg.setMessage("Saving Student Profile.  Please wait.");
+        dlg.setTitle(R.string.saveprofiletitle);
+        dlg.setMessage(getString(R.string.saveprofilemessage));
         dlg.show();
         //save the data to parse.com
 
-        ParseObject student = new ParseObject("Company");
+        try {
+            ParseQuery query = new ParseQuery("Company");
+            query.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
+            ParseObject company = query.getFirst();
 
-        //TODO
-        //This function needs to retrieve the existing object of the table for the specific company and update the values.
-        //As it is implemented right now, it is adding a new row which is not the idea
+            if(!IndustryView.getSelectedItem().toString().equals("-"))
+            company.put("Industry", IndustryView.getSelectedItem().toString());
 
-        //student.put("CompanyId", ParseUser.getCurrentUser());
-        student.put("Name", name);
-        student.put("Location", location);
-        student.put("Address", address);
-        student.put("Industry", industry);
-        student.put("Description", description);
-        student.put("Size", companysize);
-        student.put("Website", website);
-        student.put("Clients", clients);
+            if(!DescriptionView.getText().toString().equals(""))
+            company.put("Description", DescriptionView.getText().toString());
 
-        student.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                dlg.dismiss();
-                if (e != null) {
+            if(!CompanySizeView.getText().toString().equals(""))
+            company.put("Size", Integer.valueOf(CompanySizeView.getText().toString()));
 
-                    Log.e("PARSE.COM", "Building Profile FAILED" + e.getMessage());
+            if(!WebsiteView.getText().toString().equals(""))
+            company.put("Website", WebsiteView.getText().toString());
 
-                } else {
-                    Log.e("PARSE.COM", "Building Profile SUCCESSFULLY FINISHED");
+            if(!ClientsView.getText().toString().equals(""))
+            company.put("Clients", ClientsView.getText().toString());
 
+            company.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Intent intent = new Intent(ProfileCompany.this, ProfileCompany.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
-            }
-        });
+            });
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
     public void editProfile(View view) {
 
-        //TODO
-        //The edit function only set all fields (except name, location and address) as editable
+        DescriptionView.setFocusable(true);
+        DescriptionView.setFocusableInTouchMode(true);
+        DescriptionView.setClickable(true);
 
-        final View temp = view;
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Company");
-        query.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> company, ParseException e) {
-                if (e == null) {
-                    for (ParseObject update : company) {
+        LocationView.setFocusable(true);
+        LocationView.setFocusableInTouchMode(true);
+        LocationView.setClickable(true);
+        LocationView.setEnabled(true);
 
-                        update.put("Name", NameView.getText().toString());
-                        update.put("Location", AddressView.getText().toString());
-                        update.put("Address", LocationView.getSelectedItem().toString());
-                        update.put("Industry", IndustryView.getSelectedItem().toString());
-                        update.put("Description", DescriptionView.getText().toString());
-                        update.put("Size", Integer.parseInt(CompanySizeView.getText().toString()));
-                        update.put("Website", WebsiteView.getText().toString());
-                        update.put("Clients", ClientsView.getText().toString());
-                        update.saveInBackground();
-                    }
-                    Toast.makeText(temp.getContext(), "Company Profile Deleted", Toast.LENGTH_LONG).show();
-                } else {
-                    Log.e("Error", e.getMessage());
-                    Toast.makeText(temp.getContext(), "Error deleting Company Profile", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        IndustryView.setFocusable(true);
+        IndustryView.setFocusableInTouchMode(true);
+        IndustryView.setClickable(true);
+        IndustryView.setEnabled(true);
+
+        CompanySizeView.setFocusable(true);
+        CompanySizeView.setFocusableInTouchMode(true);
+        CompanySizeView.setClickable(true);
+
+        WebsiteView.setFocusable(true);
+        WebsiteView.setFocusableInTouchMode(true);
+        WebsiteView.setClickable(true);
+
+        ClientsView.setFocusable(true);
+        ClientsView.setFocusableInTouchMode(true);
+        ClientsView.setClickable(true);
 
     }
 
@@ -209,23 +254,6 @@ public class ProfileCompany extends ActionBarActivity {
         //Delete requires not only to delete the row on one table but all the associated data
         //in the other tables
 
-        final View temp = view;
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Company");
-        query.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> company, ParseException e) {
-                if (e == null) {
-                    for (ParseObject delete : company) {
-                        delete.remove(ParseUser.getCurrentUser().getObjectId());
-                        delete.deleteInBackground();
-                    }
-                    Toast.makeText(temp.getContext(), "Company Profile Deleted", Toast.LENGTH_LONG).show();
-                } else {
-                    Log.e("Error", e.getMessage());
-                    Toast.makeText(temp.getContext(), "Error deleting Company Profile", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
     }
 }

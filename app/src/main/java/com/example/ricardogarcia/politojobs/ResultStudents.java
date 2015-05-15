@@ -234,7 +234,7 @@ public class ResultStudents extends ActionBarActivity {
                                     student.setLanguages(languages);
                                 }
                                 if(parseStudent.get("PhoneNumber")!=null){
-                                    student.setPhonenumber(String.valueOf(parseStudent.getInt("PhoneNumber")));
+                                    student.setPhonenumber(parseStudent.getString("PhoneNumber"));
                                 }
                                 if(parseStudent.get("TechnicalSkills")!=null){
                                     ArrayList<String> techskills = (ArrayList<String>)parseStudent.get("TechnicalSkills");
@@ -287,7 +287,7 @@ public class ResultStudents extends ActionBarActivity {
                                     student.setLanguages(languages);
                                 }
                                 if(parseStudent.get("PhoneNumber")!=null){
-                                    student.setPhonenumber(String.valueOf(parseStudent.getInt("PhoneNumber")));
+                                    student.setPhonenumber(parseStudent.getString("PhoneNumber"));
                                 }
                                 if(parseStudent.get("TechnicalSkills")!=null){
                                     ArrayList<String> techskills = (ArrayList<String>)parseStudent.get("TechnicalSkills");
@@ -399,7 +399,7 @@ public class ResultStudents extends ActionBarActivity {
                             student.setLanguages(languages);
                         }
                         if(student_result.get("PhoneNumber")!=null){
-                            student.setPhonenumber(String.valueOf(student_result.getInt("PhoneNumber")));
+                            student.setPhonenumber(student_result.getString("PhoneNumber"));
                         }
                         if(student_result.get("TechnicalSkills")!=null){
                             ArrayList<String> techskills = (ArrayList<String>)student_result.get("TechnicalSkills");

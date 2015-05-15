@@ -134,6 +134,9 @@
     <string name="titleApplications">Applications</string>
     <string name="titleApplicants">Applicants</string>
     <string name="backHome">Return to Home</string>
+    <string name="dateFormat">dd/MM/yyyy</string>
+    <string name="saveprofiletitle">Upload in progress</string>
+    <string name="saveprofilemessage">Saving Profile.  Please wait...</string>
 
     <string name="english">English</string>
     <string name="french">French</string>

@@ -77,9 +77,9 @@
                         android:layout_height="@dimen/button_height"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1.0"
-                        android:background="@drawable/rounded_button"
+                        android:background="@drawable/background_color"
                         android:gravity="center"
-                        android:onClick=""
+                        android:onClick="editProfile"
                         android:text="@string/edit_button"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
@@ -166,7 +166,8 @@
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:textSize="@dimen/text_size" />
+                        android:textSize="@dimen/text_size"
+                     />
                 </TableRow>
 
                 <TableRow
@@ -221,7 +222,8 @@
                         android:layout_weight="1"
                         android:background="@color/background_text"
                         android:inputType="date"
-                        android:textSize="@dimen/text_size" />
+                        android:textSize="@dimen/text_size"
+                        android:hint="@string/dateFormat"/>
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
@@ -493,15 +495,15 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size" />
 
-                    <EditText
-                        android:id="@+id/textCompany"
+                    <Spinner
+                        android:id="@+id/spinnerCurrentCompany"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:background="@color/background_text"
-                        android:inputType="text"
                         android:textSize="@dimen/text_size" />
+
                 </TableRow>
             </TableLayout>
 
@@ -513,8 +515,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top"
-                android:background="@drawable/rounded_button"
-                android:onClick=""
+                android:background="@drawable/background_color"
+                android:onClick="saveProfile"
                 android:text="@string/save_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -527,9 +529,9 @@
                 android:layout_below="@+id/saveButton"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:layout_marginTop="@dimen/margin_top"
-                android:onClick=""
+                android:onClick="deleteProfile"
                 android:text="@string/delete_button"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
