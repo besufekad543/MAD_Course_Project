@@ -121,7 +121,7 @@
     <string name="addedSavedCompanyMessage">This company has been saved successfully</string>
     <string name="existingSavedCompanyMessage">This company has already been saved before</string>
     <string name="removedSavedCompanyMessage">This company has been removed from your saved companies</string>
-    <string name="removedSavedJobMessage">This company has been removed from your saved job offers</string>
+    <string name="removedSavedJobMessage">This job has been removed from your saved job offers</string>
     <string name="addedApplyMessage">The application has been sent successfully</string>
     <string name="existingApplication">This application has already been sent before</string>
     <string name="addedSavedStudentMessage">This student has been saved successfully</string>
@@ -289,5 +289,15 @@
     <string name="error_invalid_Website">Invalid Website</string>
     <string name="error_invalid_Companysize">Invalid Companysize</string>
     <string name="error_invalid_Clients">Invalid Clients</string>
+
+    <string name="error_blank_username">enter a username</string>
+    <string name="error_blank_password">enter a password</string>
+    <string name="error_join">", and "</string>
+    <string name="error_end">.</string>
+    <string name="error_blank_name">enter a name</string>
+    <string name="error_blank_surname">enter a surname</string>
+    <string name="error_blank_address">enter an address</string>
+    <string name="error_blank_location">enter a location</string>
+
 
 </resources>

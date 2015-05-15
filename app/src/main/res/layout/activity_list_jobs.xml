@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/jobOffers"
+        android:id="@+id/jobOffersTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
@@ -50,26 +50,44 @@
         android:id="@+id/listResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/jobOffers"
+        android:layout_below="@+id/jobOffersTitle"
+        android:layout_above="@id/bottomTab"
         android:layout_marginTop="@dimen/margin_top_title"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin" />
 
-    <Button
-        android:id="@+id/publish_button"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_height"
-        android:layout_below="@+id/listResult"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/margin_top"
-        android:background="@drawable/rounded_button"
-        android:onClick=""
-        android:text="@string/publish_offer"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/emptyView"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/height_header"
+        android:layout_below="@id/jobOffersTitle"
+        android:layout_above="@id/bottomTab"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textNoResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="@dimen/margin_top"
+            android:text="@string/no_results_text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/publishButton"
+            android:layout_width="@dimen/width_buttons"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/background_color"
+            android:onClick="publishOffer"
+            android:text="@string/publish_offer"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bottomTab"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -86,7 +104,8 @@
             android:text="@string/home_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goHome"/>
 
         <Button
             android:layout_width="match_parent"
@@ -98,7 +117,8 @@
             android:text="@string/profile_button"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="goProfile"/>
     </LinearLayout>
 
 </RelativeLayout>

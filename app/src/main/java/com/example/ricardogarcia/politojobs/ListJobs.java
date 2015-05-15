@@ -2,13 +2,18 @@ package com.example.ricardogarcia.politojobs;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -29,68 +34,16 @@ public class ListJobs extends ActionBarActivity {
 public static final String APPLICATION_ID = "H9NFC1K9LmahxGcCrMOdT0qMaE0lDGT6BgbrSOAc";
 public static final String CLIENT_KEY = "4K2VfxRGIyk69KlQJ2B8NMnD71llrlkEPLdTNh9M";
 
+    public void publishOffer (View view){
+        Intent intent = new Intent(this, PublishOffer.class);
+        startActivity(intent);
+    }
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_list_jobs);
 
-    /*Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
-
-    findViewById(R.id.publish_button).setOnClickListener(new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(ListJobs.this, PublishOffer.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-    });
-
-    ParseQuery query = new ParseQuery("JobOffer");
-    query.whereEqualTo("objectId", ParseUser.getCurrentUser().getObjectId()); //objectId
-    query.findInBackground(new FindCallback<ParseObject>() {
-
-        @Override
-        public void done(List<ParseObject> arg0, ParseException arg1) {
-            if (arg1 == null) {
-                for (final ParseObject nameObj : arg0) {
-
-                    ListView listView = (ListView) findViewById(R.id.listResult);
-                    ArrayList<String> jobs = new ArrayList<String>();
-
-                    String position = nameObj.getString("Position").toString();
-                    String location = nameObj.getString("Location").toString();
-                    jobs.add(position);
-                    jobs.add(location);
-                    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(ListJobs.this, android.R.layout.simple_list_item_1, jobs);
-                    adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    listView.setAdapter(adapter1);
-
-                    findViewById(R.id.deleteButton).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            nameObj.remove(ParseUser.getCurrentUser().getObjectId());
-
-                            nameObj.deleteInBackground();
-                        }
-                    });
-                    findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-
-                            Intent intent = new Intent(ListJobs.this, UpdateOffer.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    });
-
-
-                }
-            }
-        }
-                });
-    */
 
         try {
             ParseQuery<ParseObject> queryStudent = ParseQuery.getQuery("Company");
@@ -197,11 +150,29 @@ protected void onCreate(Bundle savedInstanceState) {
                         job.setDuration(p.getNumber("Duration").intValue());
                     if(p.getDate("createdAt")!=null)
                         job.setDate(p.getDate("createdAt").toString());
-                    ParseObject company = p.getParseObject("CompanyId");
-                    if(company!=null){
-
+                    ParseObject currentC = p.getParseObject("CompanyId");
+                    if(currentC!=null){
+                        Company company = new Company();
+                        if (currentC.get("CompanyId") != null)
+                            company.setId(currentC.getObjectId());
+                        if (currentC.get("Name") != null)
+                            company.setName(currentC.get("Name").toString());
+                        if (currentC.get("Location") != null)
+                            company.setLocation(currentC.get("Location").toString());
+                        if (currentC.get("Address") != null)
+                            company.setAddress(currentC.get("Address").toString());
+                        if (currentC.get("Industry") != null)
+                            company.setIndustry(currentC.get("Industry").toString());
+                        if (currentC.get("Description") != null)
+                            company.setDescription(currentC.get("Description").toString());
+                        if (currentC.get("Size") != null)
+                            company.setCompany_size(currentC.getInt("Size"));
+                        if (currentC.get("Website") != null)
+                            company.setWebsite(currentC.get("Website").toString());
+                        if (currentC.get("Clients") != null)
+                            company.setClients(currentC.get("Clients").toString());
+                        job.setCompany(company);
                     }
-
 
                     result_jobs.add(job);
                 }
@@ -222,6 +193,30 @@ protected void onCreate(Bundle savedInstanceState) {
             JobCompanyAdapter jAdapter= new JobCompanyAdapter(ListJobs.this,jobs);
 
             ListView list_jobs= (ListView) findViewById(R.id.listResult);
+
+            final Button publishOffer = new Button(ListJobs.this);
+            Drawable background = getResources().getDrawable(R.drawable.background_color);
+
+            if (android.os.Build.VERSION.SDK_INT >= 16)
+                publishOffer.setBackground(background);
+            else
+                publishOffer.setBackgroundDrawable(background);
+
+            publishOffer.setHeight(getResources().getDimensionPixelSize(R.dimen.button_height));
+            publishOffer.setWidth(getResources().getDimensionPixelSize(R.dimen.width_buttons));
+            publishOffer.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_size));
+            publishOffer.setTextColor(Color.WHITE);
+            publishOffer.setTypeface(null, Typeface.BOLD);
+
+            publishOffer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    publishOffer(publishOffer);
+                }
+            });
+
+            list_jobs.addFooterView(publishOffer);
+
             list_jobs.setAdapter(jAdapter);
             list_jobs.setEmptyView(findViewById(R.id.emptyView));
 
