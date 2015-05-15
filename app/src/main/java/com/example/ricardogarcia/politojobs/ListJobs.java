@@ -207,6 +207,7 @@ protected void onCreate(Bundle savedInstanceState) {
             publishOffer.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_size));
             publishOffer.setTextColor(Color.WHITE);
             publishOffer.setTypeface(null, Typeface.BOLD);
+            publishOffer.setText(getResources().getString(R.string.publish_offer));
 
             publishOffer.setOnClickListener(new View.OnClickListener() {
                 @Override

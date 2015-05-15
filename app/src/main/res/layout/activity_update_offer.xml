@@ -295,7 +295,7 @@
                 android:layout_below="@+id/updateButton"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/background_color"
                 android:onClick="goBack"
                 android:text="@string/cancel_button"
                 android:textColor="@color/white"
