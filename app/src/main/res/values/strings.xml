@@ -303,6 +303,7 @@
     <string name="error_blank_surname">Enter a surname</string>
     <string name="error_blank_address">Enter an address</string>
     <string name="error_blank_location">Enter a location</string>
+    <string name="error_blank_position">Enter a Job Position</string>
     <string name="error_mismatched_passwords">Enter the same password twice</string>
     <string name="error_join">", and "</string>
     <string name="error_end">.</string>

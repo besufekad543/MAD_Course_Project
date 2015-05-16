@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseObject;
@@ -69,59 +70,95 @@ public class UpdateOffer extends ActionBarActivity {
     }
 
     public void update(View view) {
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("JobOffer");
-        query.getInBackground(job.getId(), new GetCallback<ParseObject>() {
-            public void done(ParseObject jobOffer, ParseException e) {
-                if (e == null) {
-                    EditText position = (EditText) findViewById(R.id.textJob);
-                    if(position.getText().toString()!= "")
+        if(validateRegisterInput()){
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("JobOffer");
+            query.getInBackground(job.getId(), new GetCallback<ParseObject>() {
+                public void done(ParseObject jobOffer, ParseException e) {
+                    if (e == null) {
+                        EditText position = (EditText) findViewById(R.id.textJob);
                         jobOffer.put("Position",position.getText().toString());
-                    Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
-                    if(!location.getSelectedItem().toString().equals("-"))
-                        jobOffer.put("Location",location.getSelectedItem().toString());
-                    EditText description = (EditText) findViewById(R.id.textDescription);
-                    if(description.getText().toString()!="")
-                        jobOffer.put("Description",description.getText().toString());
-                    EditText salary = (EditText) findViewById(R.id.textSalary);
-                    if(salary.getText().toString()!="")
-                        jobOffer.put("Salary", Integer.valueOf(salary.getText().toString()));
-                    Spinner typeJob = (Spinner) findViewById(R.id.spinnerJobType);
-                    if(!typeJob.getSelectedItem().toString().equals("-"))
-                        jobOffer.put("JobType", typeJob.getSelectedItem().toString());
-                    EditText duration = (EditText) findViewById(R.id.textDuration);
-                    if(duration.getText().toString()!="")
-                        jobOffer.put("Duration", Integer.valueOf(duration.getText().toString()));
-                    Spinner industry = (Spinner) findViewById(R.id.spinnerJobIndustry);
-                    if(!industry.getSelectedItem().toString().equals("-"))
-                        jobOffer.put("Industry", industry.getSelectedItem().toString());
-                    Spinner contract = (Spinner) findViewById(R.id.spinnerTypeOfContract);
-                    if(!contract.getSelectedItem().toString().equals("-"))
-                        jobOffer.put("ContractType", contract.getSelectedItem().toString());
+                        Spinner location = (Spinner) findViewById(R.id.spinnerLocation);
+                        if(!location.getSelectedItem().toString().equals("-"))
+                            jobOffer.put("Location",location.getSelectedItem().toString());
+                        else
+                            jobOffer.remove("Location");
+                        EditText description = (EditText) findViewById(R.id.textDescription);
+                        if(!description.getText().toString().equals(""))
+                            jobOffer.put("Description",description.getText().toString());
+                        else
+                            jobOffer.remove("Description");
+                        EditText salary = (EditText) findViewById(R.id.textSalary);
+                        if(!salary.getText().toString().equals(""))
+                            jobOffer.put("Salary", Integer.valueOf(salary.getText().toString()));
+                        else
+                            jobOffer.remove("Salary");
+                        Spinner typeJob = (Spinner) findViewById(R.id.spinnerJobType);
+                        if(!typeJob.getSelectedItem().toString().equals("-"))
+                            jobOffer.put("JobType", typeJob.getSelectedItem().toString());
+                        else
+                            jobOffer.remove("JobType");
+                        EditText duration = (EditText) findViewById(R.id.textDuration);
+                        if(!duration.getText().toString().equals(""))
+                            jobOffer.put("Duration", Integer.valueOf(duration.getText().toString()));
+                        else
+                            jobOffer.remove("Duration");
+                        Spinner industry = (Spinner) findViewById(R.id.spinnerJobIndustry);
+                        if(!industry.getSelectedItem().toString().equals("-"))
+                            jobOffer.put("Industry", industry.getSelectedItem().toString());
+                        else
+                            jobOffer.remove("Industry");
+                        Spinner contract = (Spinner) findViewById(R.id.spinnerTypeOfContract);
+                        if(!contract.getSelectedItem().toString().equals("-"))
+                            jobOffer.put("ContractType", contract.getSelectedItem().toString());
+                        else
+                            jobOffer.remove("ContractType");
 
-                    jobOffer.saveInBackground();
+                        jobOffer.saveInBackground();
 
-                }
-            }
-        });
-        String message = "The job offer was updated successfully";
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Update Job offer");
-        builder.setMessage(message);
-        builder.setCancelable(true);
-        builder.setNeutralButton(android.R.string.ok,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //dialog.cancel();
-                        Intent intent= new Intent(UpdateOffer.this,ListJobs.class);
-                        startActivity(intent);
                     }
-                });
+                }
+            });
+            String message = "The job offer was updated successfully";
 
-        AlertDialog alert = builder.create();
-        alert.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Update Job offer");
+            builder.setMessage(message);
+            builder.setCancelable(true);
+            builder.setNeutralButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //dialog.cancel();
+                            Intent intent= new Intent(UpdateOffer.this,ListJobs.class);
+                            startActivity(intent);
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
+
+    private boolean validateRegisterInput()
+    {
+        // Validate the sign up data
+        boolean validationError = false;
+        StringBuilder validationErrorMessage =
+                new StringBuilder(getResources().getString(R.string.error_intro));
+        EditText position = (EditText) findViewById(R.id.textJob);
+        if(position.getText().toString().equals("")) {
+            validationError = true;
+            validationErrorMessage.append(" "+getResources().getString(R.string.error_blank_position));
+        }
+        validationErrorMessage.append(getResources().getString(R.string.error_end));
+
+        // If there is a validation error, display the error
+        if (validationError) {
+            Toast.makeText(getBaseContext(), validationErrorMessage.toString(), Toast.LENGTH_LONG).show();
+            return false;//invalid input
+        }
+        return true;//valid input
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +182,7 @@ public class UpdateOffer extends ActionBarActivity {
         if(job.getDescription()!=null)
             description.setText(job.getDescription());
         EditText salary = (EditText) findViewById(R.id.textSalary);
-        if(job.getSalary()!=null)
+        if(job.getSalary()!=null && !job.getSalary().equals(""))
             salary.setText(job.getSalary());
         Spinner typeJob = (Spinner) findViewById(R.id.spinnerJobType);
         adapterJobType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.arrayJobType));
