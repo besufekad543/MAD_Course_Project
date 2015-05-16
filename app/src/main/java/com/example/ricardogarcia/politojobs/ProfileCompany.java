@@ -82,20 +82,25 @@ public class ProfileCompany extends ActionBarActivity {
             AddressView.setFocusableInTouchMode(false);
             AddressView.setClickable(false);
 
-            LocationView.setSelection(adapterLocation.getPosition(company.getString("Location")));
+            if (company.get("Location")==null) {
+                LocationView.setSelection(0);
+            } else {
+                LocationView.setSelection(adapterLocation.getPosition(company.getString("Location")));
+            }
+
             LocationView.setFocusable(false);
             LocationView.setFocusableInTouchMode(false);
             LocationView.setClickable(false);
             LocationView.setEnabled(false);
 
-            if(company.get("Description")!=null) {
+            if (company.get("Description") != null) {
                 DescriptionView.setText(company.getString("Description"));
             }
             DescriptionView.setFocusable(false);
             DescriptionView.setFocusableInTouchMode(false);
             DescriptionView.setClickable(false);
 
-            if (company.get("Industry")==null) {
+            if (company.get("Industry") == null) {
                 IndustryView.setSelection(0);
             } else {
                 IndustryView.setSelection(adapterIndustry.getPosition(company.getString("Industry")));
@@ -105,31 +110,36 @@ public class ProfileCompany extends ActionBarActivity {
             IndustryView.setClickable(false);
             IndustryView.setEnabled(false);
 
-            if(company.get("Size")!=null){
-                int csize=company.getInt("Size");
+            if (company.get("Size") != null && company.getInt("Size") != 0) {
+                int csize = company.getInt("Size");
                 CompanySizeView.setText(String.valueOf(csize));
             }
             CompanySizeView.setFocusable(false);
             CompanySizeView.setFocusableInTouchMode(false);
             CompanySizeView.setClickable(false);
 
-            if(company.getString("Website")!=null) {
+            if (company.getString("Website") != null) {
                 WebsiteView.setText(company.getString("Website"));
             }
             WebsiteView.setFocusable(false);
             WebsiteView.setFocusableInTouchMode(false);
             WebsiteView.setClickable(false);
 
-            if(company.getString("Clients")!=null) {
+            if (company.getString("Clients") != null) {
                 ClientsView.setText(company.getString("Clients"));
             }
             ClientsView.setFocusable(false);
             ClientsView.setFocusableInTouchMode(false);
             ClientsView.setClickable(false);
 
-        } catch (ParseException e) {
+        } catch (
+                ParseException e
+                )
+
+        {
             e.printStackTrace();
         }
+
     }
 
     private boolean isEmpty(EditText etText) {
@@ -153,24 +163,24 @@ public class ProfileCompany extends ActionBarActivity {
         WebsiteView = (EditText) findViewById(R.id.textWeb);
         ClientsView = (EditText) findViewById(R.id.textClients);
 
-        outState.putString(INFO_NAME,NameView.getText().toString());
-        outState.putString(INFO_ADDRESS,AddressView.getText().toString());
-        outState.putString(INFO_LOCATION,LocationView.getSelectedItem().toString());
+        outState.putString(INFO_NAME, NameView.getText().toString());
+        outState.putString(INFO_ADDRESS, AddressView.getText().toString());
+        outState.putString(INFO_LOCATION, LocationView.getSelectedItem().toString());
 
-        if(!IndustryView.getSelectedItem().toString().equals("-"))
-            outState.putString(INFO_INDUSTRY,IndustryView.getSelectedItem().toString());
+        if (!IndustryView.getSelectedItem().toString().equals("-"))
+            outState.putString(INFO_INDUSTRY, IndustryView.getSelectedItem().toString());
 
-        if(!DescriptionView.getText().toString().equals(""))
-            outState.putString(INFO_DESCRIPTION,DescriptionView.getText().toString());
+        if (!DescriptionView.getText().toString().equals(""))
+            outState.putString(INFO_DESCRIPTION, DescriptionView.getText().toString());
 
-        if(!CompanySizeView.getText().toString().equals(""))
-            outState.putString(INFO_SIZE,CompanySizeView.getText().toString());
+        if (!CompanySizeView.getText().toString().equals(""))
+            outState.putString(INFO_SIZE, CompanySizeView.getText().toString());
 
-        if(!WebsiteView.getText().toString().equals(""))
-            outState.putString(INFO_WEBSITE,WebsiteView.getText().toString());
+        if (!WebsiteView.getText().toString().equals(""))
+            outState.putString(INFO_WEBSITE, WebsiteView.getText().toString());
 
-        if(!ClientsView.getText().toString().equals(""))
-            outState.putString(INFO_CLIENTS,ClientsView.getText().toString());
+        if (!ClientsView.getText().toString().equals(""))
+            outState.putString(INFO_CLIENTS, ClientsView.getText().toString());
 
 
         super.onSaveInstanceState(outState);
@@ -184,23 +194,23 @@ public class ProfileCompany extends ActionBarActivity {
         AddressView.setText(savedInstanceState.getString(INFO_ADDRESS));
         LocationView.setSelection(adapterLocation.getPosition(savedInstanceState.getString(INFO_LOCATION)));
 
-        if(savedInstanceState.containsKey(INFO_INDUSTRY)){
+        if (savedInstanceState.containsKey(INFO_INDUSTRY)) {
             IndustryView.setSelection(adapterIndustry.getPosition(savedInstanceState.getString(INFO_INDUSTRY)));
         }
 
-        if(savedInstanceState.containsKey(INFO_DESCRIPTION)){
+        if (savedInstanceState.containsKey(INFO_DESCRIPTION)) {
             DescriptionView.setText(savedInstanceState.getString(INFO_DESCRIPTION));
         }
 
-        if(savedInstanceState.containsKey(INFO_SIZE)){
+        if (savedInstanceState.containsKey(INFO_SIZE)) {
             CompanySizeView.setText(savedInstanceState.getString(INFO_SIZE));
         }
 
-        if(savedInstanceState.containsKey(INFO_WEBSITE)){
+        if (savedInstanceState.containsKey(INFO_WEBSITE)) {
             WebsiteView.setText(savedInstanceState.getString(INFO_WEBSITE));
         }
 
-        if(savedInstanceState.containsKey(INFO_CLIENTS)){
+        if (savedInstanceState.containsKey(INFO_CLIENTS)) {
             ClientsView.setText(savedInstanceState.getString(INFO_CLIENTS));
         }
 
@@ -267,20 +277,31 @@ public class ProfileCompany extends ActionBarActivity {
             query.whereEqualTo("CompanyId", ParseUser.getCurrentUser());
             ParseObject company = query.getFirst();
 
-            if(!IndustryView.getSelectedItem().toString().equals("-"))
-            company.put("Industry", IndustryView.getSelectedItem().toString());
-
+            if (!IndustryView.getSelectedItem().toString().equals("-")) {
+                company.put("Industry", IndustryView.getSelectedItem().toString());
+            } else {
+                company.remove("Industry");
+            }
             if(!DescriptionView.getText().toString().equals(""))
             company.put("Description", DescriptionView.getText().toString());
+            else
+            company.remove("Description");
 
-            if(!CompanySizeView.getText().toString().equals(""))
-            company.put("Size", Integer.valueOf(CompanySizeView.getText().toString()));
+            if (!CompanySizeView.getText().toString().equals(""))
+                company.put("Size", Integer.valueOf(CompanySizeView.getText().toString()));
+            else
+                company.remove("Size");
 
             if(!WebsiteView.getText().toString().equals(""))
             company.put("Website", WebsiteView.getText().toString());
+            else
+            company.remove("Website");
 
             if(!ClientsView.getText().toString().equals(""))
             company.put("Clients", ClientsView.getText().toString());
+            else
+            company.remove("Clients");
+
 
             company.saveInBackground(new SaveCallback() {
                 @Override
@@ -305,11 +326,6 @@ public class ProfileCompany extends ActionBarActivity {
         DescriptionView.setFocusable(true);
         DescriptionView.setFocusableInTouchMode(true);
         DescriptionView.setClickable(true);
-
-        LocationView.setFocusable(true);
-        LocationView.setFocusableInTouchMode(true);
-        LocationView.setClickable(true);
-        LocationView.setEnabled(true);
 
         IndustryView.setFocusable(true);
         IndustryView.setFocusableInTouchMode(true);
@@ -350,8 +366,8 @@ public class ProfileCompany extends ActionBarActivity {
             queryApplyJob.include("StudentId");
             queryApplyJob.whereEqualTo("StudentId", student);
 
-            List<ParseObject> resultsApplyJob=queryApplyJob.find();
-            for(ParseObject p:resultsApplyJob){
+            List<ParseObject> resultsApplyJob = queryApplyJob.find();
+            for (ParseObject p : resultsApplyJob) {
                 p.delete();
             }
 
@@ -359,8 +375,8 @@ public class ProfileCompany extends ActionBarActivity {
             querySavedCompany.include("StudentId");
             querySavedCompany.whereEqualTo("StudentId", student);
 
-            List<ParseObject> resultsSavedCompany=querySavedCompany.find();
-            for(ParseObject p:resultsSavedCompany){
+            List<ParseObject> resultsSavedCompany = querySavedCompany.find();
+            for (ParseObject p : resultsSavedCompany) {
                 p.delete();
             }
 
@@ -368,8 +384,8 @@ public class ProfileCompany extends ActionBarActivity {
             querySavedJobOffer.include("StudentId");
             querySavedJobOffer.whereEqualTo("StudentId", student);
 
-            List<ParseObject> resultsSavedJobOffer=querySavedJobOffer.find();
-            for(ParseObject p:resultsSavedJobOffer){
+            List<ParseObject> resultsSavedJobOffer = querySavedJobOffer.find();
+            for (ParseObject p : resultsSavedJobOffer) {
                 p.delete();
             }
 
@@ -377,22 +393,22 @@ public class ProfileCompany extends ActionBarActivity {
             querySavedStudent.include("StudentId");
             querySavedStudent.whereEqualTo("StudentId", student);
 
-            List<ParseObject> resultsSavedStudent=querySavedStudent.find();
-            for(ParseObject p:resultsSavedStudent){
+            List<ParseObject> resultsSavedStudent = querySavedStudent.find();
+            for (ParseObject p : resultsSavedStudent) {
                 p.delete();
             }
 
             ParseQuery<ParseObject> queryMessage = ParseQuery.getQuery("Message");
             queryMessage.whereEqualTo("SenderId", ParseUser.getCurrentUser().getObjectId());
-            List<ParseObject> resultsMessage=queryMessage.find();
-            for(ParseObject p:resultsMessage){
+            List<ParseObject> resultsMessage = queryMessage.find();
+            for (ParseObject p : resultsMessage) {
                 p.delete();
             }
 
             queryMessage = ParseQuery.getQuery("Message");
             queryMessage.whereEqualTo("ReceiverId", ParseUser.getCurrentUser().getObjectId());
-            resultsMessage=queryMessage.find();
-            for(ParseObject p:resultsMessage){
+            resultsMessage = queryMessage.find();
+            for (ParseObject p : resultsMessage) {
                 p.delete();
             }
 
