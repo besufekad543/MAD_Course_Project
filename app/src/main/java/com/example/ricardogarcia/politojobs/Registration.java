@@ -1,7 +1,9 @@
 package com.example.ricardogarcia.politojobs;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -211,7 +213,7 @@ public class Registration extends Activity {
         }
     }
 
-    protected void registerUser(final String type,String username,String password,String[] data)
+    protected void registerUser(final String type, final String username,String password,String[] data)
     {
         ParseUser user = new ParseUser();
         final ParseObject registerStudent = new ParseObject("Student");
@@ -234,6 +236,8 @@ public class Registration extends Activity {
         }
 
 
+
+
         // Set up a progress dialog
         final ProgressDialog dlg = new ProgressDialog(Registration.this);
         dlg.setTitle("Please wait.");
@@ -251,6 +255,20 @@ public class Registration extends Activity {
                         registerStudent.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
+                                builder.setTitle(R.string.username);
+                                builder.setMessage("Your username is "+getString(R.string.title_activity_username));
+                                builder.setCancelable(true);
+                                builder.setNeutralButton(android.R.string.ok,
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
                                 Intent intent = new Intent(Registration.this, StudentHome.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
@@ -263,6 +281,20 @@ public class Registration extends Activity {
                         registerCompany.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
+                                builder.setTitle(R.string.username);
+                                builder.setMessage("Your username is "+getString(R.string.title_activity_username));
+                                builder.setCancelable(true);
+                                builder.setNeutralButton(android.R.string.ok,
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
                                 Intent intent = new Intent(Registration.this, CompanyHome.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

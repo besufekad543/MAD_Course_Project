@@ -487,7 +487,8 @@ public class ResultStudents extends ActionBarActivity {
             newSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    Intent intent= new Intent(ResultStudents.this,SearchStudents.class);
+                    startActivity(intent);
                 }
             });
 
@@ -501,6 +502,7 @@ public class ResultStudents extends ActionBarActivity {
     }
 
     public void newSearch(View view){
-        finish();
+        Intent intent= new Intent(ResultStudents.this,SearchStudents.class);
+        startActivity(intent);
     }
 }

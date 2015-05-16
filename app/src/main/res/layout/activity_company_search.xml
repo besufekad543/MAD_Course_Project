@@ -69,7 +69,7 @@
 
                 <TableRow
                     android:layout_marginTop="@dimen/margin_top_title"
-                    android:gravity="right">
+                    android:gravity="center">
 
                     <Button
                         android:id="@+id/buttonSavedJobs"

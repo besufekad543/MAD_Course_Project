@@ -73,7 +73,7 @@
                 android:layout_height="match_parent">
 
 
-                <TableRow android:gravity="right">
+                <TableRow android:gravity="center">
 
                     <Button
                         android:id="@+id/buttonSavedJobs"

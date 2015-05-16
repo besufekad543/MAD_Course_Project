@@ -66,7 +66,8 @@ public class UpdateOffer extends ActionBarActivity {
     }
 
     public void goBack(View view) {
-        UpdateOffer.this.finish();
+        Intent intent= new Intent(UpdateOffer.this,ListJobs.class);
+        startActivity(intent);
     }
 
     public void update(View view) {

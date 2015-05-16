@@ -68,7 +68,7 @@
                 android:layout_below="@id/searchText"
                 android:stretchColumns="*">
 
-                <TableRow android:gravity="right">
+                <TableRow android:gravity="center">
 
                     <Button
                         android:id="@+id/buttonSavedStudents"
