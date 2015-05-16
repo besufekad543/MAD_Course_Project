@@ -68,7 +68,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/studentName"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/industry"
                 android:id="@+id/studentIndustry"
@@ -79,7 +80,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/studentDescription"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/technical_skills"
                 android:id="@+id/techSkills"
@@ -90,7 +92,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/studentIndustry"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/experience"
                 android:id="@+id/yearsExperience"
@@ -101,7 +104,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/techSkills"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/degree"
                 android:id="@+id/typeOfDegree"
@@ -112,7 +116,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/yearsExperience"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/interests"
                 android:id="@+id/interests"
@@ -123,7 +128,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/typeOfDegree"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/current_company"
                 android:id="@+id/currentCompany"
@@ -134,7 +140,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/interests"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/languages"
                 android:id="@+id/languages"
@@ -142,11 +149,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/currentCompany"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <Button
                 android:text="@string/send_button"

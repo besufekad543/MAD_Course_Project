@@ -17,9 +17,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.HashMap;
+
 
 public class ViewStudent extends ActionBarActivity {
 
+    public static final String HASHMAP = "com.example.ricardogarcia.politojobs.HASHMAP";
+    public final static String INFO_SEARCHTYPE = "com.example.ricardogarcia.politojobs.SEARCHTYPE";
     private static final String NAME = "com.example.ricardogarcia.politojobs.STUDENTNAME";
     private static final String INDUSTRY = "com.example.ricardogarcia.politojobs.STUDENTINDUSTRY";
     private static final String DESCRIPTION = "com.example.ricardogarcia.politojobs.STUDENTDESCRIPTION";
@@ -98,7 +102,15 @@ public class ViewStudent extends ActionBarActivity {
             }
             else{
                 querySavedStudent.getFirst().deleteInBackground();
-                ViewStudent.this.finish();
+                Intent intent = new Intent(this, ResultStudents.class);
+
+                HashMap<String,String> search_filters= new HashMap<String,String>();
+                search_filters.put(INFO_SEARCHTYPE,"Saved Students");
+
+                Bundle b = new Bundle();
+                b.putSerializable(HASHMAP,search_filters);
+                intent.putExtras(b);
+                startActivity(intent);
 
             }
 

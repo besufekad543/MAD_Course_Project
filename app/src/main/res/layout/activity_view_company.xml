@@ -73,7 +73,9 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:text="@string/industry"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+               />
 
             <TextView
                 android:id="@+id/companyDescription"
@@ -85,7 +87,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/companyLocation"
@@ -97,7 +100,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:text="@string/location"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/companySize"
@@ -109,7 +113,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:text="@string/company_size"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/website"
@@ -121,7 +126,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:text="@string/company_web"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/clients"
@@ -133,7 +139,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:text="@string/company_clients"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TableRow
                 android:id="@+id/table"

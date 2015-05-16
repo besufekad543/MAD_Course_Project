@@ -175,8 +175,6 @@ public class CompanySearchResults extends ActionBarActivity {
             } else {
                 //Saved companies
 
-
-
                 ParseQuery<ParseObject> savedCompanyQuery = ParseQuery.getQuery("SavedCompany");
                 ParseQuery<ParseObject> studentQuery = ParseQuery.getQuery("Student");
 

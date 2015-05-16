@@ -9,7 +9,6 @@
         android:id="@+id/textSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/subject"
         android:paddingLeft="@dimen/padding_left"
         android:textSize="@dimen/text_size"
         android:textStyle="bold" />
@@ -18,7 +17,6 @@
         android:id="@+id/textMessagePreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/message_prev"
         android:textSize="@dimen/text_size"
         android:paddingLeft="@dimen/padding_left"/>
 

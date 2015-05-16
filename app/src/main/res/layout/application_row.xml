@@ -9,7 +9,6 @@
         android:id="@+id/textPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/job_position"
         android:paddingLeft="@dimen/padding_left"
         android:textSize="@dimen/text_size"
         android:textStyle="bold" />
@@ -18,7 +17,6 @@
         android:id="@+id/textCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/company_title"
         android:textSize="@dimen/text_size"
         android:paddingLeft="@dimen/padding_left"/>
 

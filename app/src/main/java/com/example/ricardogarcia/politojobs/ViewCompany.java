@@ -20,9 +20,13 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import java.util.HashMap;
+
 
 public class ViewCompany extends ActionBarActivity {
 
+    private static final String INFO_HASH = "com.example.ricardogarcia.politojobs.HASH";
+    private static final String INFO_SEARCHTYPE = "com.example.ricardogarcia.politojobs.SEARCHTYPE";
     private static final String NAME = "com.example.ricardogarcia.politojobs.COMPANYNAME";
     private static final String INDUSTRY = "com.example.ricardogarcia.politojobs.COMPANYINDUSTRY";
     private static final String DESCRIPTION = "com.example.ricardogarcia.politojobs.COMPANYDESCRIPTION";
@@ -85,7 +89,14 @@ public class ViewCompany extends ActionBarActivity {
             }
             else{
                 querySavedCompany.getFirst().deleteInBackground();
-                ViewCompany.this.finish();
+
+                Intent intent = new Intent(this, CompanySearchResults.class);
+                HashMap<String,String> search_filters= new HashMap<String,String>();
+                search_filters.put(INFO_SEARCHTYPE,"Saved Companies");
+                Bundle b = new Bundle();
+                b.putSerializable(INFO_HASH,search_filters);
+                intent.putExtras(b);
+                startActivity(intent);
 
             }
 
@@ -150,7 +161,7 @@ public class ViewCompany extends ActionBarActivity {
         if(company.getDescription()!=null)
             description.setText(description.getText().toString()+"\n"+company.getDescription()+"\n");
         TextView location = (TextView) findViewById(R.id.companyLocation);
-        location.setText(company.getLocation());
+        location.setText(location.getText().toString()+"\n"+company.getLocation()+"\n");
         TextView size = (TextView) findViewById(R.id.companySize);
         if(company.getCompany_size()>0)
             size.setText(size.getText().toString()+"\n"+ String.valueOf(company.getCompany_size()) + "\n");

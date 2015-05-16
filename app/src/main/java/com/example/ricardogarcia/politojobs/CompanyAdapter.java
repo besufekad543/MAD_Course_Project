@@ -80,9 +80,8 @@ public class CompanyAdapter extends BaseAdapter implements View.OnClickListener 
                 vholder = (ViewHolder) v.getTag();
             }
 
-            if(listcompanies.get(position).getName()!=null)
             vholder.textName.setText(listcompanies.get(position).getName().substring(0, 1).toUpperCase() + listcompanies.get(position).getName().substring(1));
-            if(listcompanies.get(position).getIndustry()!=null)
+            if(listcompanies.get(position).getIndustry()!=null && !listcompanies.get(position).getIndustry().equals(""))
             vholder.textIndustry.setText(listcompanies.get(position).getIndustry().substring(0, 1).toUpperCase() + listcompanies.get(position).getIndustry().substring(1));
 
             vholder.buttonView.setOnClickListener(new View.OnClickListener() {

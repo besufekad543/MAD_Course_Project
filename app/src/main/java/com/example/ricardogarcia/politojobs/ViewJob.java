@@ -17,9 +17,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.HashMap;
+
 
 public class ViewJob extends ActionBarActivity {
 
+    public final static String INFO_HASH = "com.example.ricardogarcia.politojobs.HASH";
+    public final static String INFO_SEARCHTYPE = "com.example.ricardogarcia.politojobs.SEARCHTYPE";
     private static final String POSITION = "com.example.ricardogarcia.politojobs.POSITION";
     private static final String COMPANY = "com.example.ricardogarcia.politojobs.COMPANY";
     private static final String INDUSTRY = "com.example.ricardogarcia.politojobs.INDUSTRY";
@@ -130,7 +134,15 @@ public class ViewJob extends ActionBarActivity {
                 alert.show();
             } else {
                 querySavedJob.getFirst().deleteInBackground();
-                ViewJob.this.finish();
+                Intent intent = new Intent(this, JobSearchResults.class);
+
+                HashMap<String,String> search_filters= new HashMap<String,String>();
+                search_filters.put(INFO_SEARCHTYPE,"Saved Jobs");
+
+                Bundle b = new Bundle();
+                b.putSerializable(INFO_HASH,search_filters);
+                intent.putExtras(b);
+                startActivity(intent);
             }
 
         } catch (ParseException e) {

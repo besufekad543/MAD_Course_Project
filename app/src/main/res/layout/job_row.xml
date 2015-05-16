@@ -12,18 +12,17 @@
 
         <TextView
             android:id="@+id/textJobPosition"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="3.4"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/job_position"
             android:textSize="@dimen/text_size" />
 
         <Button
             android:id="@+id/buttonView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
@@ -39,13 +38,12 @@
 
         <TextView
             android:id="@+id/textCompany"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="3.4"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/company_title"
             android:textSize="@dimen/text_size" />
 
     </TableRow>
@@ -54,18 +52,17 @@
 
         <TextView
             android:id="@+id/textLocation"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="3.4"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/location"
             android:textSize="@dimen/text_size" />
 
         <Button
             android:id="@+id/buttonSaveDelete"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/button_height_small"
             android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
@@ -80,13 +77,12 @@
 
         <TextView
             android:id="@+id/textDatePosted"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="start"
             android:paddingLeft="@dimen/padding_left"
-            android:text="@string/date_posted"
             android:textSize="@dimen/text_size" />
 
     </TableRow>

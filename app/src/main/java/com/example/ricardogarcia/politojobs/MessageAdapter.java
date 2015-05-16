@@ -66,18 +66,19 @@ public class MessageAdapter extends BaseAdapter implements View.OnClickListener 
             } else {
                 vholder = (ViewHolder) v.getTag();
             }
-            if(listmessages.get(position).getSubject()!=null)
-            vholder.textSubject.setText(listmessages.get(position).getSubject());
+            if (listmessages.get(position).getSubject() != null && !listmessages.get(position).getSubject().equals(""))
+                vholder.textSubject.setText(listmessages.get(position).getSubject());
 
-            if (listmessages.get(position).getMessage()!=null && listmessages.get(position).getMessage().length() > 78)
-                vholder.textMessage.setText(listmessages.get(position).getMessage().substring(0, 78) + "...");
-            else
-                vholder.textMessage.setText(listmessages.get(position).getMessage());
+            if (listmessages.get(position).getMessage() != null && !listmessages.get(position).getMessage().equals(""))
+                if (listmessages.get(position).getMessage().length() > 78)
+                    vholder.textMessage.setText(listmessages.get(position).getMessage().substring(0, 78) + "...");
+                else
+                    vholder.textMessage.setText(listmessages.get(position).getMessage());
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(activity,InboxDescription.class);
+                    Intent intent = new Intent(activity, InboxDescription.class);
                     Bundle b = new Bundle();
                     b.putString(Inbox.INFO_MESSAGE, listmessages.get(position).getMessage());
                     b.putString(Inbox.INFO_SUBJECT, listmessages.get(position).getSubject());

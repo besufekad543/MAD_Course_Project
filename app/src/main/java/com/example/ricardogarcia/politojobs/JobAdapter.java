@@ -85,11 +85,10 @@ public class JobAdapter extends BaseAdapter implements View.OnClickListener {
                 vholder = (ViewHolder) v.getTag();
             }
 
-            if(listjobs.get(position).getPosition()!=null)
             vholder.textJob.setText(listjobs.get(position).getPosition().substring(0, 1).toUpperCase() + listjobs.get(position).getPosition().substring(1));
             if(listjobs.get(position).getCompany()!=null)
             vholder.textCompany.setText(listjobs.get(position).getCompany().getName().substring(0, 1).toUpperCase() + listjobs.get(position).getCompany().getName().substring(1));
-            if(listjobs.get(position).getLocation()!=null)
+            if(listjobs.get(position).getLocation()!=null && !listjobs.get(position).getLocation().equals(""))
             vholder.textLocation.setText(listjobs.get(position).getLocation().substring(0, 1).toUpperCase() + listjobs.get(position).getLocation().substring(1));
             if(listjobs.get(position).getDate()!=null)
             vholder.textDate.setText(listjobs.get(position).getDate().substring(4, 19));

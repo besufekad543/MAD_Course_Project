@@ -69,7 +69,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/jobPosition"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/industry"
                 android:id="@+id/companyIndustry"
@@ -80,7 +81,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/companyName"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/date_posted"
                 android:id="@+id/datePosted"
@@ -91,7 +93,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/companyIndustry"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/description"
                 android:id="@+id/jobDescription"
@@ -102,7 +105,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/datePosted"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/salary"
                 android:id="@+id/salary"
@@ -113,7 +117,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/jobDescription"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/location"
                 android:id="@+id/jobLocation"
@@ -124,7 +129,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/salary"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/job_type"
                 android:id="@+id/jobType"
@@ -135,7 +141,8 @@
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/jobLocation"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/job_duration"
                 android:id="@+id/jobDuration"
@@ -143,11 +150,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/jobType"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <TextView android:text="@string/type_of_contract"
                 android:id="@+id/typeOfContract"
@@ -155,11 +162,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-
                 android:paddingLeft="@dimen/padding_left"
                 android:layout_below="@+id/jobDuration"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"/>
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"/>
 
             <Button
                 android:text="@string/backListApplications"
