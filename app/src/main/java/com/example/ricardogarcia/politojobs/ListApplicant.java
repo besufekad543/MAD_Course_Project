@@ -23,9 +23,6 @@ import java.util.List;
 
 public class ListApplicant extends ActionBarActivity {
 
-    public void goBack(View view) {
-        ListApplicant.this.finish();
-    }
 
     public void goHome(View view) {
         ParseUser currentUser = ParseUser.getCurrentUser();

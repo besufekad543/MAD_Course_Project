@@ -271,7 +271,8 @@ public class CompanySearchResults extends ActionBarActivity {
             newSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    Intent intent= new Intent(CompanySearchResults.this,CompanySearch.class);
+                    startActivity(intent);
                 }
             });
 

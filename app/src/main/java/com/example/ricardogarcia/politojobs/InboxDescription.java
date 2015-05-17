@@ -105,6 +105,7 @@ public class InboxDescription extends ActionBarActivity {
     }
 
     public void backToResults(View view) {
-        finish();
+        Intent intent= new Intent(this,Inbox.class);
+        startActivity(intent);
     }
 }

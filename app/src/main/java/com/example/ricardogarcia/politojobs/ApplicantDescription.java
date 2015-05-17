@@ -24,7 +24,8 @@ public class ApplicantDescription extends ActionBarActivity {
     private static final String LANGUAGES = "com.example.ricardogarcia.politojobs.STUDENTLANGUAGES";
 
     public void goBack(View view) {
-        ApplicantDescription.this.finish();
+        Intent intent= new Intent(this,ListApplicant.class);
+        startActivity(intent);
     }
 
     public void goHome(View view) {

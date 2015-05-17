@@ -25,7 +25,8 @@ public class ApplicationDescription extends ActionBarActivity {
     private static final String CONTRACT = "com.example.ricardogarcia.politojobs.CONTRACT";
 
     public void goBack(View view) {
-        ApplicationDescription.this.finish();
+        Intent intent= new Intent(this,ListApplication.class);
+        startActivity(intent);
     }
 
     public void goHome(View view) {

@@ -430,7 +430,8 @@ public class JobSearchResults extends ActionBarActivity {
             newSearchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    Intent intent = new Intent(JobSearchResults.this, JobSearch.class);
+                    startActivity(intent);
                 }
             });
 
@@ -444,6 +445,7 @@ public class JobSearchResults extends ActionBarActivity {
     }
 
     public void newSearch(View view){
-        finish();
+        Intent intent = new Intent(JobSearchResults.this, JobSearch.class);
+        startActivity(intent);
     }
 }

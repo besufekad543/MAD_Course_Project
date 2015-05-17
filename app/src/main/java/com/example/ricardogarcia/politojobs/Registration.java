@@ -257,7 +257,7 @@ public class Registration extends Activity {
                             public void done(ParseException e) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
                                 builder.setTitle(R.string.username);
-                                builder.setMessage("Your username is "+getString(R.string.title_activity_username));
+                                builder.setMessage("Your username is "+ username);
                                 builder.setCancelable(true);
                                 builder.setNeutralButton(android.R.string.ok,
                                         new DialogInterface.OnClickListener() {

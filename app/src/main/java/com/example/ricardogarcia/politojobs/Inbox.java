@@ -143,8 +143,5 @@ public class Inbox extends ActionBarActivity {
         }
     }
 
-    public void newSearch(View view){
-        finish();
-    }
 }
 
