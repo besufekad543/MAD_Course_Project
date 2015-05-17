@@ -79,7 +79,7 @@
     <string name="password">Password</string>
     <string name="header">POLITO Jobs</string>
     <string name="title_activity_registration">Registration</string>
-    <string name="title_activity_username">Your username is</string>
+    <string name="title_activity_username">Your username is </string>
 
     <string name="singin">Sign in</string>
     <string name="inbox_title">Inbox</string>
