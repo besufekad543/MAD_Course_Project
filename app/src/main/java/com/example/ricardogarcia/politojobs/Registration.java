@@ -257,21 +257,22 @@ public class Registration extends Activity {
                             public void done(ParseException e) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
                                 builder.setTitle(R.string.username);
-                                builder.setMessage(getString(R.string.title_activity_username)+username);
+                                builder.setMessage(getString(R.string.title_activity_username)+" "+username);
                                 builder.setCancelable(true);
                                 builder.setNeutralButton(android.R.string.ok,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 dialog.cancel();
+                                                Intent intent = new Intent(Registration.this, StudentHome.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
                                             }
                                         });
 
                                 AlertDialog alert = builder.create();
                                 alert.show();
 
-                                Intent intent = new Intent(Registration.this, StudentHome.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
+
                             }
                         });
                     }
@@ -283,21 +284,22 @@ public class Registration extends Activity {
                             public void done(ParseException e) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
                                 builder.setTitle(R.string.username);
-                                builder.setMessage(getString(R.string.title_activity_username)+username);
+                                builder.setMessage(getString(R.string.title_activity_username)+" "+username);
                                 builder.setCancelable(true);
                                 builder.setNeutralButton(android.R.string.ok,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 dialog.cancel();
+                                                Intent intent = new Intent(Registration.this, CompanyHome.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
                                             }
                                         });
 
                                 AlertDialog alert = builder.create();
                                 alert.show();
 
-                                Intent intent = new Intent(Registration.this, CompanyHome.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
+
                             }
                         });
                     }
