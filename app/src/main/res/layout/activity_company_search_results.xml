@@ -54,7 +54,8 @@
         android:layout_below="@+id/titleSearchResults"
         android:layout_marginTop="@dimen/margin_top_title"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" />
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:divider="@drawable/list_divider"/>
 
     <LinearLayout
         android:id="@+id/emptyView"
