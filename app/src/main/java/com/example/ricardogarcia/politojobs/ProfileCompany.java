@@ -240,6 +240,7 @@ public class ProfileCompany extends ActionBarActivity {
     }
 
 
+
     public void goHome(View view) {
         ParseUser currentUser = ParseUser.getCurrentUser();
         String typeUser = currentUser.getString("TypeUser");
