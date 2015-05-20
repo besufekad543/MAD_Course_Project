@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -493,6 +494,8 @@ public class ProfileStudent extends ActionBarActivity {
     }
 
     public void editProfile(View view) {
+        Button editButton= (Button) findViewById(R.id.editButton);
+        editButton.setVisibility(View.GONE);
 
         LocationView.setFocusable(true);
         LocationView.setFocusableInTouchMode(true);
