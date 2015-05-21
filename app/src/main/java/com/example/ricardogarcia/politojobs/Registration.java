@@ -105,8 +105,8 @@ public class Registration extends Activity {
         if (validateRegisterInput(true)) {
             data[0] = studentName.getText().toString();
             data[1] = surname.getText().toString();
-
-            registerUser("Student", studentName.getText().toString().toLowerCase()+surname.getText().toString().toLowerCase(), studentPassword.getText().toString(), data);
+            String username=(studentName.getText().toString().toLowerCase()+surname.getText().toString().toLowerCase()).replaceAll("\\s+","");
+            registerUser("Student",username , studentPassword.getText().toString(), data);
         }
     }
 
@@ -230,8 +230,8 @@ public class Registration extends Activity {
         else
         {
             registerCompany.put("Name",username.toLowerCase());
-            registerCompany.put("Location",data[0].toLowerCase());//data[0] is Company Location
-            registerCompany.put("Address", data[1].toLowerCase());//data[1] is address of company
+            registerCompany.put("Location",data[0]);//data[0] is Company Location
+            registerCompany.put("Address", data[1]);//data[1] is address of company
             user.put("TypeUser","Company");
         }
 

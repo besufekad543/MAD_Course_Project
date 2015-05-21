@@ -221,7 +221,8 @@
                         android:layout_weight="1"
                         android:background="@color/background_text"
                         android:inputType="date"
-                        android:textSize="@dimen/text_size" />
+                        android:textSize="@dimen/text_size"
+                        android:hint="@string/dateFormat"/>
                 </TableRow>
 
                 <TableRow android:layout_marginTop="@dimen/margin_top">
